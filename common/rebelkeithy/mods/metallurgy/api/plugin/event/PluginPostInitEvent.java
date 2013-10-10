@@ -1,4 +1,4 @@
-package rebelkeithy.mods.metallurgy.api.plugin;
+package rebelkeithy.mods.metallurgy.api.plugin.event;
 
 import net.minecraftforge.event.Event;
 

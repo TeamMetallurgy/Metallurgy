@@ -1,6 +1,5 @@
 package rebelkeithy.mods.metallurgy.api.plugin;
 
-import java.util.List;
 
 /**
  * Metallurgy add-ons implement this interface. Implementors will be acquired and loaded when the
@@ -9,10 +8,10 @@ import java.util.List;
 public interface IPlugin
 {
     /**
-     * @return a list of event handlers annotated with
+     * @return an Iterable of event handlers annotated with
      *         {@link net.minecraftforge.event.ForgeSubscribe @ForgeSubscribe}
      */
-    public List<? extends Object> getForgeSubscribers();
+    public Iterable<?> getForgeSubscribers();
 
     /**
      * Checks any preconditions and decides whether the plugin is available to the Metallurgy mod.
