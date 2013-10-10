@@ -1,30 +1,20 @@
 package rebelkeithy.mods.metallurgy.vanilla;
 
 import java.io.File;
-import java.io.IOException;
-import java.util.Arrays;
 import java.util.Map;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraftforge.common.Configuration;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.ForgeSubscribe;
 import rebelkeithy.mods.keithyutils.reflection.Reflector;
 import rebelkeithy.mods.metallurgy.core.MetalInfoDatabase;
-import rebelkeithy.mods.metallurgy.core.MetallurgyCore;
 import rebelkeithy.mods.metallurgy.core.metalsets.MetalSet;
-import cpw.mods.fml.common.Mod;
-import cpw.mods.fml.common.Mod.EventHandler;
-import cpw.mods.fml.common.ModMetadata;
+import rebelkeithy.mods.metallurgy.core.plugin.event.NativePluginInitEvent;
+import rebelkeithy.mods.metallurgy.core.plugin.event.NativePluginPreInitEvent;
 import cpw.mods.fml.common.SidedProxy;
-import cpw.mods.fml.common.event.FMLInitializationEvent;
-import cpw.mods.fml.common.event.FMLPostInitializationEvent;
-import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-import cpw.mods.fml.common.network.NetworkMod;
 
-@Mod(modid = "Metallurgy3Vanilla", name = "Metallurgy 3 Vanilla", version = "3.2.3", dependencies = "required-after:Metallurgy3Core")
-@NetworkMod(channels =
-{ "MetallurgyVanilla" }, clientSideRequired = true, serverSideRequired = false)
 public class MetallurgyVanilla
 {
     @SidedProxy(clientSide = "rebelkeithy.mods.metallurgy.vanilla.ClientProxy", serverSide = "rebelkeithy.mods.metallurgy.vanilla.CommonProxy")
@@ -32,22 +22,16 @@ public class MetallurgyVanilla
 
     public static MetalSet vanillaSet;
 
-    @EventHandler
-    public void Init(FMLInitializationEvent event)
+    @ForgeSubscribe
+    public void Init(NativePluginInitEvent event)
     {
-
         vanillaSet.init();
         VanillaAddons.load();
         proxy.registerNames();
     }
 
-    @EventHandler
-    public void PostInit(FMLPostInitializationEvent event)
-    {
-    }
-
-    @EventHandler
-    public void preInit(FMLPreInitializationEvent event)
+    @ForgeSubscribe
+    public void preInit(NativePluginPreInitEvent event)
     {
 
         final Map<String, Map<String, String>> vanillaList = MetalInfoDatabase.getSpreadsheetDataForSet("Vanilla");
@@ -59,18 +43,7 @@ public class MetallurgyVanilla
 
         vanillaSet.initConfig();
 
-        final File fileDir = new File(MetallurgyCore.proxy.getMinecraftDir() + "/config/Metallurgy3");
-        fileDir.mkdir();
-        final File cfgFile = new File(MetallurgyCore.proxy.getMinecraftDir() + "/config/Metallurgy3/MetallurgyVanilla.cfg");
-
-        try
-        {
-            cfgFile.createNewFile();
-        } catch (final IOException e)
-        {
-        	 MetallurgyCore.log.info(e.getLocalizedMessage());
-        }
-
+        final File cfgFile = new File(event.getMetallurgyConfigDir(), "MetallurgyVanilla.cfg");
         final Configuration config = new Configuration(cfgFile);
 
         if (config.get("!enable", "Enable Texture Overrides", true).getBoolean(true))

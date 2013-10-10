@@ -10,12 +10,19 @@ import java.util.logging.Logger;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraftforge.common.Configuration;
 import net.minecraftforge.common.Property;
+import net.minecraftforge.event.EventBus;
 import rebelkeithy.mods.keithyutils.guiregistry.GuiRegistry;
+import rebelkeithy.mods.metallurgy.api.plugin.PluginPostInitEvent;
+import rebelkeithy.mods.metallurgy.api.plugin.event.PluginInitEvent;
+import rebelkeithy.mods.metallurgy.api.plugin.event.PluginPreInitEvent;
 import rebelkeithy.mods.metallurgy.core.metalsets.MetalSet;
+import rebelkeithy.mods.metallurgy.core.plugin.PluginLoader;
+import rebelkeithy.mods.metallurgy.core.plugin.event.NativePluginInitEvent;
+import rebelkeithy.mods.metallurgy.core.plugin.event.NativePluginPostInitEvent;
+import rebelkeithy.mods.metallurgy.core.plugin.event.NativePluginPreInitEvent;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
-import cpw.mods.fml.common.ModMetadata;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
@@ -23,16 +30,20 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.network.NetworkRegistry;
 
-@Mod(modid = "Metallurgy3Core", name = "Metallurgy 3 Core", version = "3.2.3", dependencies = "required-after:KeithyUtils@[1.2,]")
+@Mod(modid = "Metallurgy3", name = "Metallurgy 3", version = MetallurgyCore.MOD_VERSION, dependencies = "required-after:KeithyUtils@[1.2,]")
 @NetworkMod(channels =
 { "MetallurgyCore" }, clientSideRequired = true, serverSideRequired = false)
 public class MetallurgyCore
 {
+    public static final String MOD_VERSION = "3.2.3";
+    
     @SidedProxy(clientSide = "rebelkeithy.mods.metallurgy.core.ClientProxy", serverSide = "rebelkeithy.mods.metallurgy.core.CommonProxy")
     public static CommonProxy proxy;
 
-    @Instance(value = "Metallurgy3Core")
+    @Instance(value = "Metallurgy3")
     public static MetallurgyCore instance;
+    
+    public static EventBus PLUGIN_BUS = new EventBus();
 
     public static boolean spawnInAir = false;
 
@@ -62,6 +73,10 @@ public class MetallurgyCore
     @EventHandler
     public void init(FMLInitializationEvent event)
     {
+        log.fine("Posting init event to plugins.");
+        PLUGIN_BUS.post(new NativePluginInitEvent());
+        PLUGIN_BUS.post(new PluginInitEvent());
+
         for (final MetalSet set : getMetalSetList())
         {
             set.load();
@@ -118,6 +133,9 @@ public class MetallurgyCore
     @EventHandler
     public void postInit(FMLPostInitializationEvent event)
     {
+        log.fine("Posting postInit event to plugins.");
+        PLUGIN_BUS.post(new NativePluginPostInitEvent());
+        PLUGIN_BUS.post(new PluginPostInitEvent());
     }
 
     @EventHandler
@@ -126,19 +144,13 @@ public class MetallurgyCore
 
         log = event.getModLog();
 
-//        for (final MetalSet set : getMetalSetList())
-//        {
-//            // set.initConfig();
-//            // set.init();
-//        }
-
         initConfig();
 
         for (final String filename : csvFiles)
         {
             if (!filename.equals(""))
             {
-                MetalInfoDatabase.readMetalDataFromFile("/config/Metallurgy3/" + filename);
+                MetalInfoDatabase.readMetalDataFromFile(event.getModConfigurationDirectory() +"/Metallurgy3/" + filename);
             }
         }
         for (final String set : setsToRead)
@@ -151,5 +163,12 @@ public class MetallurgyCore
         }
 
         NetworkRegistry.instance().registerGuiHandler(this, GuiRegistry.instance());
+        
+        log.fine("Loading plugins.");
+        PluginLoader.loadPlugins(PLUGIN_BUS, event.getSourceFile(), new File(MetallurgyCore.proxy.getMinecraftDir() + "/mods"));
+        
+        log.fine("Posting preInit event to plugins.");
+        PLUGIN_BUS.post(new NativePluginPreInitEvent(event, instance, MOD_VERSION));
+        PLUGIN_BUS.post(new PluginPreInitEvent(event, MOD_VERSION));
     }
 }

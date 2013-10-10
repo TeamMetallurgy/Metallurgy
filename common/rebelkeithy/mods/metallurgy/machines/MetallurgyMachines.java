@@ -4,11 +4,16 @@ import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
+import net.minecraftforge.event.ForgeSubscribe;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
 import rebelkeithy.mods.keithyutils.guiregistry.GuiRegistry;
+import rebelkeithy.mods.metallurgy.core.MetallurgyCore;
 import rebelkeithy.mods.metallurgy.core.MetallurgyTabs;
 import rebelkeithy.mods.metallurgy.core.metalsets.ItemMetallurgy;
+import rebelkeithy.mods.metallurgy.core.plugin.event.NativePluginInitEvent;
+import rebelkeithy.mods.metallurgy.core.plugin.event.NativePluginPostInitEvent;
+import rebelkeithy.mods.metallurgy.core.plugin.event.NativePluginPreInitEvent;
 import rebelkeithy.mods.metallurgy.integration.AppliedEnergestics;
 import rebelkeithy.mods.metallurgy.machines.abstractor.AbstractorRecipes;
 import rebelkeithy.mods.metallurgy.machines.abstractor.BlockAbstractor;
@@ -51,29 +56,18 @@ import rebelkeithy.mods.metallurgy.machines.storage.BlockStorageAccessor;
 import rebelkeithy.mods.metallurgy.machines.storage.TileEntityStorageAccessor;
 import rebelkeithy.mods.metallurgy.machines.storage.TileEntityStorageBlock;
 import rebelkeithy.mods.metallurgy.metals.MetallurgyMetals;
-import cpw.mods.fml.common.Mod;
-import cpw.mods.fml.common.Mod.EventHandler;
-import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.SidedProxy;
-import cpw.mods.fml.common.event.FMLInitializationEvent;
-import cpw.mods.fml.common.event.FMLPostInitializationEvent;
-import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import cpw.mods.fml.common.registry.VillagerRegistry;
 
-@Mod(modid = "Metallurgy3Machines", name = "Metallurgy 3 Machines", dependencies = "required-after:Metallurgy3Base", version = "3.2.3")
-@NetworkMod(channels =
-{ "M3Machines" }, clientSideRequired = true, serverSideRequired = false, packetHandler = PacketHandler.class)
 public class MetallurgyMachines
 {
     @SidedProxy(clientSide = "rebelkeithy.mods.metallurgy.machines.ClientProxy", serverSide = "rebelkeithy.mods.metallurgy.machines.CommonProxy")
     public static CommonProxy proxy;
 
-    @Instance(value = "Metallurgy3Machines")
-    public static MetallurgyMachines instance;
+    public static MetallurgyCore instance;
 
     public static MetallurgyTabs machineTab;
 
@@ -208,14 +202,14 @@ public class MetallurgyMachines
         }
     }
 
-    @EventHandler
-    public void postInit(FMLPostInitializationEvent event)
+    @ForgeSubscribe
+    public void postInit(NativePluginPostInitEvent event)
     {
         AppliedEnergestics.init();
     }
     
-    @EventHandler
-    public void Init(FMLInitializationEvent event)
+    @ForgeSubscribe
+    public void Init(NativePluginInitEvent event)
     {
         loadCrusher();
         machineTab.setIconItem(crusher.blockID);
@@ -435,23 +429,10 @@ public class MetallurgyMachines
     {
         storageAccessor = new BlockStorageAccessor(919).setUnlocalizedName("StorageAccessorBlock").setHardness(2.0F).setCreativeTab(machineTab);
         storageBlock = new BlockStorage(920).setUnlocalizedName("StorageBlock").setHardness(2.0F).setCreativeTab(machineTab);
-        // storageAccessor.blockIndexInTexture = 32;
-        // storageBlock.blockIndexInTexture = 33;
         GameRegistry.registerTileEntity(TileEntityStorageAccessor.class, "TileEntityStorage");
         GameRegistry.registerTileEntity(TileEntityStorageBlock.class, "TileEntityStorageBlock");
         GameRegistry.registerBlock(storageAccessor, "BlockStorageAccessor");
         GameRegistry.registerBlock(storageBlock, "BlockStorage");
-    }
-
-    public void initXpTank()
-    {
-//        xpTank = new BlockXpTank(ConfigMachines.xpTankID).setHardness(3.5F).setUnlocalizedName("M3XpTank").setCreativeTab(machineTab);
-//        GameRegistry.registerBlock(xpTank, "M3XpTank");
-//        GameRegistry.registerTileEntity(TileEntityXpTank.class, "M3TileEntityXpTank");
-//
-//        LanguageRegistry.addName(new ItemStack(xpTank, 1, 0), "Xp Tank");
-//
-//        EntityRegistry.registerModEntity(EntityXpOrbContainer.class, "XpOrbContainer", 0, this, 60, 1, true);
     }
 
     public void loadCrusher()
@@ -465,9 +446,11 @@ public class MetallurgyMachines
         CrusherRecipes.addCrushing(Item.ingotGold.itemID, 0, new ItemStack(MetallurgyMetals.dustGold));
     }
 
-    @EventHandler
-    public void preInit(FMLPreInitializationEvent event)
+    @ForgeSubscribe
+    public void preInit(NativePluginPreInitEvent event)
     {
+        instance = event.getMetallurgyInstance();
+        
         machineTab = new MetallurgyTabs("Metallurgy: Machines");
         // initStorage();
 
@@ -479,7 +462,6 @@ public class MetallurgyMachines
         initChests();
         initMint();
         initAbstractor();
-        initXpTank();
         initLantern();
         initLadders();
 
