@@ -6,6 +6,9 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 
+import invtweaks.api.container.ChestContainer;
+
+@ChestContainer
 public class ContainerStorage extends Container
 {
     InventoryStorage inventory;

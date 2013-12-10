@@ -8,6 +8,15 @@ import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 
+import invtweaks.api.container.InventoryContainer;
+import invtweaks.api.container.ContainerSectionCallback;
+import invtweaks.api.container.ContainerSection;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+@InventoryContainer
 public class ContainerCrusher extends Container
 {
     private final TileEntityCrusher furnace;
@@ -171,4 +180,15 @@ public class ContainerCrusher extends Container
             furnace.currentItemBurnTime = par2;
         }
     }
+
+	@ContainerSectionCallback
+	public Map<ContainerSection, List<Slot>> getSections() {
+        Map<ContainerSection, List<Slot>> slotRefs = new HashMap<ContainerSection, List<Slot>>();
+
+		// Furnace is the best match for this, and will let the extra invtweaks shortcuts target the input correctly.
+        slotRefs.put(ContainerSection.FURNACE_IN, inventorySlots.subList(0, 1));
+        slotRefs.put(ContainerSection.FURNACE_FUEL, inventorySlots.subList(1, 2));
+        slotRefs.put(ContainerSection.FURNACE_OUT, inventorySlots.subList(2, 3));
+        return slotRefs;
+	}
 }

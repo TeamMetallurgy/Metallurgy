@@ -19,6 +19,15 @@ import rebelkeithy.mods.metallurgy.metals.MetallurgyMetals;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
+import invtweaks.api.container.InventoryContainer;
+import invtweaks.api.container.ContainerSectionCallback;
+import invtweaks.api.container.ContainerSection;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+@InventoryContainer(showOptions = false)
 public class ContainerMetallurgyEnchantment extends Container
 {
     /** SlotEnchantmentTable object with ItemStack to be enchanted */
@@ -326,4 +335,13 @@ public class ContainerMetallurgyEnchantment extends Container
             super.updateProgressBar(par1, par2);
         }
     }
+
+	@ContainerSectionCallback
+	public Map<ContainerSection, List<Slot>> getSections() {
+        Map<ContainerSection, List<Slot>> slotRefs = new HashMap<ContainerSection, List<Slot>>();
+
+        slotRefs.put(ContainerSection.ENCHANTMENT, inventorySlots.subList(0, 1));
+        slotRefs.put(ContainerSection.CHEST, inventorySlots.subList(1, 7));
+        return slotRefs;
+	}
 }

@@ -8,6 +8,9 @@ import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 
+import invtweaks.api.container.ChestContainer;
+
+@ChestContainer(isLargeChest = true)
 public class ContainerPreciousChest extends Container
 {
     private final IInventory lowerChestInventory;
@@ -112,4 +115,9 @@ public class ContainerPreciousChest extends Container
 
         return var2;
     }
+
+	@ChestContainer.RowSizeCallback
+	public int getNumColumns() {
+		return numCols;
+	}
 }
