@@ -111,7 +111,10 @@
 	<!-- Setup mcp and forge -->
 	<target name="setup" depends="download-files,setup-forge">
 		
-		<delete dir="${libs.dir}" failonerror="false"/>
+		<delete failonerror="false">
+			<fileset dir="." includes="**/*.zip"/>
+			<fileset dir="." includes="**/*.jar"/>
+		</delete>
 		<unzip dest="${libs.dir}" src="${download.dir}/master.zip"/>
 		<unzip dest="${libs.dir}" src="${download.dir}/InventoryTweaks-api-MC1.6.2-1.56-b77.jar"/>
 		
