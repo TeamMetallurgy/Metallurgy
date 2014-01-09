@@ -112,8 +112,8 @@
 	<target name="setup" depends="download-files,setup-forge">
 		
 		<delete failonerror="false">
-			<fileset dir="." includes="**/*.zip"/>
-			<fileset dir="." includes="**/*.jar"/>
+			<fileset dir="${libs.dir}" includes="*.zip"/>
+			<fileset dir="${libs.dir}" includes="*.jar"/>
 		</delete>
 		<unzip dest="${libs.dir}" src="${download.dir}/master.zip"/>
 		<unzip dest="${libs.dir}" src="${download.dir}/InventoryTweaks-api-MC1.6.2-1.56-b77.jar"/>
