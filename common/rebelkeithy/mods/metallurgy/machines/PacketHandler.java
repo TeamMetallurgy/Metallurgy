@@ -257,8 +257,6 @@ public class PacketHandler implements IPacketHandler
             final int speed = byteIn.readInt();
             final int burnTime = byteIn.readInt();
             final int cookTime = byteIn.readInt();
-            final int fuel = byteIn.readInt();
-            final int maxFuel = byteIn.readInt();
 
             final World world = MetallurgyCore.proxy.getClientWorld();
             final TileEntity te = world.getBlockTileEntity(x, y, z);
@@ -270,8 +268,7 @@ public class PacketHandler implements IPacketHandler
                 icte.furnaceTimeBase = speed;
                 icte.furnaceBurnTime = burnTime;
                 icte.furnaceCookTime = cookTime;
-                icte.fuel = fuel;
-                icte.maxFuel = maxFuel;
+                
             }
         }
         else if (packetID == 51)
