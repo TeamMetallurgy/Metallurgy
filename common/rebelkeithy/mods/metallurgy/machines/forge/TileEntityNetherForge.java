@@ -13,13 +13,16 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.network.packet.Packet250CustomPayload;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.MathHelper;
+import net.minecraftforge.common.ForgeDirection;
+import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.FluidTank;
 import net.minecraftforge.fluids.FluidTankInfo;
-import net.minecraftforge.fluids.IFluidTank;
+import net.minecraftforge.fluids.IFluidHandler;
 import cpw.mods.fml.common.network.PacketDispatcher;
 
-public class TileEntityNetherForge extends TileEntity implements ISidedInventory, IFluidTank
+public class TileEntityNetherForge extends TileEntity implements ISidedInventory, IFluidHandler
 {
     /**
      * The ItemStacks that hold the items currently being used in the furnace
@@ -49,6 +52,8 @@ public class TileEntityNetherForge extends TileEntity implements ISidedInventory
     public int direction = 0;
 
     private int ticksSinceSync;
+
+    private FluidTank tank = new FluidTank(getCapacity());
 
     public void addFuelBucket()
     {
@@ -80,18 +85,9 @@ public class TileEntityNetherForge extends TileEntity implements ISidedInventory
     private boolean canSmelt()
     {
         final ItemStack var1 = FurnaceRecipes.smelting().getSmeltingResult(furnaceItemStacks[0]);
-        if (var1 == null)
-        {
-            return false;
-        }
-        if (furnaceItemStacks[1] == null)
-        {
-            return true;
-        }
-        if (!furnaceItemStacks[1].isItemEqual(var1))
-        {
-            return false;
-        }
+        if (var1 == null) { return false; }
+        if (furnaceItemStacks[1] == null) { return true; }
+        if (!furnaceItemStacks[1].isItemEqual(var1)) { return false; }
         final int result = furnaceItemStacks[1].stackSize + var1.stackSize;
         return result <= getInventoryStackLimit() && result <= var1.getMaxStackSize();
     }
@@ -136,7 +132,6 @@ public class TileEntityNetherForge extends TileEntity implements ISidedInventory
         }
     }
 
-    @Override
     public FluidStack drain(int maxDrain, boolean doDrain)
     {
         int amount = maxDrain;
@@ -154,7 +149,6 @@ public class TileEntityNetherForge extends TileEntity implements ISidedInventory
         return new FluidStack(FluidRegistry.LAVA, amount);
     }
 
-    @Override
     public int fill(FluidStack resource, boolean doFill)
     {
         int amount = resource.amount;
@@ -179,22 +173,18 @@ public class TileEntityNetherForge extends TileEntity implements ISidedInventory
     {
         if (par1 == 1)
         {
-            return new int[]
-            { 0, 1 };
+            return new int[] { 0, 1 };
         }
         else if (par1 == 2)
         {
-            return new int[]
-            { 1 };
+            return new int[] { 1 };
         }
         else
         {
-            return new int[]
-            { 0, 1 };
+            return new int[] { 0, 1 };
         }
     }
 
-    @Override
     public int getCapacity()
     {
         return maxFuel;
@@ -214,18 +204,6 @@ public class TileEntityNetherForge extends TileEntity implements ISidedInventory
         return direction;
     }
 
-    @Override
-    public FluidStack getFluid()
-    {
-        return new FluidStack(FluidRegistry.LAVA, fuel);
-    }
-
-    @Override
-    public int getFluidAmount()
-    {
-        return fuel;
-    }
-
     public int getFuelScaled(int scale)
     {
         final int retValue = fuel * scale / maxFuel;
@@ -238,12 +216,6 @@ public class TileEntityNetherForge extends TileEntity implements ISidedInventory
             return retValue;
             // return fuel * scale / maxFuel;
         }
-    }
-
-    @Override
-    public FluidTankInfo getInfo()
-    {
-        return new FluidTankInfo(getFluid(), maxFuel);
     }
 
     /**
@@ -343,7 +315,6 @@ public class TileEntityNetherForge extends TileEntity implements ISidedInventory
      * @Override public int getStartInventorySide(ForgeDirection side) { if
      * (side == ForgeDirection.DOWN) return 1; if (side == ForgeDirection.UP)
      * return 0; return 2; }
-     * 
      * @Override public int getSizeInventorySide(ForgeDirection side) { return
      * 1; }
      */
@@ -395,34 +366,27 @@ public class TileEntityNetherForge extends TileEntity implements ISidedInventory
     /*
      * @Override public int fill(ForgeDirection from, LiquidStack resource,
      * boolean doFill) { if(resource.itemID != Block.lavaStill.blockID) return
-     * 0;
-     * 
-     * 
-     * if(fuel < maxFuel) { int res = 0; if(fuel + resource.amount <= maxFuel) {
-     * res = resource.amount; fuel += resource.amount; } else { res = maxFuel -
-     * fuel; fuel = maxFuel; } //sendPacket(); sync(); return res; } else {
-     * return 0; } }
-     * 
+     * 0; if(fuel < maxFuel) { int res = 0; if(fuel + resource.amount <=
+     * maxFuel) { res = resource.amount; fuel += resource.amount; } else { res =
+     * maxFuel - fuel; fuel = maxFuel; } //sendPacket(); sync(); return res; }
+     * else { return 0; } }
      * @Override public int fill(int tankIndex, LiquidStack resource, boolean
      * doFill) { return 0; }
-     * 
      * @Override public LiquidStack drain(ForgeDirection from, int maxDrain,
      * boolean doDrain) { return null; }
-     * 
      * @Override public LiquidStack drain(int tankIndex, int maxDrain, boolean
      * doDrain) { return null; }
      */
 
     /*
      * @Override public int addItem(ItemStack stack, boolean doAdd,
-     * ForgeDirection from) { int slot = 0;
-     * 
-     * if(furnaceItemStacks[slot] == null) { if(doAdd) furnaceItemStacks[slot] =
-     * stack; return stack.stackSize; } else { if(furnaceItemStacks[slot].itemID
-     * == stack.itemID && furnaceItemStacks[slot].getItemDamage() ==
-     * stack.getItemDamage()) { if(furnaceItemStacks[slot].stackSize +
-     * stack.stackSize > stack.getMaxStackSize()) { int amount =
-     * stack.getMaxStackSize() - furnaceItemStacks[1].stackSize; if(doAdd)
+     * ForgeDirection from) { int slot = 0; if(furnaceItemStacks[slot] == null)
+     * { if(doAdd) furnaceItemStacks[slot] = stack; return stack.stackSize; }
+     * else { if(furnaceItemStacks[slot].itemID == stack.itemID &&
+     * furnaceItemStacks[slot].getItemDamage() == stack.getItemDamage()) {
+     * if(furnaceItemStacks[slot].stackSize + stack.stackSize >
+     * stack.getMaxStackSize()) { int amount = stack.getMaxStackSize() -
+     * furnaceItemStacks[1].stackSize; if(doAdd)
      * furnaceItemStacks[slot].stackSize =
      * furnaceItemStacks[1].getMaxStackSize(); return amount; } else { if(doAdd)
      * furnaceItemStacks[slot].stackSize += stack.stackSize; return
@@ -443,7 +407,6 @@ public class TileEntityNetherForge extends TileEntity implements ISidedInventory
      * @Override public ILiquidTank[] getTanks(ForgeDirection direction) {
      * return new LiquidTank[] { new LiquidTank(Block.lavaStill.blockID, fuel,
      * maxFuel) }; }
-     * 
      * @Override public ILiquidTank getTank(ForgeDirection direction,
      * LiquidStack type) { if(type.itemID == Block.lavaStill.blockID) return new
      * LiquidTank(Block.lavaStill.blockID, fuel, maxFuel); else return null; }
@@ -475,10 +438,7 @@ public class TileEntityNetherForge extends TileEntity implements ISidedInventory
 
     public void sendPacket()
     {
-        if (worldObj.isRemote)
-        {
-            return;
-        }
+        if (worldObj.isRemote) { return; }
 
         final ByteArrayOutputStream bos = new ByteArrayOutputStream();
         final DataOutputStream dos = new DataOutputStream(bos);
@@ -494,7 +454,8 @@ public class TileEntityNetherForge extends TileEntity implements ISidedInventory
             dos.writeInt(furnaceCookTime);
             dos.writeInt(fuel);
             dos.writeInt(maxFuel);
-        } catch (final IOException e)
+        }
+        catch (final IOException e)
         {
             // UNPOSSIBLE?
         }
@@ -659,5 +620,42 @@ public class TileEntityNetherForge extends TileEntity implements ISidedInventory
 
         par1NBTTagCompound.setTag("Items", var2);
         sync();
+    }
+
+    @Override
+    public int fill(ForgeDirection from, FluidStack resource, boolean doFill)
+    {
+        return fill(resource, doFill);
+    }
+
+    @Override
+    public FluidStack drain(ForgeDirection from, FluidStack resource, boolean doDrain)
+    {
+        return drain(resource.amount, doDrain);
+    }
+
+    @Override
+    public FluidStack drain(ForgeDirection from, int maxDrain, boolean doDrain)
+    {
+        return drain(maxDrain, doDrain);
+    }
+
+    @Override
+    public boolean canFill(ForgeDirection from, Fluid fluid)
+    {
+        return true;
+    }
+
+    @Override
+    public boolean canDrain(ForgeDirection from, Fluid fluid)
+    {
+        return true;
+    }
+
+    @Override
+    public FluidTankInfo[] getTankInfo(ForgeDirection from)
+    {
+        // TODO Auto-generated method stub
+        return new FluidTankInfo[] { new FluidTankInfo(tank) };
     }
 }

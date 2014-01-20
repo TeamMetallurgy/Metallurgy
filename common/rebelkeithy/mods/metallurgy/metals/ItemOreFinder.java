@@ -1,17 +1,13 @@
 package rebelkeithy.mods.metallurgy.metals;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
 
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IconRegister;
@@ -21,6 +17,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 import net.minecraftforge.oredict.OreDictionary;
+import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -56,7 +53,11 @@ public class ItemOreFinder extends Item
             mode++;
             mode = mode % 10;
             par1ItemStack.getTagCompound().setInteger("mode", mode);
-            par2EntityPlayer.addChatMessage("Radius: " + (mode + 1) + " chunk" + (mode != 0 ? "s" : ""));
+            
+            if(FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT)
+            {
+                par2EntityPlayer.addChatMessage("Radius: " + (mode + 1) + " chunk" + (mode != 0 ? "s" : ""));
+            }
             return false;
         }
 
@@ -142,7 +143,7 @@ public class ItemOreFinder extends Item
 	                        name = "oreNetherQuartz";
 	                    }
 
-	                    if (name != null)
+	                    if (name != null && name.contains("ore"))
 	                    {
 	                        if (oreCount.containsKey(name))
 	                        {

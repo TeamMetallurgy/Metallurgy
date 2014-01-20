@@ -83,7 +83,7 @@ public class OreInfo implements IOreInfo, IWorldGenerator
     protected int maxHeight;
     protected int veinChance;
     protected int veinDensity;
-    protected String[] diminsions;
+    protected String[] dimensions;
 
     public SubBlock ore;
     public SubBlock block;
@@ -208,7 +208,7 @@ public class OreInfo implements IOreInfo, IWorldGenerator
             maxHeight = Integer.parseInt(info.get("Max Level"));
             veinChance = Integer.parseInt(info.get("Vein Chance Per Chunk"));
             veinDensity = Integer.parseInt(info.get("Vein Density"));
-            diminsions = info.get("Diminsions").split(" ");
+            dimensions = info.get("Diminsions").split(" ");
         }
 
     }
@@ -521,7 +521,8 @@ public class OreInfo implements IOreInfo, IWorldGenerator
 
         if (type.generates())
         {
-            GameRegistry.registerWorldGenerator(this);
+            WorldGenMetals worldGen = new WorldGenMetals(oreID, oreMeta, new int[] { veinCount, oreCount, minHeight, maxHeight, veinChance, veinDensity }, dimensions);
+            GameRegistry.registerWorldGenerator(worldGen);
         }
     }
 
@@ -595,15 +596,15 @@ public class OreInfo implements IOreInfo, IWorldGenerator
             veinDensity = config.get(name + ".World Gen", "Vein Density", veinDensity).getInt();
 
             String dimCombined = "";
-            if (diminsions.length > 0)
+            if (dimensions.length > 0)
             {
-                dimCombined = diminsions[0];
-                for (int n = 1; n < diminsions.length; n++)
+                dimCombined = dimensions[0];
+                for (int n = 1; n < dimensions.length; n++)
                 {
-                    dimCombined += " " + diminsions[n];
+                    dimCombined += " " + dimensions[n];
                 }
             }
-            diminsions = config.get(name + ".World Gen", "Diminsions", dimCombined).getString().split(" ");
+            dimensions = config.get(name + ".World Gen", "Diminsions", dimCombined).getString().split(" ");
         }
     }
 
@@ -743,7 +744,7 @@ public class OreInfo implements IOreInfo, IWorldGenerator
 
     private boolean spawnsInDim(int dim)
     {
-        for (final String string : diminsions)
+        for (final String string : dimensions)
         {
 
             if (string.contains("-") && !string.startsWith("-"))
