@@ -713,7 +713,7 @@ public class OreInfo implements IOreInfo, IWorldGenerator
 	private void registerName(Object registee, String name) {
 		if(registee != null)
 		{
-			LanguageRegistry.addName(registee, name + " name");
+			LanguageRegistry.addName(registee, name);
 		}
 	}
 
