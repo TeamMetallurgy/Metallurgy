@@ -455,6 +455,18 @@ public class OreInfo implements IOreInfo, IWorldGenerator
     {
         return type;
     }
+    
+    @Override
+    public int getBlockHarvestLevel() 
+    {
+    	return blockLvl;
+    }
+    
+    @Override
+    public int getToolHarvestLevel() 
+    {
+    	return pickLvl;
+    }
 
     public void init()
     {
