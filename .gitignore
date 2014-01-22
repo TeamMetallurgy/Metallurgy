@@ -4,3 +4,9 @@
 .project
 
 .idea/
+
+.classpath
+.project
+
+/build
+/download
