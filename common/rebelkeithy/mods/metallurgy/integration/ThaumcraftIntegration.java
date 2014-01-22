@@ -80,7 +80,7 @@ public class ThaumcraftIntegration
     	addAspectToMaterials(MetallurgyMetals.netherSet.getOreInfo("Ceruclase"),
     			(new AspectList()).add(Aspect.METAL, 8).add(Aspect.WATER, 4));
     	
-    	addAspectToMaterials(MetallurgyMetals.netherSet.getOreInfo("Adluorite"),
+    	addAspectToMaterials(MetallurgyMetals.netherSet.getOreInfo("Alduorite"),
     			(new AspectList()).add(Aspect.METAL, 8).add(Aspect.ORDER, 6));
     	
     	addAspectToMaterials(MetallurgyMetals.netherSet.getOreInfo("Inolashite"),
@@ -199,7 +199,39 @@ public class ThaumcraftIntegration
     	
     	if (ore != null)
     	{
-    		ThaumcraftApi.registerObjectTag(ore.itemID, ore.getItemDamage(), aspectList);
+    		
+    		AspectList oreAspectList = aspectList.copy();
+    		
+    		// Splitting Metallum into Metallum and Saxum
+        	
+        	int metallum = oreAspectList.getAmount(Aspect.METAL);
+        	
+        	if ((metallum > 0) && ((metallum % 2) == 0))
+        	{
+        		
+        		int delta = metallum / 2;
+        		
+        		oreAspectList.reduce(Aspect.METAL, delta);
+        		oreAspectList = oreAspectList.add(Aspect.STONE, delta);
+        		
+        	}
+        	
+        	// Splitting Lucrum into Lucrum and Saxum for Midasium
+        	
+        	if (oreInfo.getName().equals("Midasium"))
+        	{
+        		int lucrum = oreAspectList.getAmount(Aspect.GREED);
+        		
+        		if ((lucrum > 0) && ((lucrum % 2) == 0)) 
+        		{
+        			int delta = lucrum / 2;
+        			
+        			oreAspectList.reduce(Aspect.GREED, delta);
+            		oreAspectList = oreAspectList.add(Aspect.STONE, delta);
+        		}
+        	}
+        	
+    		ThaumcraftApi.registerObjectTag(ore.itemID, ore.getItemDamage(), oreAspectList);
     	}
         
         if (block != null)
