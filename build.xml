@@ -13,6 +13,10 @@
 	<property name="download.dir" value="download"/>
 
 	<property name="classes.dir" value="${build.dir}/classes"/>
+	<property name="deopf.dir" value="${build.dir}/deopf"/>
+	<property name="api.dir" value="${build.dir}/api"/>
+
+	
 	<property name="jar.dir" value="bin"/>
 
 	<property name="forge.dir" value="${build.dir}/forge"/>
@@ -197,6 +201,7 @@
 		<!-- Reset src dir to post-forge-install state -->
 		<delete dir="${mcpsrc.dir}/minecraft/rebelkeithy"/>
 		<delete dir="${classes.dir}/rebelkeithy/mods/keithyutils"/>
+		<delete dir="${mcpsrc.dir}/minecraft/KeithyUtils-master"/>
 		
 	</target>
 
@@ -208,8 +213,29 @@
 		<jar destfile="${jar.dir}/Metallurgy-${mc.version}-${project.version}.jar" basedir="${classes.dir}"/>
 
 	</target>
+	
+	<target name="deobf" depends="package">
+		<copy todir="${deopf.dir}">
+			<fileset dir="${resources.dir}" />
+			<fileset dir="${mcp.dir}/bin/minecraft/">
+				<include name="rebelkeithy/**"/>
+			</fileset>
+		</copy>
+		
+		<jar destfile="${jar.dir}/Metallurgy4-${mc.version}-${project.version}-deobf.jar" basedir="${deopf.dir}"/>
+	</target>
+	
+	<target name="api">
+		<copy todir="${api.dir}">
+			<fileset dir="${src.dir}">
+				<include name="rebelkeithy\mods\metallurgy\api\**"/>
+			</fileset>
+		</copy>
+		
+		<zip destfile="${jar.dir}/Metallurgy4-${mc.version}-${project.version}-api.zip" basedir="${api.dir}"/>
+	</target>
 
 	<!-- Default target to run -->
-	<target name="main" depends="package"/>
+	<target name="main" depends="deobf"/>
 
 </project>

@@ -387,6 +387,7 @@ public class MetallurgyMetals
         if (netherSet.getOreInfo("Vyroxeres").ore != null)
         {
             netherSet.getOreInfo("Vyroxeres").ore.addDisplayListener(new DisplayListenerVyroxeresOreParticles());
+            netherSet.getOreInfo("Vyroxeres").ore.addCollisionListener(new VyroxeresCollisionListener());
         }
         if (netherSet.getOreInfo("Ceruclase").ore != null)
         {
@@ -405,10 +406,6 @@ public class MetallurgyMetals
             netherSet.getOreInfo("Sanguinite").ore.addDisplayListener(new DisplayListenerOreParticles("NetherOre", 0.85, 0.0, 0.0));
         }
 
-        if (netherSet.getOreInfo("Sanguinite").ore != null)
-        {
-            netherSet.getOreInfo("Vyroxeres").ore.addCollisionListener(new VyroxeresCollisionListener());
-        }
 
         addRailRecipes();
         addSwordEffects();
