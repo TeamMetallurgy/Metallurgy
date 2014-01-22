@@ -69,10 +69,10 @@ public class ThaumcraftIntegration
     			(new AspectList()).add(Aspect.METAL, 4).add(Aspect.HEAL, 2));
     	
     	addAspectToMaterials(MetallurgyMetals.netherSet.getOreInfo("Shadow Steel"),
-    			(new AspectList()).add(Aspect.METAL, 6).add(Aspect.FIRE, 2));
+    			(new AspectList()).add(Aspect.METAL, 6).add(Aspect.DARKNESS, 4));
     	
     	addAspectToMaterials(MetallurgyMetals.netherSet.getOreInfo("Midasium"),
-    			(new AspectList()).add(Aspect.METAL, 6).add(Aspect.GREED, 10));
+    			(new AspectList()).add(Aspect.GREED, 16));
     	
     	addAspectToMaterials(MetallurgyMetals.netherSet.getOreInfo("Vyroxeres"),
     			(new AspectList()).add(Aspect.METAL, 8).add(Aspect.POISON, 4));
@@ -81,7 +81,7 @@ public class ThaumcraftIntegration
     			(new AspectList()).add(Aspect.METAL, 8).add(Aspect.WATER, 4));
     	
     	addAspectToMaterials(MetallurgyMetals.netherSet.getOreInfo("Alduorite"),
-    			(new AspectList()).add(Aspect.METAL, 8).add(Aspect.ORDER, 6));
+    			(new AspectList()).add(Aspect.METAL, 8).add(Aspect.ORDER, 4));
     	
     	addAspectToMaterials(MetallurgyMetals.netherSet.getOreInfo("Inolashite"),
     			(new AspectList()).add(Aspect.METAL, 12).add(Aspect.ICE, 6));
@@ -97,7 +97,7 @@ public class ThaumcraftIntegration
     			(new AspectList()).add(Aspect.METAL, 16).add(Aspect.FIRE, 8));
     	
     	addAspectToMaterials(MetallurgyMetals.netherSet.getOreInfo("Sanguinite"),
-    			(new AspectList()).add(Aspect.METAL, 24).add(Aspect.FLESH, 8));
+    			(new AspectList()).add(Aspect.METAL, 24).add(Aspect.HUNGER, 8));
     	
     	/** Fantasy Metals */
     	
