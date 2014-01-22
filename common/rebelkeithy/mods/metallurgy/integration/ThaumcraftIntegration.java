@@ -195,7 +195,6 @@ public class ThaumcraftIntegration
     	ItemStack block = oreInfo.getBlock();
     	ItemStack ingot = oreInfo.getIngot();
     	ItemStack drop = oreInfo.getDrop();
-    	ItemStack dust = oreInfo.getDust();
     	
     	if (ore != null)
     	{
@@ -247,11 +246,6 @@ public class ThaumcraftIntegration
         if (drop != null)
         {
         	ThaumcraftApi.registerObjectTag(drop.itemID, drop.getItemDamage(), aspectList);
-        }
-        
-        if (dust != null)
-        {
-        	ThaumcraftApi.registerObjectTag(dust.itemID, dust.getItemDamage(), aspectList);
         }
         
     }
