@@ -1,12 +1,12 @@
 package rebelkeithy.mods.metallurgy.machines.pylon;
 
+import java.util.HashMap;
+
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.tileentity.TileEntityRenderer;
 import net.minecraft.world.IBlockAccess;
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
-
-import java.util.HashMap;
 
 public class PylonRenderHelper implements ISimpleBlockRenderingHandler
 {

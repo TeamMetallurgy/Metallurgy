@@ -1,9 +1,9 @@
 package rebelkeithy.mods.metallurgy.integration;
 
-import cpw.mods.fml.common.Loader;
+import net.minecraft.item.ItemStack;
 import rebelkeithy.mods.metallurgy.machines.crusher.CrusherRecipes;
 import appeng.api.Materials;
-import net.minecraft.item.ItemStack;
+import cpw.mods.fml.common.Loader;
 
 public class AppliedEnergestics {
 

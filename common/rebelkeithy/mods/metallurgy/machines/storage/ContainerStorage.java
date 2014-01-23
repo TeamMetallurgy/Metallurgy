@@ -1,12 +1,11 @@
 package rebelkeithy.mods.metallurgy.machines.storage;
 
+import invtweaks.api.container.ChestContainer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
-
-import invtweaks.api.container.ChestContainer;
 
 @ChestContainer
 public class ContainerStorage extends Container

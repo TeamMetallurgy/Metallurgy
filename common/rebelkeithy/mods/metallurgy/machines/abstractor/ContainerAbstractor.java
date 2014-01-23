@@ -1,5 +1,13 @@
 package rebelkeithy.mods.metallurgy.machines.abstractor;
 
+import invtweaks.api.container.ContainerSection;
+import invtweaks.api.container.ContainerSectionCallback;
+import invtweaks.api.container.InventoryContainer;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
@@ -7,14 +15,6 @@ import net.minecraft.inventory.ICrafting;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-
-import invtweaks.api.container.InventoryContainer;
-import invtweaks.api.container.ContainerSectionCallback;
-import invtweaks.api.container.ContainerSection;
-
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 @InventoryContainer
 public class ContainerAbstractor extends Container
