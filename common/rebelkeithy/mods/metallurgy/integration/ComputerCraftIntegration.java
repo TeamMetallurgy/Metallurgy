@@ -1,11 +1,11 @@
 package rebelkeithy.mods.metallurgy.integration;
 
-import dan200.turtle.api.ITurtleUpgrade;
-import dan200.turtle.api.TurtleAPI;
 import net.minecraft.item.Item;
 import rebelkeithy.mods.metallurgy.core.MetallurgyCore;
 import rebelkeithy.mods.metallurgy.core.metalsets.OreInfo;
 import rebelkeithy.mods.metallurgy.metals.MetallurgyMetals;
+import dan200.turtle.api.ITurtleUpgrade;
+import dan200.turtle.api.TurtleAPI;
 
 public class ComputerCraftIntegration
 {

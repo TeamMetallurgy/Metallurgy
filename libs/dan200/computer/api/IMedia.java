@@ -5,8 +5,8 @@
  */
 
 package dan200.computer.api;
-import net.minecraft.world.World;
 import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
 
 /**
  * Represents an item that can be placed in a disk drive and used by a Computer.

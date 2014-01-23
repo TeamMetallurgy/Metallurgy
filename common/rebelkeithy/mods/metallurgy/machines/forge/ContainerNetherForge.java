@@ -1,5 +1,13 @@
 package rebelkeithy.mods.metallurgy.machines.forge;
 
+import invtweaks.api.container.ContainerSection;
+import invtweaks.api.container.ContainerSectionCallback;
+import invtweaks.api.container.InventoryContainer;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
@@ -9,14 +17,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityFurnace;
-
-import invtweaks.api.container.InventoryContainer;
-import invtweaks.api.container.ContainerSectionCallback;
-import invtweaks.api.container.ContainerSection;
-
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 @InventoryContainer
 public class ContainerNetherForge extends Container

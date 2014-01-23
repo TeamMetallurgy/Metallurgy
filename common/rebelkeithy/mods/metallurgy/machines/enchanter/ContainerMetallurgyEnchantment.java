@@ -1,6 +1,12 @@
 package rebelkeithy.mods.metallurgy.machines.enchanter;
 
+import invtweaks.api.container.ContainerSection;
+import invtweaks.api.container.ContainerSectionCallback;
+import invtweaks.api.container.InventoryContainer;
+
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 import net.minecraft.enchantment.EnchantmentData;
@@ -18,14 +24,6 @@ import net.minecraftforge.common.ForgeHooks;
 import rebelkeithy.mods.metallurgy.metals.MetallurgyMetals;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-
-import invtweaks.api.container.InventoryContainer;
-import invtweaks.api.container.ContainerSectionCallback;
-import invtweaks.api.container.ContainerSection;
-
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 @InventoryContainer(showOptions = false)
 public class ContainerMetallurgyEnchantment extends Container

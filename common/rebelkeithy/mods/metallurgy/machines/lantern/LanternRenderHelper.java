@@ -1,13 +1,13 @@
 package rebelkeithy.mods.metallurgy.machines.lantern;
 
+import java.util.HashMap;
+
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.tileentity.TileEntityRenderer;
 import net.minecraft.world.IBlockAccess;
 import rebelkeithy.mods.metallurgy.machines.MetallurgyMachines;
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
-
-import java.util.HashMap;
 
 public class LanternRenderHelper implements ISimpleBlockRenderingHandler
 {
