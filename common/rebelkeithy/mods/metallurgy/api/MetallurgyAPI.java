@@ -50,7 +50,7 @@ public class MetallurgyAPI
     {
         // TODO maybe put something to get runtime list here
         final String[] names =
-        { "base", "precious", "nether", "fantasy", "ender", "utility" };
+        { "base", "precious", "nether", "fantasy", "ender", "utility", "vanilla" };
         return names;
     }
 }
