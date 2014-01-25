@@ -222,7 +222,7 @@
 			</fileset>
 		</copy>
 		
-		<jar destfile="${jar.dir}/Metallurgy4-${mc.version}-${project.version}-deobf.jar" basedir="${deopf.dir}"/>
+		<jar destfile="${jar.dir}/Metallurgy-${mc.version}-${project.version}-deobf.jar" basedir="${deopf.dir}"/>
 	</target>
 	
 	<target name="api">
@@ -232,7 +232,7 @@
 			</fileset>
 		</copy>
 		
-		<zip destfile="${jar.dir}/Metallurgy4-${mc.version}-${project.version}-api.zip" basedir="${api.dir}"/>
+		<zip destfile="${jar.dir}/Metallurgy-${mc.version}-${project.version}-api.zip" basedir="${api.dir}"/>
 	</target>
 
 	<!-- Default target to run -->
