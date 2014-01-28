@@ -20,6 +20,7 @@ import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.network.NetworkRegistry;
 
@@ -58,6 +59,8 @@ public class MetallurgyCore
     }
 
     MetalSet baseSet;
+
+    public static File modConfigurationDirectory;
 
     @EventHandler
     public void init(FMLInitializationEvent event)
@@ -119,11 +122,17 @@ public class MetallurgyCore
     public void postInit(FMLPostInitializationEvent event)
     {
     }
+    
+    @EventHandler
+    public void serverStarting(FMLServerStartingEvent event)
+    {
+        event.registerServerCommand(new OreGenDump());
+    }
 
     @EventHandler
     public void preInit(FMLPreInitializationEvent event)
     {
-
+        modConfigurationDirectory = event.getModConfigurationDirectory();
         log = event.getModLog();
 
 //        for (final MetalSet set : getMetalSetList())
