@@ -542,31 +542,28 @@ public class OreInfo implements IOreInfo, IWorldGenerator
             if ((type == ORE || type == CATALYST || type == DROP) && oreID != 0)
             {
                 oreID = config.getBlock("#Block IDs", name + " Ore", oreID).getInt();
-                oreMeta = config.get("#Block IDs", name + " Ore Meta", oreMeta).getInt();
             }
             if (type != DROP && blockID != 0)
             {
                 blockID = config.getBlock("#Block IDs", name + " Block", blockID).getInt();
-                blockMeta = config.get("#Block IDs", name + " Block Meta", blockMeta).getInt();
             }
             if (type != DROP && brickID != 0)
             {
                 brickID = config.getBlock("#Block IDs", name + " Brick", brickID).getInt();
-                brickMeta = config.get("#Block IDs", name + " Brick Meta", brickMeta).getInt();
             }
 
             if (type != DROP)
             {
                 dustID = config.getItem("#Item IDs", name + " Dust", dustID).getInt();
                 ingotID = config.getItem("#Item IDs", name + " Ingot", ingotID).getInt();
-                
+
                 shovelID = config.getItem("#Item IDs", name + " Shovel", shovelID).getInt();
                 pickaxeID = config.getItem("#Item IDs", name + " Pickaxe", pickaxeID).getInt();
                 axeID = config.getItem("#Item IDs", name + " Axe", axeID).getInt();
                 hoeID = config.getItem("#Item IDs", name + " Hoe", hoeID).getInt();
-                
+
                 swordID = config.getItem("#Item IDs", name + " Sword", swordID).getInt();
-                
+
                 helmetID = config.getItem("#Item IDs", name + " Helmet", helmetID).getInt();
                 chestID = config.getItem("#Item IDs", name + " Chest", swordID).getInt();
                 legID = config.getItem("#Item IDs", name + " Legs", legID).getInt();
@@ -618,8 +615,8 @@ public class OreInfo implements IOreInfo, IWorldGenerator
             }
             dimensions = config.get(name + ".World Gen", "Diminsions", dimCombined).getString().split(" ");
         }
-        
-        if(config.hasChanged())
+
+        if (config.hasChanged())
         {
             config.save();
         }
