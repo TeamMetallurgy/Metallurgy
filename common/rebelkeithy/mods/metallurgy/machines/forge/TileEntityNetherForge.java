@@ -57,7 +57,7 @@ public class TileEntityNetherForge extends TileEntity implements ISidedInventory
         this.tank = new FluidTank(10000);
 
         this.direction = 0;
-        this.fuelPerItem = 100;
+        this.fuelPerItem = 50;
         this.furnaceTimeBase = 200;
         this.fuelMultiplier = 0.5F;
         this.furnaceCookTime = 0;
