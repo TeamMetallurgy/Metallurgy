@@ -8,10 +8,13 @@ import java.util.List;
 import java.util.logging.Logger;
 
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.Item;
 import net.minecraftforge.common.Configuration;
 import net.minecraftforge.common.Property;
 import rebelkeithy.mods.keithyutils.guiregistry.GuiRegistry;
 import rebelkeithy.mods.metallurgy.core.metalsets.MetalSet;
+import rebelkeithy.mods.metallurgy.machines.drums.Drums;
+import rebelkeithy.mods.metallurgy.machines.drums.ItemDrum;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
@@ -23,10 +26,10 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.network.NetworkRegistry;
+import cpw.mods.fml.common.registry.GameRegistry;
 
 @Mod(modid = "Metallurgy3Core", name = "Metallurgy 3 Core", version = "3.2.3", dependencies = "required-after:KeithyUtils@[1.2,];after:Thaumcraft@[4.0.5,]")
-@NetworkMod(channels =
-{ "MetallurgyCore" }, clientSideRequired = true, serverSideRequired = false)
+@NetworkMod(channels = { "MetallurgyCore" }, clientSideRequired = true, serverSideRequired = false)
 public class MetallurgyCore
 {
     @SidedProxy(clientSide = "rebelkeithy.mods.metallurgy.core.ClientProxy", serverSide = "rebelkeithy.mods.metallurgy.core.CommonProxy")
@@ -71,6 +74,7 @@ public class MetallurgyCore
             proxy.registerNamesForMetalSet(set);
         }
         MetalInfoDatabase.registerItemsWithOreDict();
+
     }
 
     public void initConfig()
@@ -83,7 +87,8 @@ public class MetallurgyCore
         {
             cfgFile.createNewFile();
             log.info("[Metallurgy3] Successfully created/read configuration file for Metallurgy 3 Core");
-        } catch (final IOException e)
+        }
+        catch (final IOException e)
         {
             log.warning("[Metallurgy3] Could not create configuration file for Metallurgy 3 Core, Reason:");
             e.printStackTrace();
@@ -103,26 +108,26 @@ public class MetallurgyCore
             config.save();
         }
     }
-    
+
     public static Boolean getConfigSettingBoolean(String category, String name, Boolean defaultValue)
     {
-    	config.load();
-    	
-    	Property property = config.get(category, name, defaultValue);
-    	
-    	if(config.hasChanged())
-    	{
-    		config.save();
-    	}
-    	
-    	return property.getBoolean(defaultValue);
+        config.load();
+
+        Property property = config.get(category, name, defaultValue);
+
+        if (config.hasChanged())
+        {
+            config.save();
+        }
+
+        return property.getBoolean(defaultValue);
     }
 
     @EventHandler
     public void postInit(FMLPostInitializationEvent event)
     {
     }
-    
+
     @EventHandler
     public void serverStarting(FMLServerStartingEvent event)
     {
@@ -135,11 +140,11 @@ public class MetallurgyCore
         modConfigurationDirectory = event.getModConfigurationDirectory();
         log = event.getModLog();
 
-//        for (final MetalSet set : getMetalSetList())
-//        {
-//            // set.initConfig();
-//            // set.init();
-//        }
+        // for (final MetalSet set : getMetalSetList())
+        // {
+        // // set.initConfig();
+        // // set.init();
+        // }
 
         initConfig();
 
@@ -158,7 +163,6 @@ public class MetallurgyCore
                 new MetalSet(set, MetalInfoDatabase.getSpreadsheetDataForSet(set), tab);
             }
         }
-
         NetworkRegistry.instance().registerGuiHandler(this, GuiRegistry.instance());
     }
 }

@@ -3,7 +3,8 @@ package rebelkeithy.mods.metallurgy.machines;
 import java.io.File;
 
 import net.minecraft.client.Minecraft;
-import rebelkeithy.mods.keithyutils.Config;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.client.MinecraftForgeClient;
 import rebelkeithy.mods.keithyutils.guiregistry.GuiRegistry;
 import rebelkeithy.mods.metallurgy.machines.abstractor.ContainerAbstractor;
 import rebelkeithy.mods.metallurgy.machines.abstractor.GuiAbstractor;
@@ -17,6 +18,7 @@ import rebelkeithy.mods.metallurgy.machines.crusher.CrusherRenderHelper;
 import rebelkeithy.mods.metallurgy.machines.crusher.GuiCrusher;
 import rebelkeithy.mods.metallurgy.machines.crusher.TileEntityCrusher;
 import rebelkeithy.mods.metallurgy.machines.crusher.TileEntityCrusherRenderer;
+import rebelkeithy.mods.metallurgy.machines.drums.DrumRender;
 import rebelkeithy.mods.metallurgy.machines.enchanter.ContainerMetallurgyEnchantment;
 import rebelkeithy.mods.metallurgy.machines.enchanter.GuiMetallurgyEnchantment;
 import rebelkeithy.mods.metallurgy.machines.enchanter.MetallurgyEnchantmentTableRenderHelper;
@@ -137,5 +139,11 @@ public class ClientProxy extends CommonProxy
 
 //        RenderingRegistry.registerEntityRenderingHandler(EntityXpOrbContainer.class, new renderXPOrbContainer());
 
+    }
+    
+    @Override
+    public void registerItemHandler(int itemID, String texture)
+    {
+//        MinecraftForgeClient.registerItemRenderer(itemID, new DrumRender(texture));
     }
 }

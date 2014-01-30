@@ -7,6 +7,7 @@ import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
 import rebelkeithy.mods.keithyutils.guiregistry.GuiRegistry;
+import rebelkeithy.mods.metallurgy.core.MetallurgyCore;
 import rebelkeithy.mods.metallurgy.core.MetallurgyTabs;
 import rebelkeithy.mods.metallurgy.core.metalsets.ItemMetallurgy;
 import rebelkeithy.mods.metallurgy.integration.AppliedEnergestics;
@@ -21,6 +22,8 @@ import rebelkeithy.mods.metallurgy.machines.crusher.BlockCrusher;
 import rebelkeithy.mods.metallurgy.machines.crusher.BlockCrusherItem;
 import rebelkeithy.mods.metallurgy.machines.crusher.CrusherRecipes;
 import rebelkeithy.mods.metallurgy.machines.crusher.TileEntityCrusher;
+import rebelkeithy.mods.metallurgy.machines.drums.Drums;
+import rebelkeithy.mods.metallurgy.machines.drums.ItemDrum;
 import rebelkeithy.mods.metallurgy.machines.enchanter.BlockMetallurgyEnchantmentTable;
 import rebelkeithy.mods.metallurgy.machines.enchanter.TileEntityMetallurgyEnchantmentTable;
 import rebelkeithy.mods.metallurgy.machines.forge.BlockNetherForge;
@@ -221,6 +224,19 @@ public class MetallurgyMachines
         loadCrusher();
         if(ConfigMachines.crusherEnabled){
         	machineTab.setIconItem(crusher.blockID);
+        }
+    }
+    
+    private void RegisterDrums()
+    {
+        for (Drums drum : Drums.values())
+        {
+            int itemID = MetallurgyCore.config.getItem(drum.getLocalizedName(), 2500).getInt();
+            Item itemDrum = new ItemDrum(itemID, drum).setUnlocalizedName("item." + drum.getLocalizedName().replace(" ", "") + ".name");
+
+            GameRegistry.registerItem(itemDrum, "Metallurgy:" + drum.getLocalizedName());
+            proxy.registerItemHandler(itemID, drum.getTexture());
+            LanguageRegistry.addName(itemDrum, drum.getLocalizedName());
         }
     }
 
@@ -529,7 +545,7 @@ public class MetallurgyMachines
         proxy.registerTileEntitySpecialRenderer();
         NetworkRegistry.instance().registerGuiHandler(this, new StorageGuiHandler());
         NetworkRegistry.instance().registerGuiHandler(this, GuiRegistry.instance());
-
+        RegisterDrums();
         LanguageRegistry.instance().addStringLocalization("itemGroup.Metallurgy: Machines", "Metallurgy: Machines");
     }
 }

@@ -34,4 +34,11 @@ public class CommonProxy
     public void registerTileEntitySpecialRenderer()
     {
     }
+    
+
+    public void registerItemHandler(int itemID, String texture)
+    {
+        // TODO Auto-generated method stub
+        
+    }
 }
