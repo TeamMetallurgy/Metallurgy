@@ -97,30 +97,30 @@ public class ConfigMachines
         enchanterEnabled = config.get("Machines", "enchanterEnabled", enchanterEnabled).getBoolean(enchanterEnabled);
         ladderEnabled = config.get("Machines", "ladderEnabled", ladderEnabled).getBoolean(ladderEnabled);
         
-        crusherID = config.get("Block IDs", "Crusher", crusherID).getInt();
-        furnaceID = config.get("Block IDs", "Metal Furnace", furnaceID).getInt();
-        forgeID = config.get("Block IDs", "Smelter", forgeID).getInt();
-        abstractorID = config.get("Block IDs", "Abstractor", abstractorID).getInt();
-        chestID = config.get("Block IDs", "Precious Chest", chestID).getInt();
-        mintID = config.get("Block IDs", "Mint", mintID).getInt();
-        mintStorageID = config.get("Block IDs", "Mint Storage", mintStorageID).getInt();
-        coloredGlassID = config.get("Block IDs", "Colored Glass", coloredGlassID).getInt();
-        lanternID = config.get("Block IDs", "Lanterns", lanternID).getInt();
-        ladderID = config.get("Block IDs", "Ladders", ladderID).getInt();
-        enchanterID = config.get("Block IDs", "Enchanter", enchanterID).getInt();
-        laserID = config.get("Block IDs", "Miners Laser", laserID).getInt();
-        xpTankID = config.get("Block IDs", "Xp Tank", xpTankID).getInt();
-        pylonID = config.get("Block IDs", "Pylon", pylonID).getInt();
+        crusherID = config.getBlock("Block IDs", "Crusher", crusherID).getInt();
+        furnaceID = config.getBlock("Block IDs", "Metal Furnace", furnaceID).getInt();
+        forgeID = config.getBlock("Block IDs", "Smelter", forgeID).getInt();
+        abstractorID = config.getBlock("Block IDs", "Abstractor", abstractorID).getInt();
+        chestID = config.getBlock("Block IDs", "Precious Chest", chestID).getInt();
+        mintID = config.getBlock("Block IDs", "Mint", mintID).getInt();
+        mintStorageID = config.getBlock("Block IDs", "Mint Storage", mintStorageID).getInt();
+        coloredGlassID = config.getBlock("Block IDs", "Colored Glass", coloredGlassID).getInt();
+        lanternID = config.getBlock("Block IDs", "Lanterns", lanternID).getInt();
+        ladderID = config.getBlock("Block IDs", "Ladders", ladderID).getInt();
+        enchanterID = config.getBlock("Block IDs", "Enchanter", enchanterID).getInt();
+        laserID = config.getBlock("Block IDs", "Miners Laser", laserID).getInt();
+        xpTankID = config.getBlock("Block IDs", "Xp Tank", xpTankID).getInt();
+        pylonID = config.getBlock("Block IDs", "Pylon", pylonID).getInt();
 
-        ironDustID = config.get("Item IDs", "Iron Dust", ironDustID).getInt();
-        goldDustID = config.get("Item IDs", "Gold Dust", goldDustID).getInt();
-        coinID = config.get("Item IDs", "Coin", coinID).getInt();
-        stackID = config.get("Item IDs", "Stack", stackID).getInt();
-        coinBagID = config.get("Item IDs", "Coin Bag", coinBagID).getInt();
-        bullionID = config.get("Item IDs", "Bullion", bullionID).getInt();
-        glassDustID = config.get("Item IDs", "Glass Dusts", glassDustID).getInt();
-        orbID = config.get("Item IDs", "Fantasy Orbs", orbID).getInt();
-        sawDustID = config.get("Item IDs", "Saw Dust", sawDustID).getInt();
+        ironDustID = config.getItem("Item IDs", "Iron Dust", ironDustID).getInt();
+        goldDustID = config.getItem("Item IDs", "Gold Dust", goldDustID).getInt();
+        coinID = config.getItem("Item IDs", "Coin", coinID).getInt();
+        stackID = config.getItem("Item IDs", "Stack", stackID).getInt();
+        coinBagID = config.getItem("Item IDs", "Coin Bag", coinBagID).getInt();
+        bullionID = config.getItem("Item IDs", "Bullion", bullionID).getInt();
+        glassDustID = config.getItem("Item IDs", "Glass Dusts", glassDustID).getInt();
+        orbID = config.getItem("Item IDs", "Fantasy Orbs", orbID).getInt();
+        sawDustID = config.getItem("Item IDs", "Saw Dust", sawDustID).getInt();
 
         tradesEnabled = config.get("Mint", "Enable Trades", true).getBoolean(true);
 
