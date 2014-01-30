@@ -63,6 +63,8 @@ public class MetallurgyCore
 
     MetalSet baseSet;
 
+    public static boolean dumpOreGen;
+
     public static File modConfigurationDirectory;
 
     @EventHandler
@@ -103,6 +105,8 @@ public class MetallurgyCore
         setsToRead = Arrays.asList(config.get("Metal Sets", "Metal Set List", "").getString().split("\\s*,\\s*"));
         log.info("reading sets " + setsToRead.size());
 
+        dumpOreGen = config.get("Debugs", "DumpOreGen", false).getBoolean(false);
+        
         if (config.hasChanged())
         {
             config.save();

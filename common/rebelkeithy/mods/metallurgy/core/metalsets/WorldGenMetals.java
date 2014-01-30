@@ -24,9 +24,9 @@ import cpw.mods.fml.common.IWorldGenerator;
 
 public class WorldGenMetals implements IWorldGenerator
 {
-	private int genBlockId;
-	private int genMetaId;
-	
+    private int genBlockId;
+    private int genMetaId;
+
     private int[] generation;
     private String dimensions;
     private WorldGenMinable mineable;
@@ -38,9 +38,9 @@ public class WorldGenMetals implements IWorldGenerator
     public WorldGenMetals(int blockId, int metaId, int[] generationInfo, String dimensionsInfo)
     {
 
-    	this.genBlockId = blockId;
-    	this.genMetaId = metaId;
-    	
+        this.genBlockId = blockId;
+        this.genMetaId = metaId;
+
         this.generation = generationInfo;
         this.dimensions = dimensionsInfo;
 
@@ -73,8 +73,8 @@ public class WorldGenMetals implements IWorldGenerator
         int dimId = world.provider.dimensionId;
 
         if (!vaildDimension(dimId)) { return; }
-        
-        Random chunkRand = getRandom (random, chunkX, chunkZ);
+
+        Random chunkRand = getRandom(random, chunkX, chunkZ);
 
         if (chunkRand.nextInt(100) > this.generation[4]) { return; }
 
@@ -84,14 +84,7 @@ public class WorldGenMetals implements IWorldGenerator
             int initY = this.generation[2] + chunkRand.nextInt(this.generation[3] - this.generation[2]);
             int initZ = (chunkZ * 16) + chunkRand.nextInt(16);
 
-            boolean boolean1 = MetallurgyCore.config.get("Debugs", "DumpOreGen", false).getBoolean(false);
-
-            if (MetallurgyCore.config.hasChanged())
-            {
-                MetallurgyCore.config.save();
-            }
-
-            if (boolean1)
+            if (MetallurgyCore.dumpOreGen)
             {
                 ItemStack itemStack = new ItemStack(this.blockId, 1, this.metaId);
                 Block blockOld = Block.blocksList[world.getBlockId(initX, initY, initZ)];
@@ -203,15 +196,16 @@ public class WorldGenMetals implements IWorldGenerator
 
         return vaild;
     }
-    
-    private Random getRandom (Random fmlRandom, int chunkX, int chunkZ)
+
+    private Random getRandom(Random fmlRandom, int chunkX, int chunkZ)
     {
-        // Create our own random chunk seed, to get different random numbers than other mods.
+        // Create our own random chunk seed, to get different random numbers
+        // than other mods.
         long seed = fmlRandom.nextLong();
         // Get a different seed for each ore.
         long seedBlock = (genBlockId * genMetaId) ^ fmlRandom.nextLong();
-        seed = (((chunkX * seed) * (chunkZ * seed)) * seedBlock)  ^ fmlRandom.nextInt(Integer.MAX_VALUE);
-        
+        seed = (((chunkX * seed) * (chunkZ * seed)) * seedBlock) ^ fmlRandom.nextInt(Integer.MAX_VALUE);
+
         return new Random(seed);
     }
 }
