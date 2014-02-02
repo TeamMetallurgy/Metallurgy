@@ -302,7 +302,7 @@ public class MetallurgyMetals
         }
 
         id = utilityConfig.get("Item IDs", "Match", 29008).getInt();
-        match = new ItemIgniter(id).setMaxDamage(1).setMaxStackSize(64).setTextureName("Metallurgy:Utility/Match").setUnlocalizedName("Metallurgy:Utility/Match").setCreativeTab(utilityTab);
+        match = new ItemIgniter(id).setMatch(true).setMaxDamage(1).setMaxStackSize(64).setTextureName("Metallurgy:Utility/Match").setUnlocalizedName("Metallurgy:Utility/Match").setCreativeTab(utilityTab);
         LanguageRegistry.addName(match, "Match");
         if (utilityConfig.get("Recipes", "Enable Match", true).getBoolean(true))
         {
