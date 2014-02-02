@@ -479,6 +479,8 @@ public class OreInfo implements IOreInfo, IWorldGenerator
             if (type.generates() && oreID != 0)
             {
                 ore = new SubBlock(oreID, oreMeta, "Metallurgy:" + setName + "/" + name + "Ore").setUnlocalizedName(setName + oreID).setCreativeTab(tab);
+                this.oreMeta = ore.getMeta();
+                
                 if (type == DROP)
                 {
                     ore.setBlockDrops(MetalInfoDatabase.getItem(dropName), dropMin, dropMax);
@@ -487,10 +489,12 @@ public class OreInfo implements IOreInfo, IWorldGenerator
             if (type != DROP && blockID != 0)
             {
                 block = new SubBlock(blockID, blockMeta, "Metallurgy:" + setName + "/" + name + "Block").setUnlocalizedName(setName + blockID).setCreativeTab(tab);
+                this.blockMeta = block.getMeta();
             }
             if (type != DROP && brickID != 0)
             {
                 brick = new SubBlock(brickID, brickMeta, "Metallurgy:" + setName + "/" + name + "Brick").setUnlocalizedName(setName + brickID).setCreativeTab(tab);
+                this.brickMeta = brick.getMeta();
             }
             if (type != DROP)
             {

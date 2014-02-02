@@ -29,10 +29,8 @@ public class VanillaAddons
     public static void init()
     {
         initConfig();
-        goldBrick = new SubBlock(goldBrickID, goldBrickMeta, "Metallurgy:Vanilla/GoldBrick").setHardness(3.0F).setResistance(10.0F)
-                .setUnlocalizedName("Metallurgy:Vanilla/GoldBricks").setCreativeTab(CreativeTabs.tabBlock);
-        ironBrick = new SubBlock(ironBrickID, ironBrickMeta, "Metallurgy:Vanilla/IronBrick").setHardness(5.0F).setResistance(10.0F)
-                .setUnlocalizedName("Metallurgy:Vanilla/IronBricks").setCreativeTab(CreativeTabs.tabBlock);
+        goldBrick = new SubBlock(goldBrickID, goldBrickMeta, "Metallurgy:Vanilla/GoldBrick").setHardness(3.0F).setResistance(10.0F).setUnlocalizedName("Metallurgy:Vanilla/GoldBricks").setCreativeTab(CreativeTabs.tabBlock);
+        ironBrick = new SubBlock(ironBrickID, ironBrickMeta, "Metallurgy:Vanilla/IronBrick").setHardness(5.0F).setResistance(10.0F).setUnlocalizedName("Metallurgy:Vanilla/IronBricks").setCreativeTab(CreativeTabs.tabBlock);
         MetaBlock.registerID(goldBrickID);
         MetaBlock.registerID(ironBrickID);
     }
@@ -46,21 +44,20 @@ public class VanillaAddons
         try
         {
             cfgFile.createNewFile();
-            
-        } catch (final IOException e)
+
+        }
+        catch (final IOException e)
         {
-        	MetallurgyCore.log.info("[Metallurgy3] Could not create configuration file for Metallurgy 3 metal set Vanilla. Reason:");
-        	MetallurgyCore.log.info(e.getLocalizedMessage());
+            MetallurgyCore.log.info("[Metallurgy3] Could not create configuration file for Metallurgy 3 metal set Vanilla. Reason:");
+            MetallurgyCore.log.info(e.getLocalizedMessage());
         }
 
         final Configuration config = new Configuration(cfgFile);
         config.load();
 
         ironBrickID = config.getBlock("Iron", "Brick ID", 900).getInt();
-        ironBrickMeta = config.get("Iron", "Brick ID Meta", 3).getInt();
 
         goldBrickID = config.getBlock("Gold", "Brick ID", 900).getInt();
-        goldBrickMeta = config.get("Iron", "Brick ID Meta", 4).getInt();
 
         config.save();
     }
@@ -69,8 +66,8 @@ public class VanillaAddons
     {
         GameRegistry.addRecipe(new ItemStack(goldBrickID, 4, goldBrickMeta), "XX", "XX", 'X', Item.ingotGold);
         GameRegistry.addRecipe(new ItemStack(ironBrickID, 4, ironBrickMeta), "XX", "XX", 'X', Item.ingotIron);
-        GameRegistry.addShapelessRecipe(new ItemStack(Item.ingotGold), new ItemStack(goldBrickID, 1, goldBrickMeta));
-        GameRegistry.addShapelessRecipe(new ItemStack(Item.ingotIron), new ItemStack(ironBrickID, 1, ironBrickMeta));
+        GameRegistry.addShapelessRecipe(new ItemStack(Item.ingotGold), new ItemStack(goldBrickID, 1, goldBrick.getMeta()));
+        GameRegistry.addShapelessRecipe(new ItemStack(Item.ingotIron), new ItemStack(ironBrickID, 1, ironBrick.getMeta()));
 
     }
 
