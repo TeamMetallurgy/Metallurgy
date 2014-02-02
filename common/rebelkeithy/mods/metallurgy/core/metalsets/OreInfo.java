@@ -541,15 +541,15 @@ public class OreInfo implements IOreInfo, IWorldGenerator
             String id;
             if ((type == ORE || type == CATALYST || type == DROP) && oreID != 0)
             {
-                oreID = config.getBlock("#Block IDs", name + " Ore", oreID).getInt();
+                oreID = config.getBlock("#Block IDs", "Ore", oreID).getInt();
             }
             if (type != DROP && blockID != 0)
             {
-                blockID = config.getBlock("#Block IDs", name + " Block", blockID).getInt();
+                blockID = config.getBlock("#Block IDs", "Block", blockID).getInt();
             }
             if (type != DROP && brickID != 0)
             {
-                brickID = config.getBlock("#Block IDs", name + " Brick", brickID).getInt();
+                brickID = config.getBlock("#Block IDs", "Brick", brickID).getInt();
             }
 
             if (type != DROP)

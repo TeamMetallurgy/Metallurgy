@@ -125,11 +125,11 @@ public class ClientProxy extends CommonProxy
         	RenderingRegistry.registerBlockHandler(BlockMetalLadder.renderType, new LadderRenderer());
         }
 
-    	if(ConfigMachines.enchanterEnabled)
-    	{
-	        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityMetallurgyEnchantmentTable.class, new RenderMetallurgyEnchantmentTable());
-	        RenderingRegistry.registerBlockHandler(new MetallurgyEnchantmentTableRenderHelper());
-    	}
+//    	if(ConfigMachines.enchanterEnabled)
+//    	{
+//	        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityMetallurgyEnchantmentTable.class, new RenderMetallurgyEnchantmentTable());
+//	        RenderingRegistry.registerBlockHandler(new MetallurgyEnchantmentTableRenderHelper());
+//    	}
 
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityLaser.class, new TileEntityLaserRenderer());
         RenderingRegistry.registerBlockHandler(new LaserRenderHelper());

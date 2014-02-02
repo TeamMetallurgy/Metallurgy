@@ -530,11 +530,11 @@ public class MetallurgyMachines
         	initLadders();
         }
         
-        
-        if(ConfigMachines.enchanterEnabled)
-        {
-        	initEnchanter();
-        }
+//        
+//        if(ConfigMachines.enchanterEnabled)
+//        {
+//        	initEnchanter();
+//        }
         
         Laser.init();
 
