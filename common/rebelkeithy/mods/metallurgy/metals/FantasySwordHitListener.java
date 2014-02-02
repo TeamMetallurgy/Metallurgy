@@ -2,6 +2,8 @@ package rebelkeithy.mods.metallurgy.metals;
 
 import java.lang.reflect.Method;
 
+import cpw.mods.fml.relauncher.ReflectionHelper;
+import cpw.mods.fml.relauncher.ReflectionHelper.UnableToFindMethodException;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -9,6 +11,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
 import net.minecraftforge.event.ForgeSubscribe;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
+import rebelkeithy.mods.metallurgy.core.MetallurgyCore;
 import rebelkeithy.mods.metallurgy.core.metalsets.ISwordHitListener;
 
 public class FantasySwordHitListener implements ISwordHitListener
@@ -74,7 +77,7 @@ public class FantasySwordHitListener implements ISwordHitListener
         }
         else if (MetallurgyMetals.fantasySet.getOreInfo("Atlarus").isEnabled() && itemstack.getItem().itemID == MetallurgyMetals.fantasySet.getOreInfo("Atlarus").sword.itemID)
         {
-            entityliving.addPotionEffect(new PotionEffect(strength, 80, 1));
+            player.addPotionEffect(new PotionEffect(strength, 80, 1));
         }
         else if (MetallurgyMetals.fantasySet.getOreInfo("Tartarite").isEnabled() && itemstack.getItem().itemID == MetallurgyMetals.fantasySet.getOreInfo("Tartarite").sword.itemID)
         {
@@ -112,18 +115,23 @@ public class FantasySwordHitListener implements ISwordHitListener
             {
                 try
                 {
-                    final Method m = EntityLiving.class.getDeclaredMethod("dropFewItems", Boolean.TYPE, Integer.TYPE);
-                    m.setAccessible(true);
-                    m.invoke(event.entityLiving, true, 0);
-                    if (effect > 1)
-                    {
-                        if (Math.random() > 5)
-                        {
-                            m.invoke(event.entityLiving, true, 0);
-                        }
-                    }
-                    // m.setAccessible(false);
-                } catch (final Exception e)
+                    String[] dropItemFuncNames = {"dropFewItems","func_70628_a"};
+
+                    final Method dropItemFunc = ReflectionHelper.findMethod(EntityLiving.class,(EntityLiving) event.entityLiving, dropItemFuncNames,Boolean.TYPE, Integer.TYPE);
+
+                    dropItemFunc.invoke(event.entityLiving, true, effect);
+
+                    String[] dropEquipmentNames = {"dropEquipment","func_82160_b"};
+
+                    final Method dropEquipmentFunc = ReflectionHelper.findMethod(EntityLiving.class,(EntityLiving) event.entityLiving, dropEquipmentNames,Boolean.TYPE, Integer.TYPE);
+
+                    dropEquipmentFunc.invoke(event.entityLiving, true, effect);
+                }
+                catch (UnableToFindMethodException e)
+                {
+                    MetallurgyCore.log.severe("[Metallurgy] Unable to find Mob Drops Function: " + e.getMessage());
+                }
+                catch (final Exception e)
                 {
                     e.printStackTrace();
                 }

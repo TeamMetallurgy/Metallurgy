@@ -179,67 +179,67 @@ public class MetallurgyMetals
                                                          // and Carmot's looting
                                                          // effect
 
-        if (netherSet.getOreInfo("Deep Iron").sword != null)
+        if (fantasySet.getOreInfo("Deep Iron").sword != null)
         {
             fantasySet.getOreInfo("Deep Iron").sword.addHitListener(swordEffects);
             fantasySet.getOreInfo("Deep Iron").sword.setSubText("cBlindness I");
         }
-        if (netherSet.getOreInfo("Black Steel").sword != null)
+        if (fantasySet.getOreInfo("Black Steel").sword != null)
         {
             fantasySet.getOreInfo("Black Steel").sword.addHitListener(swordEffects);
             fantasySet.getOreInfo("Black Steel").sword.setSubText("cBlindness II");
         }
-        if (netherSet.getOreInfo("Oureclase").sword != null)
+        if (fantasySet.getOreInfo("Oureclase").sword != null)
         {
             fantasySet.getOreInfo("Oureclase").sword.addHitListener(swordEffects);
             fantasySet.getOreInfo("Oureclase").sword.setSubText("7Resistance I");
         }
-        if (netherSet.getOreInfo("Astral Silver").sword != null)
+        if (fantasySet.getOreInfo("Astral Silver").sword != null)
         {
-            // fantasySet.getOreInfo("Astral Silver").sword.addHitListener(swordEffects);
+            fantasySet.getOreInfo("Astral Silver").sword.addHitListener(swordEffects);
             fantasySet.getOreInfo("Astral Silver").sword.setSubText("7Looting I");
         }
-        if (netherSet.getOreInfo("Carmot").sword != null)
+        if (fantasySet.getOreInfo("Carmot").sword != null)
         {
-            // fantasySet.getOreInfo("Carmot").sword.addHitListener(swordEffects);
+            fantasySet.getOreInfo("Carmot").sword.addHitListener(swordEffects);
             fantasySet.getOreInfo("Carmot").sword.setSubText("7Looting II");
         }
-        if (netherSet.getOreInfo("Mithril").sword != null)
+        if (fantasySet.getOreInfo("Mithril").sword != null)
         {
             fantasySet.getOreInfo("Mithril").sword.addHitListener(swordEffects);
             fantasySet.getOreInfo("Mithril").sword.setSubText("7Haste I");
         }
-        if (netherSet.getOreInfo("Quicksilver").sword != null)
+        if (fantasySet.getOreInfo("Quicksilver").sword != null)
         {
             fantasySet.getOreInfo("Quicksilver").sword.addHitListener(swordEffects);
             fantasySet.getOreInfo("Quicksilver").sword.setSubText("7Speed I");
         }
-        if (netherSet.getOreInfo("Haderoth").sword != null)
+        if (fantasySet.getOreInfo("Haderoth").sword != null)
         {
             fantasySet.getOreInfo("Haderoth").sword.addHitListener(swordEffects);
             fantasySet.getOreInfo("Haderoth").sword.setSubText("cHaste I, Ignite II");
         }
-        if (netherSet.getOreInfo("Orichalcum").sword != null)
+        if (fantasySet.getOreInfo("Orichalcum").sword != null)
         {
             fantasySet.getOreInfo("Orichalcum").sword.addHitListener(swordEffects);
             fantasySet.getOreInfo("Orichalcum").sword.setSubText("cResistance II");
         }
-        if (netherSet.getOreInfo("Celenegil").sword != null)
+        if (fantasySet.getOreInfo("Celenegil").sword != null)
         {
             fantasySet.getOreInfo("Celenegil").sword.addHitListener(swordEffects);
             fantasySet.getOreInfo("Celenegil").sword.setSubText("7Resistance III");
         }
-        if (netherSet.getOreInfo("Adamantine").sword != null)
+        if (fantasySet.getOreInfo("Adamantine").sword != null)
         {
             fantasySet.getOreInfo("Adamantine").sword.addHitListener(swordEffects);
             fantasySet.getOreInfo("Adamantine").sword.setSubText("7Fire Resist I, Ignite II");
         }
-        if (netherSet.getOreInfo("Atlarus").sword != null)
+        if (fantasySet.getOreInfo("Atlarus").sword != null)
         {
             fantasySet.getOreInfo("Atlarus").sword.addHitListener(swordEffects);
             fantasySet.getOreInfo("Atlarus").sword.setSubText("7Strength II");
         }
-        if (netherSet.getOreInfo("Tartarite").sword != null)
+        if (fantasySet.getOreInfo("Tartarite").sword != null)
         {
             fantasySet.getOreInfo("Tartarite").sword.addHitListener(swordEffects);
             fantasySet.getOreInfo("Tartarite").sword.setSubText("cWither, Igntite II");
