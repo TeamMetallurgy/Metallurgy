@@ -80,13 +80,17 @@ public class MetalSet implements IMetalSet
         fileDir.mkdir();
         final File cfgFile = new File(MetallurgyCore.proxy.getMinecraftDir() + "/config/Metallurgy3/Metallurgy" + setName + ".cfg");
 
-        try
+        
+        if(!cfgFile.exists())
         {
-            cfgFile.createNewFile();
-        } catch (final IOException e)
-        {
-            MetallurgyCore.log.warning("[Metallurgy3] Could not create configuration file for Metallurgy 3 metal set " + setName + ". Reason:");
-            MetallurgyCore.log.warning(e.getLocalizedMessage());
+            try
+            {
+                cfgFile.createNewFile();
+            } catch (final IOException e)
+            {
+                MetallurgyCore.log.warning("[Metallurgy3] Could not create configuration file for Metallurgy 3 metal set " + setName + ". Reason:");
+                MetallurgyCore.log.warning(e.getLocalizedMessage());
+            }
         }
 
         config = new Configuration(cfgFile);
@@ -96,8 +100,11 @@ public class MetalSet implements IMetalSet
         {
             ((OreInfo) oreInfo).initConfig(config);
         }
-
-        config.save();
+        
+        if (config.hasChanged())
+        {
+            config.save();
+        }
     }
 
     public void load()

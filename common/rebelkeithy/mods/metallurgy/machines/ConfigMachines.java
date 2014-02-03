@@ -168,6 +168,9 @@ public class ConfigMachines
         }
         smelterDropsLava = config.get("Forge", "Drops Lava", smelterDropsLava).getBoolean(smelterDropsLava);
 
-        config.save();
+        if (config.hasChanged())
+        {
+            config.save();
+        }
     }
 }

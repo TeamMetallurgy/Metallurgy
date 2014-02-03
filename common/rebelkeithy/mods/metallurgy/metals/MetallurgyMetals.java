@@ -453,7 +453,10 @@ public class MetallurgyMetals
 
         final boolean enabled = config.get("!Enable", "Enable " + setName + " Set", true).getBoolean(true);
 
-        config.save();
+        if (config.hasChanged())
+        {
+            config.save();
+        }
         return enabled;
     }
 

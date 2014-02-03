@@ -59,7 +59,10 @@ public class VanillaAddons
 
         goldBrickID = config.getBlock("Gold", "Brick ID", 900).getInt();
 
-        config.save();
+        if (config.hasChanged())
+        {
+            config.save();
+        }
     }
 
     public static void load()

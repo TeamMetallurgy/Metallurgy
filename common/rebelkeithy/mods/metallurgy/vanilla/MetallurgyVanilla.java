@@ -114,8 +114,10 @@ public class MetallurgyVanilla
             Reflector.setItemTexture(Item.legsDiamond, "Metallurgy:Vanilla/LegsDiamond");
             Reflector.setItemTexture(Item.bootsDiamond, "Metallurgy:Vanilla/BootsDiamond");
         }
-
-        config.save();
+        if (config.hasChanged())
+        {
+            config.save();
+        }
 
         // MinecraftForge.ORE_GEN_BUS.register(new VanillaTextureReplacer());
         MinecraftForge.ORE_GEN_BUS.register(new VanillaOreInhibitor());
