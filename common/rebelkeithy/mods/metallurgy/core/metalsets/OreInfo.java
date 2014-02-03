@@ -545,33 +545,33 @@ public class OreInfo implements IOreInfo, IWorldGenerator
             String id;
             if ((type == ORE || type == CATALYST || type == DROP) && oreID != 0)
             {
-                oreID = config.getBlock("#Block IDs", "Ore", oreID).getInt();
+                oreID = config.getBlock("Ore", oreID).getInt();
             }
             if (type != DROP && blockID != 0)
             {
-                blockID = config.getBlock("#Block IDs", "Block", blockID).getInt();
+                blockID = config.getBlock("Block", blockID).getInt();
             }
             if (type != DROP && brickID != 0)
             {
-                brickID = config.getBlock("#Block IDs", "Brick", brickID).getInt();
+                brickID = config.getBlock("Brick", brickID).getInt();
             }
 
             if (type != DROP)
             {
-                dustID = config.getItem("#Item IDs", name + " Dust", dustID).getInt();
-                ingotID = config.getItem("#Item IDs", name + " Ingot", ingotID).getInt();
+                dustID = config.getItem(name + " Dust", dustID).getInt();
+                ingotID = config.getItem(name + " Ingot", ingotID).getInt();
 
-                shovelID = config.getItem("#Item IDs", name + " Shovel", shovelID).getInt();
-                pickaxeID = config.getItem("#Item IDs", name + " Pickaxe", pickaxeID).getInt();
-                axeID = config.getItem("#Item IDs", name + " Axe", axeID).getInt();
-                hoeID = config.getItem("#Item IDs", name + " Hoe", hoeID).getInt();
+                shovelID = config.getItem(name + " Shovel", shovelID).getInt();
+                pickaxeID = config.getItem(name + " Pickaxe", pickaxeID).getInt();
+                axeID = config.getItem(name + " Axe", axeID).getInt();
+                hoeID = config.getItem(name + " Hoe", hoeID).getInt();
 
-                swordID = config.getItem("#Item IDs", name + " Sword", swordID).getInt();
+                swordID = config.getItem(name + " Sword", swordID).getInt();
 
-                helmetID = config.getItem("#Item IDs", name + " Helmet", helmetID).getInt();
-                chestID = config.getItem("#Item IDs", name + " Chest", swordID).getInt();
-                legID = config.getItem("#Item IDs", name + " Legs", legID).getInt();
-                bootID = config.getItem("#Item IDs", name + " Boots", bootID).getInt();
+                helmetID = config.getItem(name + " Helmet", helmetID).getInt();
+                chestID = config.getItem(name + " Chest", swordID).getInt();
+                legID = config.getItem(name + " Legs", legID).getInt();
+                bootID = config.getItem(name + " Boots", bootID).getInt();
 
                 abstractorXP = config.get(name + ".misc", "abstractor xp", abstractorXP).getInt();
             }

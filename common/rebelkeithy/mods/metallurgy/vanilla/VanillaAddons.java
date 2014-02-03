@@ -55,9 +55,9 @@ public class VanillaAddons
         final Configuration config = new Configuration(cfgFile);
         config.load();
 
-        ironBrickID = config.getBlock("Iron", "Brick ID", 900).getInt();
+        ironBrickID = config.getBlock("Brick", 900).getInt();
 
-        goldBrickID = config.getBlock("Gold", "Brick ID", 900).getInt();
+        goldBrickID = config.getBlock("Brick", 900).getInt();
 
         if (config.hasChanged())
         {
