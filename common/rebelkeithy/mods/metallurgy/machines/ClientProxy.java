@@ -18,7 +18,6 @@ import rebelkeithy.mods.metallurgy.machines.crusher.CrusherRenderHelper;
 import rebelkeithy.mods.metallurgy.machines.crusher.GuiCrusher;
 import rebelkeithy.mods.metallurgy.machines.crusher.TileEntityCrusher;
 import rebelkeithy.mods.metallurgy.machines.crusher.TileEntityCrusherRenderer;
-import rebelkeithy.mods.metallurgy.machines.drums.DrumRender;
 import rebelkeithy.mods.metallurgy.machines.enchanter.ContainerMetallurgyEnchantment;
 import rebelkeithy.mods.metallurgy.machines.enchanter.GuiMetallurgyEnchantment;
 import rebelkeithy.mods.metallurgy.machines.enchanter.MetallurgyEnchantmentTableRenderHelper;

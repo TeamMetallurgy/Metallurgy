@@ -22,8 +22,6 @@ import rebelkeithy.mods.metallurgy.machines.crusher.BlockCrusher;
 import rebelkeithy.mods.metallurgy.machines.crusher.BlockCrusherItem;
 import rebelkeithy.mods.metallurgy.machines.crusher.CrusherRecipes;
 import rebelkeithy.mods.metallurgy.machines.crusher.TileEntityCrusher;
-import rebelkeithy.mods.metallurgy.machines.drums.Drums;
-import rebelkeithy.mods.metallurgy.machines.drums.ItemDrum;
 import rebelkeithy.mods.metallurgy.machines.enchanter.BlockMetallurgyEnchantmentTable;
 import rebelkeithy.mods.metallurgy.machines.enchanter.TileEntityMetallurgyEnchantmentTable;
 import rebelkeithy.mods.metallurgy.machines.forge.BlockNetherForge;
@@ -227,19 +225,6 @@ public class MetallurgyMachines
         }
     }
     
-    private void RegisterDrums()
-    {
-        for (Drums drum : Drums.values())
-        {
-            int itemID = MetallurgyCore.config.getItem(drum.getLocalizedName(), 2500).getInt();
-            Item itemDrum = new ItemDrum(itemID, drum).setUnlocalizedName("item." + drum.getLocalizedName().replace(" ", "") + ".name");
-
-            GameRegistry.registerItem(itemDrum, "Metallurgy:" + drum.getLocalizedName());
-            proxy.registerItemHandler(itemID, drum.getTexture());
-            LanguageRegistry.addName(itemDrum, drum.getLocalizedName());
-        }
-    }
-
     public void initAbstractor()
     {
         abstractor = new BlockAbstractor(ConfigMachines.abstractorID, false).setHardness(3.5F).setUnlocalizedName("M3Abstractor").setHardness(2.0F).setCreativeTab(machineTab);
@@ -545,7 +530,6 @@ public class MetallurgyMachines
         proxy.registerTileEntitySpecialRenderer();
         NetworkRegistry.instance().registerGuiHandler(this, new StorageGuiHandler());
         NetworkRegistry.instance().registerGuiHandler(this, GuiRegistry.instance());
-        RegisterDrums();
         LanguageRegistry.instance().addStringLocalization("itemGroup.Metallurgy: Machines", "Metallurgy: Machines");
     }
 }

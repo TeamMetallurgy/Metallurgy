@@ -13,8 +13,7 @@ import net.minecraftforge.common.Configuration;
 import net.minecraftforge.common.Property;
 import rebelkeithy.mods.keithyutils.guiregistry.GuiRegistry;
 import rebelkeithy.mods.metallurgy.core.metalsets.MetalSet;
-import rebelkeithy.mods.metallurgy.machines.drums.Drums;
-import rebelkeithy.mods.metallurgy.machines.drums.ItemDrum;
+
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
