@@ -13,6 +13,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.packet.Packet250CustomPayload;
 import net.minecraft.tileentity.TileEntity;
+import rebelkeithy.mods.metallurgy.core.metalsets.OreInfo;
 import rebelkeithy.mods.metallurgy.machines.MetallurgyMachines;
 import rebelkeithy.mods.metallurgy.metals.MetallurgyMetals;
 import cpw.mods.fml.common.network.PacketDispatcher;
@@ -49,19 +50,19 @@ public class TileEntityMint extends TileEntity
 
     public String getIngotImage()
     {
-        if (ingotId == MetallurgyMetals.preciousSet.getOreInfo("Silver").ingot.itemID)
+        if (getOre("Silver") != null && ingotId == getOre("Silver").ingot.itemID)
         {
             return "metallurgy:textures/blocks/machines/mint/MintSilver.png";
         }
-        else if (ingotId == MetallurgyMetals.preciousSet.getOreInfo("Brass").ingot.itemID)
+        else if (getOre("Brass") != null && ingotId == getOre("Brass") .ingot.itemID)
         {
             return "metallurgy:textures/blocks/machines/mint/MintBrass.png";
         }
-        else if (ingotId == MetallurgyMetals.preciousSet.getOreInfo("Electrum").ingot.itemID)
+        else if (getOre("Electrum") != null && ingotId == getOre("Electrum") .ingot.itemID)
         {
             return "metallurgy:textures/blocks/machines/mint/MintElectrum.png";
         }
-        else if (ingotId == MetallurgyMetals.preciousSet.getOreInfo("Platinum").ingot.itemID)
+        else if (getOre("Platinum") != null && ingotId == getOre("Platinum").ingot.itemID)
         {
             return "metallurgy:textures/blocks/machines/mint/MintPlatinum.png";
         }
@@ -78,6 +79,11 @@ public class TileEntityMint extends TileEntity
         {
             return "metallurgy:textures/blocks/machines/mint/MintBrass.png";
         }
+    }
+
+    private OreInfo getOre(String name)
+    {
+        return MetallurgyMetals.preciousSet.getOreInfo(name);
     }
 
     public boolean hasIngot()
