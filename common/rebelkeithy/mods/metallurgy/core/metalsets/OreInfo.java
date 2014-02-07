@@ -655,15 +655,15 @@ public class OreInfo implements IOreInfo, IWorldGenerator
         {
             if (oreID != 0)
             {
-                MetaBlock.registerID(oreID, "Ore"+this.name);
+                MetaBlock.registerID(oreID);
             }
             if (brickID != 0)
             {
-                MetaBlock.registerID(brickID, "Brick"+this.name);
+                MetaBlock.registerID(brickID);
             }
             if (blockID != 0)
             {
-                MetaBlock.registerID(blockID, "Block"+this.name);
+                MetaBlock.registerID(blockID);
             }
 
             setLevels();
