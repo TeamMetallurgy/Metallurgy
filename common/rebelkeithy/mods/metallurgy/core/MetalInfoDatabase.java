@@ -26,6 +26,7 @@ import com.google.common.io.Files;
 import com.google.common.io.InputSupplier;
 import com.google.common.io.Resources;
 
+import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 
 public class MetalInfoDatabase
@@ -99,6 +100,7 @@ public class MetalInfoDatabase
 
                 final Item item = new ItemMetallurgy(id).setTextureName("Metallurgy:" + itemMap.get("Set Name") + "/" + itemMap.get("Item Name"))
                         .setUnlocalizedName("Metallurgy:" + itemMap.get("Set Name") + "/" + itemMap.get("Item Name")).setCreativeTab(tab);
+                GameRegistry.registerItem(item, item.getUnlocalizedName());
                 LanguageRegistry.addName(item, itemMap.get("Item Name"));
 
                 items.put(itemMap.get("Item Name"), item);
