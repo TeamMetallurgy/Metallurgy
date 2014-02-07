@@ -486,6 +486,9 @@ public class OreInfo implements IOreInfo, IWorldGenerator
                 dust = new ItemMetallurgy(itemIDs).setTextureName("Metallurgy:" + setName + "/" + name + "Dust").setUnlocalizedName(name + "Dust").setCreativeTab(tab);
                 ingot = new ItemMetallurgy(itemIDs + 1).setTextureName("Metallurgy:" + setName + "/" + name + "Ingot").setSmeltinExperience(abstractorXP / 3f)
                         .setUnlocalizedName(name + "Ingot").setCreativeTab(tab);
+
+                GameRegistry.registerItem(dust , dust .getUnlocalizedName());
+                GameRegistry.registerItem(ingot, ingot.getUnlocalizedName());
                 AbstractorRecipes.addEssence(ingot.itemID, 0, abstractorXP);
             }
 
@@ -502,7 +505,13 @@ public class OreInfo implements IOreInfo, IWorldGenerator
                 hoe = new CustomItemHoe(itemIDs + 5, toolEnum).setTextureName("Metallurgy:" + setName + "/" + name + "Hoe").setUnlocalizedName(name + "Hoe").setCreativeTab(tab);
                 sword = (ItemMetallurgySword) new ItemMetallurgySword(itemIDs + 6, toolEnum).setTextureName("Metallurgy:" + setName + "/" + name + "Sword")
                         .setUnlocalizedName(name + "Sword").setCreativeTab(tab);
-
+                
+                GameRegistry.registerItem(pickaxe, pickaxe.getUnlocalizedName());
+                GameRegistry.registerItem(shovel , shovel .getUnlocalizedName());
+                GameRegistry.registerItem(axe    , axe    .getUnlocalizedName());
+                GameRegistry.registerItem(hoe    , hoe    .getUnlocalizedName());
+                GameRegistry.registerItem(sword  , sword  .getUnlocalizedName());
+                
                 final EnumArmorMaterial armorEnum = EnumHelper.addArmorMaterial(name, armorDura, new int[]
                 { helmetArmor, chestArmor, legsArmor, bootsArmor }, toolEnchant);
                 armorEnum.customCraftingMaterial = ingot;
@@ -516,6 +525,12 @@ public class OreInfo implements IOreInfo, IWorldGenerator
                         .setUnlocalizedName("Metallurgy:" + setName + "/" + name + "Legs").setCreativeTab(tab);
                 boots = new ItemMetallurgyArmor(itemIDs + 10, armorEnum, 3, 3).setTextureFile(armorTexture + "_1").setTextureName("Metallurgy:" + setName + "/" + name + "Boots")
                         .setUnlocalizedName("Metallurgy:" + setName + "/" + name + "Boots").setCreativeTab(tab);
+
+                GameRegistry.registerItem(helmet, helmet.getUnlocalizedName());
+                GameRegistry.registerItem(chest , chest .getUnlocalizedName());
+                GameRegistry.registerItem(legs  , legs  .getUnlocalizedName());
+                GameRegistry.registerItem(boots , boots .getUnlocalizedName());
+                
             }
         }
 
