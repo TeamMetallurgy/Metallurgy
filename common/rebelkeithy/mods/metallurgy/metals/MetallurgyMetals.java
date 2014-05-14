@@ -21,6 +21,7 @@ import rebelkeithy.mods.metallurgy.core.metalsets.ItemMetallurgy;
 import rebelkeithy.mods.metallurgy.core.metalsets.MetalSet;
 import rebelkeithy.mods.metallurgy.integration.ComputerCraftIntegration;
 import rebelkeithy.mods.metallurgy.integration.IndustrialCraftIntegration;
+import rebelkeithy.mods.metallurgy.integration.MystcraftIntegration;
 import rebelkeithy.mods.metallurgy.integration.RailcraftIntegration;
 import rebelkeithy.mods.metallurgy.integration.ThaumcraftIntegration;
 import rebelkeithy.mods.metallurgy.integration.TreeCapitatorIntegration;
@@ -488,6 +489,7 @@ public class MetallurgyMetals
         ThaumcraftIntegration.init();
         IndustrialCraftIntegration.init();
         RailcraftIntegration.init();
+        MystcraftIntegration.init();
 
         try
         {
