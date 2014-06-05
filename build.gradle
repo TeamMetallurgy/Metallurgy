@@ -1,0 +1,93 @@
+buildscript {
+    repositories {
+        mavenCentral()
+        maven {
+            name = "forge"
+            url = "http://files.minecraftforge.net/maven"
+        }
+    }
+    dependencies {
+        classpath 'net.minecraftforge.gradle:ForgeGradle:1.0-SNAPSHOT'
+    }
+}
+
+repositories {
+    maven {
+        name = "Team Metallurgy Maven"
+        url = "http://shadow.gcod.net/maven"
+    }
+	
+    ivy {
+        name 'CB FS'
+        artifactPattern "http://www.chickenbones.craftsaddle.org/Files/New_Versions/1.6.4/[module]-dev%20[revision].[ext]"
+    }
+	
+	ivy {
+        name 'Forge FS legacy'
+        artifactPattern "http://files.minecraftforge.net/[module]/[module]-dev-[revision].[ext]"
+    }
+}
+
+apply plugin: 'forge'
+
+version = "3.3"
+mc_version = "1.6.4"
+ku_version = "1.2.27"
+group= "rebelkeithy.mods.metallurgy" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+archivesBaseName = "Metallurgy"
+
+task buildInfo {
+    def cmd = "git rev-parse --short HEAD"
+    def proc = cmd.execute()
+    proc.waitFor()
+    if (proc.exitValue() == 0) {
+        ext.revision = proc.text.trim()
+    } else {
+        ext.revision = "GITBORK"
+    }
+
+    if (System.getenv().BUILD_NUMBER != null) {
+        ext.buildNum = "${System.getenv().BUILD_NUMBER}"
+    } else {
+        ext.buildNum = "${project.buildInfo.revision}"
+    }
+}
+
+ext.artifact_version = 'NFG'
+if (System.getenv().ARTIFACT_VERSION == null) {
+    artifact_version = "${project.version}.${project.buildInfo.buildNum}"
+}
+
+if(System.getenv().ARTIFACT_VERSION != null) {
+    artifact_version = "${system.getenv().ARTIFACT_VERSION}"
+}
+
+version = "${project.mc_version}-${artifact_version}"
+
+minecraft {
+	version = "1.6.4-9.11.1.964"
+}
+
+dependencies {
+    compile "rebelkeithy.mods.keithyutils:KeithyUtils:1.6.4-${project.ku_version}:deobf"
+    compile name: 'CodeChickenLib', version: "1.6.4-1.0.0.62", ext: 'jar'
+	compile name: 'CodeChickenCore', version: "0.9.0.9", ext: 'jar'
+	compile name: 'NotEnoughItems', version: "1.6.1.9", ext: 'jar'
+	
+}
+
+processResources
+{
+    // replace stuff in mcmod.info, nothing else
+    from(sourceSets.main.resources.srcDirs) {
+        include 'mcmod/info'
+                
+        // replace version and mcversion
+        expand 'version':project.version, 'mcversion':project.minecraft.version
+    }
+        
+    // copy everything else, thats not the mcmod.info
+    from(sourceSets.main.resources.srcDirs) {
+        exclude 'mcmod.info'
+    }
+}

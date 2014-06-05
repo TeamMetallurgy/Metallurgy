@@ -3,6 +3,7 @@ package rebelkeithy.mods.metallurgy.core;
 import rebelkeithy.mods.metallurgy.core.metalsets.WorldGenMetals;
 import net.minecraft.client.Minecraft;
 import net.minecraft.command.CommandBase;
+import net.minecraft.command.ICommand;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.command.WrongUsageException;
 
@@ -43,4 +44,9 @@ public class OreGenDump extends CommandBase
 
         throw new WrongUsageException("commands.dumpOreGen.usage", new Object[0]);
     }
+
+	@Override
+	public int compareTo(Object arg0) {
+		return this.compareTo((ICommand)arg0);
+	}
 }
