@@ -26,7 +26,7 @@ version = "3.3.3"
 mc_version = "1.6.4"
 ku_version = "1.2.27"
 group= "rebelkeithy.mods.metallurgy" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
-archivesBaseName = "Metallurgy3"
+archivesBaseName = "Metallurgy"
 
 task buildInfo {
     def cmd = "git rev-parse --short HEAD"
