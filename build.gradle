@@ -18,15 +18,6 @@ repositories {
         url = "http://shadow.gcod.net/maven"
     }
 	
-    ivy {
-        name 'CB FS'
-        artifactPattern "http://www.chickenbones.craftsaddle.org/Files/New_Versions/1.6.4/[module]-dev%20[revision].[ext]"
-    }
-	
-	ivy {
-        name 'Forge FS legacy'
-        artifactPattern "http://files.minecraftforge.net/[module]/[module]-dev-[revision].[ext]"
-    }
 }
 
 apply plugin: 'forge'
@@ -71,9 +62,6 @@ minecraft {
 
 dependencies {
     compile "rebelkeithy.mods.keithyutils:KeithyUtils:1.6.4-${project.ku_version}:deobf"
-    compile name: 'CodeChickenLib', version: "1.6.4-1.0.0.62", ext: 'jar'
-	compile name: 'CodeChickenCore', version: "0.9.0.9", ext: 'jar'
-	compile name: 'NotEnoughItems', version: "1.6.1.9", ext: 'jar'
 	
 }
 
