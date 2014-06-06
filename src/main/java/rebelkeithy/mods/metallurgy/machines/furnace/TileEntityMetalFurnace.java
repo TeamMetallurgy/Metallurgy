@@ -511,13 +511,13 @@ public class TileEntityMetalFurnace extends TileEntity implements ISidedInventor
             if (furnaceItemStacks[2] == null)
             {
                 furnaceItemStacks[2] = var1.copy();
+                --furnaceItemStacks[0].stackSize;
             }
-            else if (furnaceItemStacks[2].isItemEqual(var1))
+            else if (furnaceItemStacks[2].isItemEqual(var1) && ((furnaceItemStacks[2].stackSize + var1.stackSize) <= furnaceItemStacks[2].getMaxStackSize()))
             {
-                ++furnaceItemStacks[2].stackSize;
+                furnaceItemStacks[2].stackSize += var1.stackSize;
+                --furnaceItemStacks[0].stackSize;
             }
-
-            --furnaceItemStacks[0].stackSize;
 
             if (furnaceItemStacks[0].stackSize <= 0)
             {
