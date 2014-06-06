@@ -27,7 +27,7 @@ import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 
-@Mod(modid = "Metallurgy3Core", name = "Metallurgy 3 Core", version = "3.2.3", dependencies = "required-after:KeithyUtils@[1.2,];after:Thaumcraft@[4.0.5,]")
+@Mod(modid = "Metallurgy3Core", name = "Metallurgy 3 Core", version = "3.3.3", dependencies = "required-after:KeithyUtils@[1.2,];after:Thaumcraft@[4.0.5,]")
 @NetworkMod(channels = { "MetallurgyCore" }, clientSideRequired = true, serverSideRequired = false)
 public class MetallurgyCore
 {

@@ -5,8 +5,8 @@
   "description": "The Metallurgy core",
   "credits": "",
   "logoFile": "",
-  "version": "3.2.3",
-  "mcversion": "1.6.2",
+  "version": "3.3.3",
+  "mcversion": "1.6.4",
   "url": "http://www.minecraftforum.net/topic/744918-",
   "updateUrl": "",
   "authors": [
@@ -24,8 +24,8 @@
   "description": "The Metallurgy machines",
   "credits": "",
   "logoFile": "",
-  "version": "3.2.3",
-  "mcversion": "1.6.2",
+  "version": "3.3.3",
+  "mcversion": "1.6.4",
   "url": "http://www.minecraftforum.net/topic/744918-",
   "updateUrl": "",
   "authors": [
@@ -43,8 +43,8 @@
   "description": "The Metallurgy metals",
   "credits": "",
   "logoFile": "",
-  "version": "3.2.3",
-  "mcversion": "1.6.2",
+  "version": "3.3.3",
+  "mcversion": "1.6.4",
   "url": "http://www.minecraftforum.net/topic/744918-",
   "updateUrl": "",
   "authors": [
@@ -62,8 +62,8 @@
   "description": "Metallurgy changes to vanilla Minecraft",
   "credits": "",
   "logoFile": "",
-  "version": "3.2.3",
-  "mcversion": "1.6.2",
+  "version": "3.3.3",
+  "mcversion": "1.6.4",
   "url": "http://www.minecraftforum.net/topic/744918-",
   "updateUrl": "",
   "authors": [
