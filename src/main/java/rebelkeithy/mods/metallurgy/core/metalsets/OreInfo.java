@@ -155,17 +155,20 @@ public class OreInfo implements IOreInfo, IWorldGenerator
         if (type.generates())
         {
             oreID = Integer.parseInt(info.get("Ore ID").split(":")[0]);
-            oreMeta = Integer.parseInt(info.get("Ore ID").split(":")[1]);
+            //oreMeta = Integer.parseInt(info.get("Ore ID").split(":")[1]);
+            oreMeta = Integer.parseInt(info.get("Ore Meta"));
         }
         if (!info.get("Block ID").equals("0"))
         {
             blockID = Integer.parseInt(info.get("Block ID").split(":")[0]);
-            blockMeta = Integer.parseInt(info.get("Block ID").split(":")[1]);
+            //blockMeta = Integer.parseInt(info.get("Block ID").split(":")[1]);
+            blockMeta = Integer.parseInt(info.get("Block Meta"));
         }
         if (!info.get("Brick ID").equals("0"))
         {
             brickID = Integer.parseInt(info.get("Brick ID").split(":")[0]);
-            brickMeta = Integer.parseInt(info.get("Brick ID").split(":")[1]);
+            //brickMeta = Integer.parseInt(info.get("Brick ID").split(":")[1]);
+            brickMeta = Integer.parseInt(info.get("Brick Meta"));
         }
 
         if (type == DROP)
@@ -479,7 +482,7 @@ public class OreInfo implements IOreInfo, IWorldGenerator
             if (type.generates() && oreID != 0)
             {
                 ore = new SubBlock(oreID, oreMeta, "Metallurgy:" + setName + "/" + name + "Ore").setUnlocalizedName(setName + oreID).setCreativeTab(tab);
-                this.oreMeta = ore.getMeta();
+                //this.oreMeta = ore.getMeta();
                 
                 if (type == DROP)
                 {
@@ -489,12 +492,12 @@ public class OreInfo implements IOreInfo, IWorldGenerator
             if (type != DROP && blockID != 0)
             {
                 block = new SubBlock(blockID, blockMeta, "Metallurgy:" + setName + "/" + name + "Block").setUnlocalizedName(setName + blockID).setCreativeTab(tab);
-                this.blockMeta = block.getMeta();
+                //this.blockMeta = block.getMeta();
             }
             if (type != DROP && brickID != 0)
             {
                 brick = new SubBlock(brickID, brickMeta, "Metallurgy:" + setName + "/" + name + "Brick").setUnlocalizedName(setName + brickID).setCreativeTab(tab);
-                this.brickMeta = brick.getMeta();
+                //this.brickMeta = brick.getMeta();
             }
             if (type != DROP)
             {

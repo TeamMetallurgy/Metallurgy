@@ -23,8 +23,8 @@ public class VanillaAddons
 
     public static int goldBrickID;
     public static int ironBrickID;
-    public static int goldBrickMeta;
-    public static int ironBrickMeta;
+    public static final int goldBrickMeta = 0;
+    public static final int ironBrickMeta = 1;
 
     public static void init()
     {
