@@ -189,6 +189,20 @@ public class OreInfo implements IOreInfo, IWorldGenerator
 
         itemIDs = Integer.parseInt(info.get("Item IDs"));
 
+        dustID = itemIDs;
+        ingotID = itemIDs + 1;
+
+        pickaxeID = itemIDs + 2;
+        shovelID = itemIDs + 3;
+        axeID = itemIDs + 4;
+        hoeID = itemIDs + 5;
+        swordID = itemIDs + 6;
+
+        helmetID = itemIDs + 7;
+        chestID = itemIDs + 8;
+        legID = itemIDs + 9;
+        bootID = itemIDs + 10;
+
         abstractorXP = Integer.parseInt(info.get("Abstractor XP"));
         blockLvl = Integer.parseInt(info.get("Block lvl"));
 
@@ -558,6 +572,13 @@ public class OreInfo implements IOreInfo, IWorldGenerator
                 dustID = config.getItem(name + " Dust", dustID).getInt();
                 ingotID = config.getItem(name + " Ingot", ingotID).getInt();
 
+                abstractorXP = config.get(name + ".misc", "abstractor xp", abstractorXP).getInt();
+            }
+
+            blockLvl = config.get(name + ".misc", "Block Hardness Level", blockLvl).getInt();
+
+            if (type != CATALYST && type != DROP)
+            {
                 shovelID = config.getItem(name + " Shovel", shovelID).getInt();
                 pickaxeID = config.getItem(name + " Pickaxe", pickaxeID).getInt();
                 axeID = config.getItem(name + " Axe", axeID).getInt();
@@ -566,17 +587,10 @@ public class OreInfo implements IOreInfo, IWorldGenerator
                 swordID = config.getItem(name + " Sword", swordID).getInt();
 
                 helmetID = config.getItem(name + " Helmet", helmetID).getInt();
-                chestID = config.getItem(name + " Chest", swordID).getInt();
+                chestID = config.getItem(name + " Chest", chestID).getInt();
                 legID = config.getItem(name + " Legs", legID).getInt();
                 bootID = config.getItem(name + " Boots", bootID).getInt();
 
-                abstractorXP = config.get(name + ".misc", "abstractor xp", abstractorXP).getInt();
-            }
-
-            blockLvl = config.get(name + ".misc", "Block Hardness Level", blockLvl).getInt();
-
-            if (type != CATALYST && type != DROP)
-            {
                 pickLvl = config.get(name + ".Tool Info", "Pick Level", pickLvl).getInt();
                 toolDura = config.get(name + ".Tool Info", "Durability", toolDura).getInt();
                 toolDamage = config.get(name + ".Tool Info", "Damage", toolDamage).getInt();
