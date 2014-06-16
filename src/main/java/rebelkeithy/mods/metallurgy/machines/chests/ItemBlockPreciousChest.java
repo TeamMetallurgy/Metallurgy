@@ -62,27 +62,27 @@ public class ItemBlockPreciousChest extends ItemBlock
         {
         case 0:
         {
-            name = "BrassChest";
+            name = "brass";
             break;
         }
         case 1:
         {
-            name = "SilverChest";
+            name = "silver";
             break;
         }
         case 2:
         {
-            name = "GoldChest";
+            name = "gold";
             break;
         }
         case 3:
         {
-            name = "ElectrumChest";
+            name = "electrum";
             break;
         }
         case 4:
         {
-            name = "PlatinumChest";
+            name = "platinum";
             break;
         }
         default:

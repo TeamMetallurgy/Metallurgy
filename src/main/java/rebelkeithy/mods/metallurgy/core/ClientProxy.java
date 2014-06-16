@@ -5,7 +5,6 @@ import java.io.File;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.World;
 import rebelkeithy.mods.keithyutils.particleregistry.ParticleRegistry;
-import rebelkeithy.mods.metallurgy.core.metalsets.MetalSet;
 import cpw.mods.fml.client.FMLClientHandler;
 
 public class ClientProxy extends CommonProxy
@@ -21,12 +20,6 @@ public class ClientProxy extends CommonProxy
     public File getMinecraftDir()
     {
         return Minecraft.getMinecraft().mcDataDir;
-    }
-
-    @Override
-    public void registerNamesForMetalSet(MetalSet set)
-    {
-        set.registerNames();
     }
 
     @Override

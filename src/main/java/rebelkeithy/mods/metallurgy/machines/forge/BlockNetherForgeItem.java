@@ -25,42 +25,42 @@ public class BlockNetherForgeItem extends ItemBlock
         {
         case 0:
         {
-            name = "IgnatiusForge";
+            name = "ignatius";
             break;
         }
         case 1:
         {
-            name = "Shadow IronForge";
+            name = "shadowIron";
             break;
         }
         case 2:
         {
-            name = "Shadow SteelForge";
+            name = "shadowSteel";
             break;
         }
         case 3:
         {
-            name = "VyroxeresForge";
+            name = "vyroxeres";
             break;
         }
         case 4:
         {
-            name = "InolashiteForge";
+            name = "inolashite";
             break;
         }
         case 5:
         {
-            name = "KalendriteForge";
+            name = "kalendrite";
             break;
         }
         case 6:
         {
-            name = "VulcaniteForge";
+            name = "vulcanite";
             break;
         }
         case 7:
         {
-            name = "SanguiniteForge";
+            name = "sanguinite";
             break;
         }
         default:

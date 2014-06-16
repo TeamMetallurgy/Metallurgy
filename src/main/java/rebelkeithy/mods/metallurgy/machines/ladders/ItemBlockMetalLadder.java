@@ -38,26 +38,26 @@ public class ItemBlockMetalLadder extends ItemBlock
         {
         case 0:
         {
-            name = "Copper";
+            name = "copper";
             break;
         }
         case 1:
         {
-            name = "Bronze";
+            name = "bronze";
             break;
         }
         case 2:
         {
-            name = "Iron";
+            name = "iron";
             break;
         }
         case 3:
         {
-            name = "Steel";
+            name = "steel";
             break;
         }
         default:
-            name = "Copper";
+            name = "copper";
         }
         return getUnlocalizedName() + "." + name;
     }

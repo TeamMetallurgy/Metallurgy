@@ -26,22 +26,22 @@ public class BlockMetalFurnaceItem extends ItemBlock
         {
         case 0:
         {
-            name = "CopperFurnace";
+            name = "copper";
             break;
         }
         case 1:
         {
-            name = "BronzeFurnace";
+            name = "bronze";
             break;
         }
         case 2:
         {
-            name = "IronFurnace";
+            name = "iron";
             break;
         }
         case 3:
         {
-            name = "SteelFurnace";
+            name = "steel";
             break;
         }
         default:

@@ -25,52 +25,52 @@ public class BlockAbstractorItem extends ItemBlock
         {
         case 0:
         {
-            name = "PrometheumFurnace";
+            name = "prometheum";
             break;
         }
         case 1:
         {
-            name = "DeepIronFurnace";
+            name = "deepIron";
             break;
         }
         case 2:
         {
-            name = "BlackSteelFurnace";
+            name = "blackSteel";
             break;
         }
         case 3:
         {
-            name = "OureclaseFurnace";
+            name = "oureclase";
             break;
         }
         case 4:
         {
-            name = "MithrilFurnace";
+            name = "mithril";
             break;
         }
         case 5:
         {
-            name = "HaderothFurnace";
+            name = "haderoth";
             break;
         }
         case 6:
         {
-            name = "OrichalcumFurnace";
+            name = "orichalcum";
             break;
         }
         case 7:
         {
-            name = "AdamantineFurnace";
+            name = "adamantine";
             break;
         }
         case 8:
         {
-            name = "AtlarusFurnace";
+            name = "atlarus";
             break;
         }
         case 9:
         {
-            name = "TartariteFurnace";
+            name = "tartarite";
             break;
         }
         default:

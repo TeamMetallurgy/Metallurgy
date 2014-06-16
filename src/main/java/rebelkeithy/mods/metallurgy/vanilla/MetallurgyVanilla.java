@@ -2,7 +2,6 @@ package rebelkeithy.mods.metallurgy.vanilla;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.Map;
 
 import net.minecraft.creativetab.CreativeTabs;
@@ -15,7 +14,6 @@ import rebelkeithy.mods.metallurgy.core.MetallurgyCore;
 import rebelkeithy.mods.metallurgy.core.metalsets.MetalSet;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
-import cpw.mods.fml.common.ModMetadata;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
@@ -23,8 +21,7 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 
 @Mod(modid = "Metallurgy3Vanilla", name = "Metallurgy 3 Vanilla", version = "3.3.3", dependencies = "required-after:Metallurgy3Core")
-@NetworkMod(channels =
-{ "MetallurgyVanilla" }, clientSideRequired = true, serverSideRequired = false)
+@NetworkMod(channels = { "MetallurgyVanilla" }, clientSideRequired = true, serverSideRequired = false)
 public class MetallurgyVanilla
 {
     @SidedProxy(clientSide = "rebelkeithy.mods.metallurgy.vanilla.ClientProxy", serverSide = "rebelkeithy.mods.metallurgy.vanilla.CommonProxy")
@@ -38,7 +35,6 @@ public class MetallurgyVanilla
 
         vanillaSet.init();
         VanillaAddons.load();
-        proxy.registerNames();
     }
 
     @EventHandler
@@ -66,9 +62,10 @@ public class MetallurgyVanilla
         try
         {
             cfgFile.createNewFile();
-        } catch (final IOException e)
+        }
+        catch (final IOException e)
         {
-        	 MetallurgyCore.log.info(e.getLocalizedMessage());
+            MetallurgyCore.log.info(e.getLocalizedMessage());
         }
 
         final Configuration config = new Configuration(cfgFile);

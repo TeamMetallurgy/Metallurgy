@@ -72,7 +72,6 @@ public class MetallurgyCore
         for (final MetalSet set : getMetalSetList())
         {
             set.load();
-            proxy.registerNamesForMetalSet(set);
         }
         MetalInfoDatabase.registerItemsWithOreDict();
 

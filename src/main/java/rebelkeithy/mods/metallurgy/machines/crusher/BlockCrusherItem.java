@@ -25,27 +25,27 @@ public class BlockCrusherItem extends ItemBlock
         {
         case 0:
         {
-            name = "StoneCrusher";
+            name = "stone";
             break;
         }
         case 1:
         {
-            name = "CopperCrusher";
+            name = "copper";
             break;
         }
         case 2:
         {
-            name = "BronzeCrusher";
+            name = "bronze";
             break;
         }
         case 3:
         {
-            name = "IronCrusher";
+            name = "iron";
             break;
         }
         case 4:
         {
-            name = "SteelCrusher";
+            name = "steel";
             break;
         }
         default:

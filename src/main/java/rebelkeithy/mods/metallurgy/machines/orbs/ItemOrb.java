@@ -16,13 +16,11 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemOrb extends Item
 {
-    public static String[] names =
-    { "Prometheum", "Deep Iron", "Black Steel", "Oureclase", "Mithril", "Haderoth", "Orichalcum", "Adamantine", "Atlarus", "Tartarite" };
+    public static String[] names = { "Prometheum", "Deep Iron", "Black Steel", "Oureclase", "Mithril", "Haderoth", "Orichalcum", "Adamantine", "Atlarus", "Tartarite" };
     private Icon[] icons;
     private Icon[] iconsFull;
 
-    private static int[] maxXP =
-    { 50, 500, 750, 1000, 1250, 1500, 1750, 2000, 2250, 2500 };
+    private static int[] maxXP = { 50, 500, 750, 1000, 1250, 1500, 1750, 2000, 2250, 2500 };
 
     public ItemOrb(int par1)
     {
@@ -125,7 +123,13 @@ public class ItemOrb extends Item
     public String getUnlocalizedName(ItemStack par1ItemStack)
     {
         final int type = getTypeFromDamage(par1ItemStack.getItemDamage());
-        return super.getUnlocalizedName() + "." + names[type];
+
+        String name = names[type];
+
+        String unlocalizedName = name.replaceAll("\\s", "");
+        unlocalizedName = unlocalizedName.substring(0, 1).toLowerCase() + unlocalizedName.substring(1);
+
+        return super.getUnlocalizedName() + "." + unlocalizedName;
     }
 
     public int getXpFromDamage(int damage)
@@ -183,8 +187,7 @@ public class ItemOrb extends Item
 
             if (!par3EntityPlayer.worldObj.isRemote)
             {
-                par3EntityPlayer.worldObj.spawnEntityInWorld(new EntityXPOrb(par3EntityPlayer.worldObj, par3EntityPlayer.posX, par3EntityPlayer.posY + 0.5D,
-                        par3EntityPlayer.posZ + 0.5D, xp));
+                par3EntityPlayer.worldObj.spawnEntityInWorld(new EntityXPOrb(par3EntityPlayer.worldObj, par3EntityPlayer.posX, par3EntityPlayer.posY + 0.5D, par3EntityPlayer.posZ + 0.5D, xp));
             }
 
             setXP(par1ItemStack, 0);

@@ -26,8 +26,6 @@ import com.google.common.io.Files;
 import com.google.common.io.InputSupplier;
 import com.google.common.io.Resources;
 
-import cpw.mods.fml.common.registry.LanguageRegistry;
-
 public class MetalInfoDatabase
 {
     private static List<Map<String, String>> spreadsheet;
@@ -36,10 +34,7 @@ public class MetalInfoDatabase
 
     public static ItemStack getItem(String itemName)
     {
-        if (items == null || !items.containsKey(itemName))
-        {
-            return null;
-        }
+        if (items == null || !items.containsKey(itemName)) { return null; }
 
         return new ItemStack(items.get(itemName));
     }
@@ -48,10 +43,7 @@ public class MetalInfoDatabase
     {
         final Map<String, Map<String, String>> returnData = new HashMap<String, Map<String, String>>();
 
-        if (spreadsheet == null)
-        {
-            return returnData;
-        }
+        if (spreadsheet == null) { return returnData; }
 
         for (final Map<String, String> data : spreadsheet)
         {
@@ -97,9 +89,14 @@ public class MetalInfoDatabase
 
                 id = config.get("Item IDs", itemMap.get("Item Name"), id).getInt();
 
-                final Item item = new ItemMetallurgy(id).setTextureName("Metallurgy:" + itemMap.get("Set Name") + "/" + itemMap.get("Item Name"))
-                        .setUnlocalizedName("Metallurgy:" + itemMap.get("Set Name") + "/" + itemMap.get("Item Name")).setCreativeTab(tab);
-                LanguageRegistry.addName(item, itemMap.get("Item Name"));
+                String itemName = itemMap.get("Item Name");
+                String setName = itemMap.get("Set Name");
+
+                String unlocalizedName = itemName.replaceAll("\\s", "");
+                unlocalizedName = unlocalizedName.substring(0, 1).toLowerCase() + unlocalizedName.substring(1);
+                unlocalizedName = "metallurgy." + unlocalizedName;
+
+                final Item item = new ItemMetallurgy(id).setTextureName("Metallurgy:" + setName + "/" + itemName).setUnlocalizedName(unlocalizedName).setCreativeTab(tab);
 
                 items.put(itemMap.get("Item Name"), item);
                 if (!itemMap.get("Ore Dictionary Name").equals("0"))
@@ -109,7 +106,8 @@ public class MetalInfoDatabase
                 input = in.readLine();
             }
             in.close();
-        } catch (final IOException e)
+        }
+        catch (final IOException e)
         {
             e.printStackTrace();
         }
@@ -129,8 +127,7 @@ public class MetalInfoDatabase
         }
         catch (FileNotFoundException e)
         {
-            MetallurgyCore.log.log(Level.WARNING, String.format(
-                    "User supplied file (%s) not found. Check config file.", filepath), e);
+            MetallurgyCore.log.log(Level.WARNING, String.format("User supplied file (%s) not found. Check config file.", filepath), e);
         }
     }
 
@@ -143,7 +140,7 @@ public class MetalInfoDatabase
     {
         return Files.newReader(new File(filePath), Charsets.UTF_8);
     }
-    
+
     private static BufferedReader bufferedReaderFromClassPathResource(String resourcePath)
     {
         URL url = Resources.getResource(resourcePath);
@@ -178,7 +175,7 @@ public class MetalInfoDatabase
                 final Map<String, String> oreMap = new HashMap<String, String>();
                 for (int n = 0; n < inputArray.size(); n++)
                 {
-                    String column = inputArray.get(n); 
+                    String column = inputArray.get(n);
                     if (column.equals("") || column.equals("-"))
                     {
                         column = "0";
@@ -189,7 +186,8 @@ public class MetalInfoDatabase
                 input = in.readLine();
             }
             in.close();
-        } catch (final IOException e)
+        }
+        catch (final IOException e)
         {
             e.printStackTrace();
         }
