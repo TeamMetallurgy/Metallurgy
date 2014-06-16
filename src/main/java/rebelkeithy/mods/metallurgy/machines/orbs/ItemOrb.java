@@ -126,8 +126,7 @@ public class ItemOrb extends Item
 
         String name = names[type];
 
-        String unlocalizedName = name.replaceAll("\\s", "");
-        unlocalizedName = unlocalizedName.substring(0, 1).toLowerCase() + unlocalizedName.substring(1);
+        String unlocalizedName = name.replaceAll("\\s", ".").toLowerCase();
 
         return super.getUnlocalizedName() + "." + unlocalizedName;
     }

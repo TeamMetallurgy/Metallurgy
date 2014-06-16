@@ -30,12 +30,12 @@ public class BlockNetherForgeItem extends ItemBlock
         }
         case 1:
         {
-            name = "shadowIron";
+            name = "shadow.iron";
             break;
         }
         case 2:
         {
-            name = "shadowSteel";
+            name = "shadow.steel";
             break;
         }
         case 3:

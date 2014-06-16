@@ -124,8 +124,7 @@ public class OreInfo implements IOreInfo, IWorldGenerator
     {
         setName = info.get("Metal Set");
         name = info.get("Name");
-        unlocalizedName = name.replaceAll("\\s", "");
-        unlocalizedName = unlocalizedName.substring(0, 1).toLowerCase() + unlocalizedName.substring(1);
+        unlocalizedName = name.replaceAll("\\s", ".").toLowerCase();
         unlocalizedName = "metallurgy." + unlocalizedName;
         this.tab = tab;
         if (info.get("Type").equals("Ore"))
@@ -508,7 +507,7 @@ public class OreInfo implements IOreInfo, IWorldGenerator
             }
             if (type != DROP && brickID != 0)
             {
-                brick = new SubBlock(brickID, brickMeta, "Metallurgy:" + setName + "/" + name + "Brick").setUnlocalizedName(unlocalizedName + ".bricks").setCreativeTab(tab);
+                brick = new SubBlock(brickID, brickMeta, "Metallurgy:" + setName + "/" + name + "Brick").setUnlocalizedName(unlocalizedName + ".brick").setCreativeTab(tab);
             }
             if (type != DROP)
             {
@@ -523,7 +522,7 @@ public class OreInfo implements IOreInfo, IWorldGenerator
                 toolEnum = EnumHelper.addToolMaterial(name, pickLvl, toolDura, toolSpeed, toolDamage, toolEnchant);
                 toolEnum.customCraftingMaterial = ingot;
 
-                pickaxe = new CustomItemPickaxe(pickaxeID, toolEnum).setTextureName("Metallurgy:" + setName + "/" + name + "Pick").setUnlocalizedName(unlocalizedName + ".pick").setCreativeTab(tab);
+                pickaxe = new CustomItemPickaxe(pickaxeID, toolEnum).setTextureName("Metallurgy:" + setName + "/" + name + "Pick").setUnlocalizedName(unlocalizedName + ".pickaxe").setCreativeTab(tab);
                 shovel = new CustomItemSpade(shovelID, toolEnum).setTextureName("Metallurgy:" + setName + "/" + name + "Shovel").setUnlocalizedName(unlocalizedName + ".shovel").setCreativeTab(tab);
                 axe = new CustomItemAxe(axeID, toolEnum).setTextureName("Metallurgy:" + setName + "/" + name + "Axe").setUnlocalizedName(unlocalizedName + ".axe").setCreativeTab(tab);
                 hoe = new CustomItemHoe(hoeID, toolEnum).setTextureName("Metallurgy:" + setName + "/" + name + "Hoe").setUnlocalizedName(unlocalizedName + ".hoe").setCreativeTab(tab);
@@ -537,9 +536,9 @@ public class OreInfo implements IOreInfo, IWorldGenerator
                 helmet = new ItemMetallurgyArmor(helmetID, armorEnum, 0, 0).setTextureFile(armorTexture + "_1").setTextureName("Metallurgy:" + setName + "/" + name + "Helmet")
                         .setUnlocalizedName(unlocalizedName + ".helmet").setCreativeTab(tab);
                 chest = new ItemMetallurgyArmor(chestID, armorEnum, 1, 1).setTextureFile(armorTexture + "_1").setTextureName("Metallurgy:" + setName + "/" + name + "Chest")
-                        .setUnlocalizedName(unlocalizedName + ".chest").setCreativeTab(tab);
+                        .setUnlocalizedName(unlocalizedName + ".chestplate").setCreativeTab(tab);
                 legs = new ItemMetallurgyArmor(legID, armorEnum, 2, 2).setTextureFile(armorTexture + "_2").setTextureName("Metallurgy:" + setName + "/" + name + "Legs")
-                        .setUnlocalizedName(unlocalizedName + ".legs").setCreativeTab(tab);
+                        .setUnlocalizedName(unlocalizedName + ".leggings").setCreativeTab(tab);
                 boots = new ItemMetallurgyArmor(bootID, armorEnum, 3, 3).setTextureFile(armorTexture + "_1").setTextureName("Metallurgy:" + setName + "/" + name + "Boots")
                         .setUnlocalizedName(unlocalizedName + ".boots").setCreativeTab(tab);
             }

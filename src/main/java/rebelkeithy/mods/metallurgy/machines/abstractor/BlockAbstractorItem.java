@@ -30,12 +30,12 @@ public class BlockAbstractorItem extends ItemBlock
         }
         case 1:
         {
-            name = "deepIron";
+            name = "deep.iron";
             break;
         }
         case 2:
         {
-            name = "blackSteel";
+            name = "black.steel";
             break;
         }
         case 3:

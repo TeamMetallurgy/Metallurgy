@@ -22,8 +22,7 @@ public class BlockPylonItem extends ItemBlock
     {
         final String name = BlockPylon.names[itemstack.getItemDamage()];
 
-        String unlocalizedName = name.replaceAll("\\s", "");
-        unlocalizedName = unlocalizedName.substring(0, 1).toLowerCase() + unlocalizedName.substring(1);
+        String unlocalizedName = name.replaceAll("\\s", ".").toLowerCase();
 
         return getUnlocalizedName() + "." + unlocalizedName;
     }
