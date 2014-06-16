@@ -24,7 +24,7 @@ apply plugin: 'forge'
 
 version = "3.3.3"
 mc_version = "1.6.4"
-ku_version = "1.2.28"
+ku_version = "1.2.29"
 group= "rebelkeithy.mods.metallurgy" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "Metallurgy"
 
