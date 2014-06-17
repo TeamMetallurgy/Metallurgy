@@ -6,6 +6,48 @@ itemGroup.metallurgy.machines=Metallurgy: Механизмы
 itemGroup.metallurgy.precious=Metallurgy: Драгоценные руды
 itemGroup.metallurgy.utility=Metallurgy: Полезные руды
 
+chat.info.metallurgy.orefinder.area=В радиусе (%d, %d) до (%d, %d)
+chat.info.metallurgy.orefinder.found=Найдено %d %s
+chat.info.metallurgy.orefinder.radius=Радиус: %d чанка(ов)
+
+chat.info.metallurgy.laser.length=Расстояние: %d
+
+chat.info.metallurgy.forge.tank.amount=Топливо: %d
+chat.info.metallurgy.forge.tank.capacity=Ёмкость: %d
+
+container.metallurgy.abstractor.prometheum=Прометеевый абстрактор
+container.metallurgy.abstractor.deep.iron=Абстрактор из глубинного железа
+container.metallurgy.abstractor.black.steel=Абстрактор из чёрной стали
+container.metallurgy.abstractor.oureclase=Аурклассовый абстрактор
+container.metallurgy.abstractor.mithril=Мифриловый абстрактор
+container.metallurgy.abstractor.haderoth=Хадеротовый абстрактор
+container.metallurgy.abstractor.orichalcum=Орихалковый абстрактор
+container.metallurgy.abstractor.adamantine=Адамантиевый абстрактор
+container.metallurgy.abstractor.atlarus=Атларисовый абстрактор
+container.metallurgy.abstractor.tartarite=Тартаритовый абстрактор
+
+container.metallurgy.crusher.stone=Каменная дробилка
+container.metallurgy.crusher.copper=Медная дробилка
+container.metallurgy.crusher.bronze=Бронзовая дробилка
+container.metallurgy.crusher.iron=Железная дробилка
+container.metallurgy.crusher.steel=Стальная дробилка
+
+container.metallurgy.enchanter=Тартаритовый зачаровыватель
+
+container.metallurgy.forge.ignatius=Игнатиевая плавильня
+container.metallurgy.forge.shadow.iron=Плавильня из теневого железа
+container.metallurgy.forge.shadow.steel=Плавильня из теневой стали
+container.metallurgy.forge.vyroxeres=Вироксеровая плавильня
+container.metallurgy.forge.inolashite=Инолашитовая плавильня
+container.metallurgy.forge.kalendrite=Календритовая плавильня
+container.metallurgy.forge.vulcanite=Вулканитовая плавильня
+container.metallurgy.forge.sanguinite=Сангвинитовая плавильня
+
+container.metallurgy.furnace.copper=Медная печь
+container.metallurgy.furnace.bronze=Бронзовая печь
+container.metallurgy.furnace.iron=Железная печь
+container.metallurgy.furnace.steel=Стальная печь
+
 tile.metallurgy.gold.brick.name=Золотые кирпичи
 item.metallurgy.gold.dust.name=Золотая пыль
 tile.metallurgy.iron.brick.name=Железные кирпичи
@@ -659,10 +701,10 @@ tile.metallurgy.forge.kalendrite.name=Календритовая плавиль�
 tile.metallurgy.forge.vulcanite.name=Вулканитовая плавильня
 tile.metallurgy.forge.sanguinite.name=Сангвинитовая плавильня
 
-tile.metallurgy.furnace.copper.name=Медная печка
-tile.metallurgy.furnace.bronze.name=Бронзовая печка
-tile.metallurgy.furnace.iron.name=Железная печка
-tile.metallurgy.furnace.steel.name=Стальная печка
+tile.metallurgy.furnace.copper.name=Медная печь
+tile.metallurgy.furnace.bronze.name=Бронзовая печь
+tile.metallurgy.furnace.iron.name=Железная печь
+tile.metallurgy.furnace.steel.name=Стальная печь
 
 tile.metallurgy.ladder.copper.name=Медная лестница
 tile.metallurgy.ladder.bronze.name=Бронзовая лестница
