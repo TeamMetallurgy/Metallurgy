@@ -3,8 +3,6 @@ package rebelkeithy.mods.metallurgy.machines;
 import java.io.File;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.client.MinecraftForgeClient;
 import rebelkeithy.mods.keithyutils.guiregistry.GuiRegistry;
 import rebelkeithy.mods.metallurgy.machines.abstractor.ContainerAbstractor;
 import rebelkeithy.mods.metallurgy.machines.abstractor.GuiAbstractor;
@@ -124,11 +122,11 @@ public class ClientProxy extends CommonProxy
         	RenderingRegistry.registerBlockHandler(BlockMetalLadder.renderType, new LadderRenderer());
         }
 
-//    	if(ConfigMachines.enchanterEnabled)
-//    	{
-//	        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityMetallurgyEnchantmentTable.class, new RenderMetallurgyEnchantmentTable());
-//	        RenderingRegistry.registerBlockHandler(new MetallurgyEnchantmentTableRenderHelper());
-//    	}
+    	if(ConfigMachines.enchanterEnabled)
+    	{
+	        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityMetallurgyEnchantmentTable.class, new RenderMetallurgyEnchantmentTable());
+	        RenderingRegistry.registerBlockHandler(new MetallurgyEnchantmentTableRenderHelper());
+    	}
 
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityLaser.class, new TileEntityLaserRenderer());
         RenderingRegistry.registerBlockHandler(new LaserRenderHelper());
