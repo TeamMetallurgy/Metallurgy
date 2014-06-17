@@ -118,6 +118,7 @@ public class ConfigMachines
         stackID = config.getItem("Item IDs", "Stack", stackID).getInt();
         coinBagID = config.getItem("Item IDs", "Coin Bag", coinBagID).getInt();
         bullionID = config.getItem("Item IDs", "Bullion", bullionID).getInt();
+        goldCogID = config.getItem("Item IDs", "Gold Cog", goldCogID).getInt();
         glassDustID = config.getItem("Item IDs", "Glass Dusts", glassDustID).getInt();
         orbID = config.getItem("Item IDs", "Fantasy Orbs", orbID).getInt();
         sawDustID = config.getItem("Item IDs", "Saw Dust", sawDustID).getInt();
