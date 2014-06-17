@@ -15,6 +15,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.ChatMessageComponent;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraftforge.oredict.OreDictionary;
@@ -56,7 +57,8 @@ public class ItemOreFinder extends Item
 
             if (FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT)
             {
-                par2EntityPlayer.addChatMessage("Radius: " + mode + " chunk" + (mode != 1 ? "s" : ""));
+                par2EntityPlayer.sendChatToPlayer(ChatMessageComponent
+                        .createFromTranslationWithSubstitutions("chat.info.metallurgy.orefinder.radius", mode));
             }
             return false;
         }
@@ -179,11 +181,13 @@ public class ItemOreFinder extends Item
             final Set<String> names = oreCount.keySet();
             final String[] sort = names.toArray(new String[names.size()]);
             Arrays.sort(sort);
-            player.addChatMessage("In Area (" + minX + ", " + minZ + ") to (" + maxX + ", " + maxZ + ")");
+            player.sendChatToPlayer(ChatMessageComponent
+                    .createFromTranslationWithSubstitutions("chat.info.metallurgy.orefinder.area", minX, minZ, maxX, maxZ));
             for (final String name : sort)
             {
                 final int amount = oreCount.get(name);
-                player.addChatMessage("Found " + amount + " " + name);
+                player.sendChatToPlayer(ChatMessageComponent
+                        .createFromTranslationWithSubstitutions("chat.info.metallurgy.orefinder.found", amount, name ));
             }
 
             return oreCount;

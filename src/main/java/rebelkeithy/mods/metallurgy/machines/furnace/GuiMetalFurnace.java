@@ -58,7 +58,11 @@ public class GuiMetalFurnace extends GuiContainer
     @Override
     protected void drawGuiContainerForegroundLayer(int par1, int par2)
     {
-        fontRenderer.drawString(StatCollector.translateToLocal(names[type] + " Furnace"), xSize / 2 - (names[type] + " Furnace").length() * 5 / 2, 6, 4210752);
+        String unlocalizedName = names[type].replaceAll("\\s", ".").toLowerCase();
+        unlocalizedName = "container.metallurgy.furnace." + unlocalizedName;
+        String localizedName = StatCollector.translateToLocal(unlocalizedName);
+
+        fontRenderer.drawString(localizedName, xSize / 2 - localizedName.length() * 5 / 2, 6, 4210752);
         fontRenderer.drawString(StatCollector.translateToLocal("container.inventory"), 8, ySize - 96 + 2, 4210752);
     }
 }

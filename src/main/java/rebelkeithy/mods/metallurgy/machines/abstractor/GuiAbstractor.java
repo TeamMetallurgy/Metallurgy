@@ -52,13 +52,17 @@ public class GuiAbstractor extends GuiContainer
     }
 
     /**
-     * Draw the foreground layer for the GuiContainer (everythin in front of the
+     * Draw the foreground layer for the GuiContainer (everything in front of the
      * items)
      */
     @Override
     protected void drawGuiContainerForegroundLayer(int par1, int par2)
     {
-        fontRenderer.drawString(StatCollector.translateToLocal(names[type] + " Abstractor"), xSize / 2 - (names[type] + " Abstractor").length() * 5 / 2, 6, 4210752);
+        String unlocalizedName = names[type].replaceAll("\\s", ".").toLowerCase();
+        unlocalizedName = "container.metallurgy.abstractor." + unlocalizedName;
+        String localizedName = StatCollector.translateToLocal(unlocalizedName);
+
+        fontRenderer.drawString(localizedName, xSize / 2 - localizedName.length() * 5 / 2, 6, 4210752);
         fontRenderer.drawString(StatCollector.translateToLocal("container.inventory"), 8, ySize - 96 + 2, 4210752);
     }
 }

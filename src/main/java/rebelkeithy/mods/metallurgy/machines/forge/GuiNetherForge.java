@@ -50,9 +50,13 @@ public class GuiNetherForge extends GuiContainer
      * Draw the foreground layer for the GuiContainer (everything in front of
      * the items)
      */
-    protected void drawGuiContainerForegroundLayer()
+    @Override
+    protected void drawGuiContainerForegroundLayer(int par1, int par2)
     {
-        fontRenderer.drawString(names[type] + " Smelter", 30 - (names[type] + " Smelter").length() / 2, 6, 4210752);
+        String unlocalizedName = names[type].replaceAll("\\s", ".").toLowerCase();
+        unlocalizedName = "container.metallurgy.forge." + unlocalizedName;
+
+        fontRenderer.drawString(StatCollector.translateToLocal(unlocalizedName), 8, 6, 4210752);
         fontRenderer.drawString(StatCollector.translateToLocal("container.inventory"), 8, ySize - 96 + 2, 4210752);
     }
 }

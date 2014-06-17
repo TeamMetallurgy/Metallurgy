@@ -6,6 +6,48 @@ itemGroup.metallurgy.machines=Metallurgy: Machines
 itemGroup.metallurgy.precious=Metallurgy: Precious
 itemGroup.metallurgy.utility=Metallurgy: Utility
 
+chat.info.metallurgy.orefinder.area=In Area (%d, %d) to (%d, %d)
+chat.info.metallurgy.orefinder.found=Found %d of %s
+chat.info.metallurgy.orefinder.radius=Radius: %d chunk(s)
+
+chat.info.metallurgy.laser.length=Length: %d
+
+chat.info.metallurgy.forge.tank.amount=Fuel: %d
+chat.info.metallurgy.forge.tank.capacity=Tank Capacity: %d
+
+container.metallurgy.abstractor.prometheum=Prometheum Abstractor
+container.metallurgy.abstractor.deep.iron=Deep Iron Abstractor
+container.metallurgy.abstractor.black.steel=Black Steel Abstractor
+container.metallurgy.abstractor.oureclase=Oureclase Abstractor
+container.metallurgy.abstractor.mithril=Mithril Abstractor
+container.metallurgy.abstractor.haderoth=Haderoth Abstractor
+container.metallurgy.abstractor.orichalcum=Orichalcum Abstractor
+container.metallurgy.abstractor.adamantine=Adamantine Abstractor
+container.metallurgy.abstractor.atlarus=Atlarus Abstractor
+container.metallurgy.abstractor.tartarite=Tartarite Abstractor
+
+container.metallurgy.crusher.stone=Stone Crusher
+container.metallurgy.crusher.copper=Copper Crusher
+container.metallurgy.crusher.bronze=Bronze Crusher
+container.metallurgy.crusher.iron=Iron Crusher
+container.metallurgy.crusher.steel=Steel Crusher
+
+container.metallurgy.enchanter=Tartarite Enchanter
+
+container.metallurgy.forge.ignatius=Ignatius Smelter
+container.metallurgy.forge.shadow.iron=Shadow Iron Smelter
+container.metallurgy.forge.shadow.steel=Shadow Steel Smelter
+container.metallurgy.forge.vyroxeres=Vyroxeres Smelter
+container.metallurgy.forge.inolashite=Inolashite Smelter
+container.metallurgy.forge.kalendrite=Kalendrite Smelter
+container.metallurgy.forge.vulcanite=Vulcanite Smelter
+container.metallurgy.forge.sanguinite=Sanguinite Smelter
+
+container.metallurgy.furnace.copper=Copper Furnace
+container.metallurgy.furnace.bronze=Bronze Furnace
+container.metallurgy.furnace.iron=Iron Furnace
+container.metallurgy.furnace.steel=Steel Furnace
+
 tile.metallurgy.gold.brick.name=Gold Bricks
 item.metallurgy.gold.dust.name=Gold Dust
 tile.metallurgy.iron.brick.name=Iron Bricks

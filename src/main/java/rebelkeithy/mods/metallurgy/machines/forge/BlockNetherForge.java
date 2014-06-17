@@ -18,6 +18,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ChatMessageComponent;
 import net.minecraft.util.Icon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.IBlockAccess;
@@ -275,8 +276,13 @@ public class BlockNetherForge extends BlockContainer {
 		if(tile == null)
 			throw new RuntimeException("Metallurgy: Errored on Handling block Tile entity and Data");
 
-		par5EntityPlayer.addChatMessage("Fuel: " + tile.getTankFluidAmount());
-		par5EntityPlayer.addChatMessage("MaxFuel: " + tile.getTankCapacity());
+		// Sending localized Tank info to player
+		par5EntityPlayer.sendChatToPlayer(ChatMessageComponent
+		        .createFromTranslationWithSubstitutions("chat.info.metallurgy.forge.tank.amount"
+		                , tile.getTankFluidAmount()));
+		par5EntityPlayer.sendChatToPlayer(ChatMessageComponent
+		        .createFromTranslationWithSubstitutions("chat.info.metallurgy.forge.tank.capacity"
+		                , tile.getTankCapacity()));
 
 		if (currentItem != null) {
 			if (currentItem.itemID == Item.bucketLava.itemID) {

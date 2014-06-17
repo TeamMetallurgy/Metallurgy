@@ -5,6 +5,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.ChatMessageComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.ForgeSubscribe;
@@ -87,7 +88,9 @@ public class BlockLaser extends BlockContainer
                 ((TileEntityLaser) te).changeLength(event.face, player.isSneaking());
                 if (!player.worldObj.isRemote)
                 {
-                    player.addChatMessage("Length: " + ((TileEntityLaser) te).getLength(event.face));
+                    int length = ((TileEntityLaser) te).getLength(event.face);
+                    player.sendChatToPlayer(ChatMessageComponent
+                            .createFromTranslationWithSubstitutions("chat.info.metallurgy.laser.length", length));
                     // event.setCanceled(true);
                 }
             }
