@@ -48,6 +48,8 @@ container.metallurgy.furnace.bronze=Bronze Furnace
 container.metallurgy.furnace.iron=Iron Furnace
 container.metallurgy.furnace.steel=Steel Furnace
 
+enchantment.metallurgy.heal=Heal
+
 tile.metallurgy.gold.brick.name=Gold Bricks
 item.metallurgy.gold.dust.name=Gold Dust
 tile.metallurgy.iron.brick.name=Iron Bricks

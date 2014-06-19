@@ -113,58 +113,69 @@ public class MetallurgyMetals
         if (netherSet.getOreInfo("Ignatius").sword != null)
         {
             netherSet.getOreInfo("Ignatius").sword.addHitListener(swordEffects);
-            netherSet.getOreInfo("Ignatius").sword.setSubText("cIgnite I");
+            netherSet.getOreInfo("Ignatius").sword.setSubText("enchantment.fire enchantment.level.1");
+            netherSet.getOreInfo("Ignatius").sword.setSubTextColour("c");
         }
         if (netherSet.getOreInfo("Shadow Iron").sword != null)
         {
             netherSet.getOreInfo("Shadow Iron").sword.addHitListener(swordEffects);
-            netherSet.getOreInfo("Shadow Iron").sword.setSubText("cWeakness I");
+            netherSet.getOreInfo("Shadow Iron").sword.setSubText("potion.weakness enchantment.level.1");
+            netherSet.getOreInfo("Shadow Iron").sword.setSubTextColour("c");
         }
         if (netherSet.getOreInfo("Shadow Steel").sword != null)
         {
             netherSet.getOreInfo("Shadow Steel").sword.addHitListener(swordEffects);
-            netherSet.getOreInfo("Shadow Steel").sword.setSubText("7Weakness II");
+            netherSet.getOreInfo("Shadow Steel").sword.setSubText("potion.weakness enchantment.level.2");
+            netherSet.getOreInfo("Shadow Steel").sword.setSubTextColour("7");
         }
         if (netherSet.getOreInfo("Midasium").sword != null)
         {
             // Midsium'ss effect comes from the onDeath event, not the onHit
             // method
-            netherSet.getOreInfo("Midasium").sword.setSubText("7Looting I");
+            netherSet.getOreInfo("Midasium").sword.setSubText("enchantment.lootBonus enchantment.level.1");
+            netherSet.getOreInfo("Midasium").sword.setSubTextColour("7");
         }
         if (netherSet.getOreInfo("Vyroxeres").sword != null)
         {
             netherSet.getOreInfo("Vyroxeres").sword.addHitListener(swordEffects);
-            netherSet.getOreInfo("Vyroxeres").sword.setSubText("cPoison I");
+            netherSet.getOreInfo("Vyroxeres").sword.setSubText("enchantment.lootBonus enchantment.level.1");
+            netherSet.getOreInfo("Vyroxeres").sword.setSubTextColour("c");
         }
         if (netherSet.getOreInfo("Ceruclase").sword != null)
         {
             netherSet.getOreInfo("Ceruclase").sword.addHitListener(swordEffects);
-            netherSet.getOreInfo("Ceruclase").sword.setSubText("cSlowness");
+            netherSet.getOreInfo("Ceruclase").sword.setSubText("potion.moveSlowdown enchantment.level.1");
+            netherSet.getOreInfo("Ceruclase").sword.setSubTextColour("c");
         }
         if (netherSet.getOreInfo("Inolashite").sword != null)
         {
             netherSet.getOreInfo("Inolashite").sword.addHitListener(swordEffects);
-            netherSet.getOreInfo("Inolashite").sword.setSubText("7Poison, Slowness");
+            netherSet.getOreInfo("Inolashite").sword.setSubText("potion.poison enchantment.level.1,potion.moveSlowdown enchantment.level.1");
+            netherSet.getOreInfo("Inolashite").sword.setSubTextColour("7");
         }
         if (netherSet.getOreInfo("Kalendrite").sword != null)
         {
             netherSet.getOreInfo("Kalendrite").sword.addHitListener(swordEffects);
-            netherSet.getOreInfo("Kalendrite").sword.setSubText("7Regen");
+            netherSet.getOreInfo("Kalendrite").sword.setSubText("potion.regeneration enchantment.level.1");
+            netherSet.getOreInfo("Kalendrite").sword.setSubTextColour("7");
         }
         if (netherSet.getOreInfo("Amordrine").sword != null)
         {
             netherSet.getOreInfo("Amordrine").sword.addHitListener(swordEffects);
-            netherSet.getOreInfo("Amordrine").sword.setSubText("7Healing");
+            netherSet.getOreInfo("Amordrine").sword.setSubText("enchantment.metallurgy.heal enchantment.level.1");
+            netherSet.getOreInfo("Amordrine").sword.setSubTextColour("7");
         }
         if (netherSet.getOreInfo("Vulcanite").sword != null)
         {
             netherSet.getOreInfo("Vulcanite").sword.addHitListener(swordEffects);
-            netherSet.getOreInfo("Vulcanite").sword.setSubText("cIgnite II");
+            netherSet.getOreInfo("Vulcanite").sword.setSubText("enchantment.fire enchantment.level.2");
+            netherSet.getOreInfo("Vulcanite").sword.setSubTextColour("c");
         }
         if (netherSet.getOreInfo("Sanguinite").sword != null)
         {
             netherSet.getOreInfo("Sanguinite").sword.addHitListener(swordEffects);
-            netherSet.getOreInfo("Sanguinite").sword.setSubText("cWither I");
+            netherSet.getOreInfo("Sanguinite").sword.setSubText("potion.wither enchantment.level.1");
+            netherSet.getOreInfo("Sanguinite").sword.setSubTextColour("c");
         }
 
         swordEffects = new FantasySwordHitListener();
@@ -177,67 +188,80 @@ public class MetallurgyMetals
         if (fantasySet.getOreInfo("Deep Iron").sword != null)
         {
             fantasySet.getOreInfo("Deep Iron").sword.addHitListener(swordEffects);
-            fantasySet.getOreInfo("Deep Iron").sword.setSubText("cBlindness I");
+            fantasySet.getOreInfo("Deep Iron").sword.setSubText("potion.blindness enchantment.level.1");
+            fantasySet.getOreInfo("Deep Iron").sword.setSubTextColour("c");
         }
         if (fantasySet.getOreInfo("Black Steel").sword != null)
         {
             fantasySet.getOreInfo("Black Steel").sword.addHitListener(swordEffects);
-            fantasySet.getOreInfo("Black Steel").sword.setSubText("cBlindness II");
+            fantasySet.getOreInfo("Black Steel").sword.setSubText("potion.blindness enchantment.level.2");
+            fantasySet.getOreInfo("Black Steel").sword.setSubTextColour("c");
         }
         if (fantasySet.getOreInfo("Oureclase").sword != null)
         {
             fantasySet.getOreInfo("Oureclase").sword.addHitListener(swordEffects);
-            fantasySet.getOreInfo("Oureclase").sword.setSubText("7Resistance I");
+            fantasySet.getOreInfo("Oureclase").sword.setSubText("potion.resistance enchantment.level.1");
+            fantasySet.getOreInfo("Oureclase").sword.setSubTextColour("7");
         }
         if (fantasySet.getOreInfo("Astral Silver").sword != null)
         {
             fantasySet.getOreInfo("Astral Silver").sword.addHitListener(swordEffects);
-            fantasySet.getOreInfo("Astral Silver").sword.setSubText("7Looting I");
+            fantasySet.getOreInfo("Astral Silver").sword.setSubText("enchantment.lootBonus enchantment.level.1");
+            fantasySet.getOreInfo("Astral Silver").sword.setSubTextColour("7");
         }
         if (fantasySet.getOreInfo("Carmot").sword != null)
         {
             fantasySet.getOreInfo("Carmot").sword.addHitListener(swordEffects);
-            fantasySet.getOreInfo("Carmot").sword.setSubText("7Looting II");
+            fantasySet.getOreInfo("Carmot").sword.setSubText("enchantment.lootBonus enchantment.level.2");
+            fantasySet.getOreInfo("Carmot").sword.setSubTextColour("7");
         }
         if (fantasySet.getOreInfo("Mithril").sword != null)
         {
             fantasySet.getOreInfo("Mithril").sword.addHitListener(swordEffects);
-            fantasySet.getOreInfo("Mithril").sword.setSubText("7Haste I");
+            fantasySet.getOreInfo("Mithril").sword.setSubText("potion.digSpeed enchantment.level.1");
+            fantasySet.getOreInfo("Mithril").sword.setSubTextColour("7");
         }
         if (fantasySet.getOreInfo("Quicksilver").sword != null)
         {
             fantasySet.getOreInfo("Quicksilver").sword.addHitListener(swordEffects);
-            fantasySet.getOreInfo("Quicksilver").sword.setSubText("7Speed I");
+            fantasySet.getOreInfo("Quicksilver").sword.setSubText("potion.digSpeed enchantment.level.1");
+            fantasySet.getOreInfo("Quicksilver").sword.setSubTextColour("7");
         }
         if (fantasySet.getOreInfo("Haderoth").sword != null)
         {
             fantasySet.getOreInfo("Haderoth").sword.addHitListener(swordEffects);
-            fantasySet.getOreInfo("Haderoth").sword.setSubText("cHaste I, Ignite II");
+            fantasySet.getOreInfo("Haderoth").sword.setSubText("potion.digSpeed enchantment.level.1,enchantment.fire enchantment.level.2");
+            fantasySet.getOreInfo("Haderoth").sword.setSubTextColour("c");
         }
         if (fantasySet.getOreInfo("Orichalcum").sword != null)
         {
             fantasySet.getOreInfo("Orichalcum").sword.addHitListener(swordEffects);
-            fantasySet.getOreInfo("Orichalcum").sword.setSubText("cResistance II");
+            fantasySet.getOreInfo("Orichalcum").sword.setSubText("potion.resistance enchantment.level.1");
+            fantasySet.getOreInfo("Orichalcum").sword.setSubTextColour("c");
         }
         if (fantasySet.getOreInfo("Celenegil").sword != null)
         {
             fantasySet.getOreInfo("Celenegil").sword.addHitListener(swordEffects);
-            fantasySet.getOreInfo("Celenegil").sword.setSubText("7Resistance III");
+            fantasySet.getOreInfo("Celenegil").sword.setSubText("potion.resistance enchantment.level.1");
+            fantasySet.getOreInfo("Celenegil").sword.setSubTextColour("7");
         }
         if (fantasySet.getOreInfo("Adamantine").sword != null)
         {
             fantasySet.getOreInfo("Adamantine").sword.addHitListener(swordEffects);
-            fantasySet.getOreInfo("Adamantine").sword.setSubText("7Fire Resist I, Ignite II");
+            fantasySet.getOreInfo("Adamantine").sword.setSubText("potion.fireResistance enchantment.level.1,enchantment.fire enchantment.level.2");
+            fantasySet.getOreInfo("Adamantine").sword.setSubTextColour("7");
         }
         if (fantasySet.getOreInfo("Atlarus").sword != null)
         {
             fantasySet.getOreInfo("Atlarus").sword.addHitListener(swordEffects);
-            fantasySet.getOreInfo("Atlarus").sword.setSubText("7Strength II");
+            fantasySet.getOreInfo("Atlarus").sword.setSubText("potion.damageBoost enchantment.level.2");
+            fantasySet.getOreInfo("Atlarus").sword.setSubTextColour("7");
         }
         if (fantasySet.getOreInfo("Tartarite").sword != null)
         {
             fantasySet.getOreInfo("Tartarite").sword.addHitListener(swordEffects);
-            fantasySet.getOreInfo("Tartarite").sword.setSubText("cWither, Igntite II");
+            fantasySet.getOreInfo("Tartarite").sword.setSubText("potion.wither enchantment.level.1,enchantment.fire enchantment.level.2");
+            fantasySet.getOreInfo("Tartarite").sword.setSubTextColour("c");
         }
     }
 

@@ -8,11 +8,14 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumToolMaterial;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
+import net.minecraft.util.StatCollector;
 
 public class ItemMetallurgySword extends ItemSword
 {
     private final List<ISwordHitListener> hlList = new ArrayList<ISwordHitListener>();
+
     String subText;
+    String subTextColour = "";
 
     public ItemMetallurgySword(int par1, EnumToolMaterial par2EnumToolMaterial)
     {
@@ -30,9 +33,19 @@ public class ItemMetallurgySword extends ItemSword
     {
         if (subText != null)
         {
-            for (final String string : subText.split("-"))
+            String colour = "";
+            if  (!subTextColour.equalsIgnoreCase(""))
             {
-                par3List.add("\u00A7" + string);
+                colour = "\u00A7" + subTextColour;
+            }
+
+            for (final String string : subText.split(","))
+            {
+                String[] unlocalized = string.split(" ");
+                String localized = StatCollector.translateToLocal(unlocalized[0]);
+                String localizedPower = StatCollector.translateToLocal(unlocalized[1]);
+
+                par3List.add(colour + localized + " " + localizedPower);
             }
         }
     }
@@ -51,6 +64,11 @@ public class ItemMetallurgySword extends ItemSword
     public void setSubText(String text)
     {
         subText = text;
+    }
+
+    public void setSubTextColour (String colour)
+    {
+        subTextColour = colour;
     }
 
     @Override
