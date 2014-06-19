@@ -546,13 +546,13 @@ public class TileEntityNetherForge extends TileEntity implements ISidedInventory
             if (furnaceItemStacks[1] == null)
             {
                 furnaceItemStacks[1] = var1.copy();
+                --furnaceItemStacks[0].stackSize;
             }
-            else if (furnaceItemStacks[1].isItemEqual(var1))
+            else if (furnaceItemStacks[1].isItemEqual(var1) && ((furnaceItemStacks[1].stackSize + var1.stackSize) <= furnaceItemStacks[1].getMaxStackSize()))
             {
-                ++furnaceItemStacks[1].stackSize;
+                furnaceItemStacks[1].stackSize += var1.stackSize;
+                --furnaceItemStacks[0].stackSize;
             }
-
-            --furnaceItemStacks[0].stackSize;
 
             if (furnaceItemStacks[0].stackSize <= 0)
             {
