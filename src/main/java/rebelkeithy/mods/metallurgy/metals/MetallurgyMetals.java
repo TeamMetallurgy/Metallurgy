@@ -2,12 +2,12 @@ package rebelkeithy.mods.metallurgy.metals;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraftforge.common.Configuration;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.oredict.OreDictionary;
@@ -42,7 +42,7 @@ import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 
-@Mod(modid = "Metallurgy3Base", name = "Metallurgy 3 Base", version = "3.3.3", dependencies = "required-after:Metallurgy3Core")
+@Mod(modid = "Metallurgy3Base", name = "Metallurgy 3 Base", version = "3.3.3", dependencies = "required-after:Metallurgy3Core;after:Metallurgy3Vanilla")
 @NetworkMod(channels =
 { "MetallurgyBase" }, clientSideRequired = true, serverSideRequired = false)
 public class MetallurgyMetals
@@ -70,10 +70,6 @@ public class MetallurgyMetals
     public static Configuration baseConfig;
     public static Configuration utilityConfig;
     public static Configuration fantasyConfig;
-
-    // Vanilla Items
-    public static Item dustIron;
-    public static Item dustGold;
 
     // Utility Items
     public static Item magnesiumIgniter;
@@ -247,13 +243,30 @@ public class MetallurgyMetals
 
     public void createMidasiumRecipes()
     {
+
+        ArrayList<ItemStack> goldDusts = OreDictionary.getOres("dustGold");
+
+        if (goldDusts.size() < 1)
+        {
+            MetallurgyCore.log.warning("Gold dust wasn't found in the ore dictionary, skipping adding Midasium recipes");
+            return;
+        }
+
+        ItemStack dustGold = goldDusts.get(0);
+
+        if (dustGold == null)
+        {
+            MetallurgyCore.log.warning("Gold dust wasn't found in the ore dictionary, skipping adding Midasium recipes");
+            return;
+        }
+
         final String[] ores = OreDictionary.getOreNames();
         for (final String name : ores)
         {
-            if (name.contains("dust") && !name.toLowerCase().contains("tiny") && !name.toLowerCase().contains("clay") && !name.toLowerCase().contains("quartz"))
+            if (name.contains("dust") && !name.toLowerCase().contains("tiny") && !name.toLowerCase().contains("clay") && !name.toLowerCase().contains("quartz") && !name.toLowerCase().contentEquals("dustgold"))
             {
-                MetallurgyCore.log.info("Adding recipe for " + name + " midasium = gold");
-                GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(dustGold), "dustMidasium", name));
+                MetallurgyCore.log.fine("Adding recipe for " + name + " midasium = gold");
+                GameRegistry.addRecipe(new ShapelessOreRecipe(dustGold.copy(), "dustMidasium", name));
             }
         }
     }
@@ -261,8 +274,30 @@ public class MetallurgyMetals
     public void createUtilityItems()
     {
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Item.blazeRod), "I", "I", 'I', "ingotVulcanite"));
-        GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(dustIron, 2), "dustShadow Iron", "dustIgnatius"));
-        GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(dustIron, 2), "dustDeep Iron", "dustPrometheum"));
+
+        ArrayList<ItemStack> ironDusts = OreDictionary.getOres("dustIron");
+        if (ironDusts.size() < 1)
+        {
+            ItemStack dustIron = ironDusts.get(0);
+
+            if(dustIron != null)
+            {
+
+               dustIron = dustIron.copy();
+               dustIron.stackSize = 2;
+
+               GameRegistry.addRecipe(new ShapelessOreRecipe(dustIron.copy(), "dustShadow Iron", "dustIgnatius"));
+               GameRegistry.addRecipe(new ShapelessOreRecipe(dustIron.copy(), "dustDeep Iron", "dustPrometheum"));
+            }
+            else
+            {
+                MetallurgyCore.log.warning("Iron Dust wasn't found in the ore dictionary, skipping adding Iron dust coverting recipes");
+            }
+        }
+        else
+        {
+            MetallurgyCore.log.warning("Iron Dust wasn't found in the ore dictionary, skipping adding Iron dust coverting recipes");
+        }
 
         int id = utilityConfig.get("Item IDs", "HE TNT", 920).getInt();
         if (id != 0)
@@ -334,13 +369,6 @@ public class MetallurgyMetals
     @EventHandler
     public void Init(FMLInitializationEvent event)
     {
-        // TODO add config for vanilla dusts
-        FurnaceRecipes.smelting().addSmelting(dustIron.itemID, 0, new ItemStack(Item.ingotIron), 0.7F);
-        FurnaceRecipes.smelting().addSmelting(dustGold.itemID, 0, new ItemStack(Item.ingotGold), 0.7F);
-
-        OreDictionary.registerOre("dustIron", dustIron);
-        OreDictionary.registerOre("dustGold", dustGold);
-
         if (oreFinderEnabled)
         {
             debug = new ItemOreFinder(oreFinderID).setUnlocalizedName("metallurgy.oreFinder").setCreativeTab(CreativeTabs.tabTools);
@@ -573,12 +601,6 @@ public class MetallurgyMetals
         fantasySet = new MetalSet("Fantasy", MetalInfoDatabase.getSpreadsheetDataForSet("Fantasy"), fantasyTab);
         enderSet = new MetalSet("Ender", MetalInfoDatabase.getSpreadsheetDataForSet("Ender"), enderTab);
         utilitySet = new MetalSet("Utility", MetalInfoDatabase.getSpreadsheetDataForSet("Utility"), utilityTab);
-
-        // TODO: get dust ids from configuration
-        dustIron = new ItemMetallurgy(5100).setTextureName("Metallurgy:Vanilla/IronDust").setUnlocalizedName("metallurgy.iron.dust")
-                .setCreativeTab(CreativeTabs.tabMaterials);
-        dustGold = new ItemMetallurgy(5101).setTextureName("Metallurgy:Vanilla/GoldDust").setUnlocalizedName("metallurgy.gold.dust")
-                .setCreativeTab(CreativeTabs.tabMaterials);
 
         if (isSetEnabled("Utility"))
         {

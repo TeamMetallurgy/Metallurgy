@@ -51,6 +51,7 @@ import rebelkeithy.mods.metallurgy.machines.storage.BlockStorageAccessor;
 import rebelkeithy.mods.metallurgy.machines.storage.TileEntityStorageAccessor;
 import rebelkeithy.mods.metallurgy.machines.storage.TileEntityStorageBlock;
 import rebelkeithy.mods.metallurgy.metals.MetallurgyMetals;
+import rebelkeithy.mods.metallurgy.vanilla.VanillaAddons;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
@@ -386,10 +387,10 @@ public class MetallurgyMachines
         // CrusherUpgradeRecipes.addRecipes();
         createMachineRecipes();
 
-        CrusherRecipes.addCrushing(Block.oreIron.blockID, 0, new ItemStack(MetallurgyMetals.dustIron, 2));
-        CrusherRecipes.addCrushing(Block.oreGold.blockID, 0, new ItemStack(MetallurgyMetals.dustGold, 2));
-        CrusherRecipes.addCrushing(Item.ingotIron.itemID, 0, new ItemStack(MetallurgyMetals.dustIron));
-        CrusherRecipes.addCrushing(Item.ingotGold.itemID, 0, new ItemStack(MetallurgyMetals.dustGold));
+        CrusherRecipes.addCrushing(Block.oreIron.blockID, 0, new ItemStack(VanillaAddons.dustIron, 2));
+        CrusherRecipes.addCrushing(Block.oreGold.blockID, 0, new ItemStack(VanillaAddons.dustGold, 2));
+        CrusherRecipes.addCrushing(Item.ingotIron.itemID, 0, new ItemStack(VanillaAddons.dustIron));
+        CrusherRecipes.addCrushing(Item.ingotGold.itemID, 0, new ItemStack(VanillaAddons.dustGold));
     }
 
     @EventHandler

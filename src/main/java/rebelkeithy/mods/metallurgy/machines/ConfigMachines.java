@@ -62,8 +62,6 @@ public class ConfigMachines
 
     public static int laserID = 922;
 
-    private static int ironDustID = 29000;
-    private static int goldDustID = 29001;
     public static int[] extractorSpeeds = new int[11];
     public static double[] xpBonus = new double[11];
     public static int xpTankID = 923;
@@ -112,8 +110,6 @@ public class ConfigMachines
         xpTankID = config.getBlock("Block IDs", "Xp Tank", xpTankID).getInt();
         pylonID = config.getBlock("Block IDs", "Pylon", pylonID).getInt();
 
-        ironDustID = config.getItem("Item IDs", "Iron Dust", ironDustID).getInt();
-        goldDustID = config.getItem("Item IDs", "Gold Dust", goldDustID).getInt();
         coinID = config.getItem("Item IDs", "Coin", coinID).getInt();
         stackID = config.getItem("Item IDs", "Stack", stackID).getInt();
         coinBagID = config.getItem("Item IDs", "Coin Bag", coinBagID).getInt();
