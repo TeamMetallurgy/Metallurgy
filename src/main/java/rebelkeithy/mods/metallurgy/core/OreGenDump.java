@@ -1,11 +1,10 @@
 package rebelkeithy.mods.metallurgy.core;
 
-import rebelkeithy.mods.metallurgy.core.metalsets.WorldGenMetals;
-import net.minecraft.client.Minecraft;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.ICommand;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.command.WrongUsageException;
+import rebelkeithy.mods.metallurgy.core.metalsets.WorldGenMetals;
 
 public class OreGenDump extends CommandBase
 {
@@ -33,7 +32,6 @@ public class OreGenDump extends CommandBase
     {
         if (astring.length == 1)
         {
-            int i;
 
             if (astring[0].matches("\\d"))
             {

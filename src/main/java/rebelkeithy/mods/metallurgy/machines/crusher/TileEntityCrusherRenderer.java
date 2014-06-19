@@ -25,12 +25,10 @@ public class TileEntityCrusherRenderer extends TileEntitySpecialRenderer
     public void renderTileEntityCrusherAt(TileEntityCrusher par1TileEntityCrusher, double par2, double par4, double par6, float par8)
     {
         int var9;
-        float offset = 0;
 
         if (par1TileEntityCrusher.worldObj == null)
         {
             var9 = 5;
-            offset = 0.1f;
         }
         else
         {

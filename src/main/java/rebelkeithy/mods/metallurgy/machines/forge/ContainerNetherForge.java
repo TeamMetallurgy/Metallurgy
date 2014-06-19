@@ -9,7 +9,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityFurnace;
-
 import invtweaks.api.container.InventoryContainer;
 import invtweaks.api.container.ContainerSectionCallback;
 import invtweaks.api.container.ContainerSection;
@@ -170,12 +169,14 @@ public class ContainerNetherForge extends Container
         }
     }
 
-	@ContainerSectionCallback
-	public Map<ContainerSection, List<Slot>> getSections() {
+    @SuppressWarnings("unchecked")
+    @ContainerSectionCallback
+    public Map<ContainerSection, List<Slot>> getSections()
+    {
         Map<ContainerSection, List<Slot>> slotRefs = new HashMap<ContainerSection, List<Slot>>();
 
         slotRefs.put(ContainerSection.FURNACE_IN, inventorySlots.subList(0, 1));
         slotRefs.put(ContainerSection.FURNACE_OUT, inventorySlots.subList(1, 2));
         return slotRefs;
-	}
+    }
 }

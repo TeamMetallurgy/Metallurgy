@@ -8,16 +8,13 @@ import java.util.List;
 import java.util.logging.Logger;
 
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.item.Item;
 import net.minecraftforge.common.Configuration;
 import net.minecraftforge.common.Property;
 import rebelkeithy.mods.keithyutils.guiregistry.GuiRegistry;
 import rebelkeithy.mods.metallurgy.core.metalsets.MetalSet;
-
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
-import cpw.mods.fml.common.ModMetadata;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
@@ -25,7 +22,6 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.network.NetworkRegistry;
-import cpw.mods.fml.common.registry.GameRegistry;
 
 @Mod(modid = "Metallurgy3Core", name = "Metallurgy 3 Core", version = "3.3.3", dependencies = "required-after:KeithyUtils@[1.2,];after:Thaumcraft@[4.0.5,]")
 @NetworkMod(channels = { "MetallurgyCore" }, clientSideRequired = true, serverSideRequired = false)
