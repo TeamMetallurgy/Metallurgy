@@ -1,10 +1,10 @@
 itemGroup.metallurgy.base=Metallurgy: Основа
 itemGroup.metallurgy.ender=Metallurgy: Край
-itemGroup.metallurgy.fantasy=Metallurgy: Фантастические руды
+itemGroup.metallurgy.fantasy=Metallurgy: Фантастика
 itemGroup.metallurgy.nether=Metallurgy: Нижний мир
 itemGroup.metallurgy.machines=Metallurgy: Механизмы
-itemGroup.metallurgy.precious=Metallurgy: Драгоценные руды
-itemGroup.metallurgy.utility=Metallurgy: Полезные руды
+itemGroup.metallurgy.precious=Metallurgy: Драгоценности
+itemGroup.metallurgy.utility=Metallurgy: Полезности
 
 chat.info.metallurgy.orefinder.area=В радиусе (%d, %d) до (%d, %d)
 chat.info.metallurgy.orefinder.found=Найдено %d %s
@@ -47,6 +47,8 @@ container.metallurgy.furnace.copper=Медная печь
 container.metallurgy.furnace.bronze=Бронзовая печь
 container.metallurgy.furnace.iron=Железная печь
 container.metallurgy.furnace.steel=Стальная печь
+
+enchantment.metallurgy.heal=Исцеление
 
 tile.metallurgy.gold.brick.name=Золотые кирпичи
 item.metallurgy.gold.dust.name=Золотая пыль
