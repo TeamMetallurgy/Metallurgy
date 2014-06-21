@@ -86,84 +86,85 @@ public class ConfigMachines
 
         final Configuration config = new Configuration(cfgFile);
 
-        crusherEnabled = config.get("Machines", "CrusherEnabled", crusherEnabled).getBoolean(crusherEnabled);
-        furnaceEnabled = config.get("Machines", "FurnanceEnabled", furnaceEnabled).getBoolean(furnaceEnabled);
-        forgeEnabled = config.get("Machines", "SmelterEnabled", forgeEnabled).getBoolean(forgeEnabled);
-        abstractorEnabled = config.get("Machines", "AbstractorEnabled", abstractorEnabled).getBoolean(abstractorEnabled);
-        chestEnabled = config.get("Machines", "ChestEnabled", chestEnabled).getBoolean(chestEnabled);
-        mintEnabled = config.get("Machines", "mintEnabled", mintEnabled).getBoolean(mintEnabled);
-        enchanterEnabled = config.get("Machines", "enchanterEnabled", enchanterEnabled).getBoolean(enchanterEnabled);
-        ladderEnabled = config.get("Machines", "ladderEnabled", ladderEnabled).getBoolean(ladderEnabled);
+        crusherEnabled = config.get("1_enable.machines", "crusher", crusherEnabled).getBoolean(crusherEnabled);
+        furnaceEnabled = config.get("1_enable.machines", "furnance", furnaceEnabled).getBoolean(furnaceEnabled);
+        forgeEnabled = config.get("1_enable.machines", "smelter", forgeEnabled).getBoolean(forgeEnabled);
+        abstractorEnabled = config.get("1_enable.machines", "abstractor", abstractorEnabled).getBoolean(abstractorEnabled);
+        chestEnabled = config.get("1_enable.machines", "chest", chestEnabled).getBoolean(chestEnabled);
+        mintEnabled = config.get("1_enable.machines", "mint", mintEnabled).getBoolean(mintEnabled);
+        enchanterEnabled = config.get("1_enable.machines", "enchanter", enchanterEnabled).getBoolean(enchanterEnabled);
+        ladderEnabled = config.get("1_enable.machines", "ladder", ladderEnabled).getBoolean(ladderEnabled);
         
-        crusherID = config.getBlock("Block IDs", "Crusher", crusherID).getInt();
-        furnaceID = config.getBlock("Block IDs", "Metal Furnace", furnaceID).getInt();
-        forgeID = config.getBlock("Block IDs", "Smelter", forgeID).getInt();
-        abstractorID = config.getBlock("Block IDs", "Abstractor", abstractorID).getInt();
-        chestID = config.getBlock("Block IDs", "Precious Chest", chestID).getInt();
-        mintID = config.getBlock("Block IDs", "Mint", mintID).getInt();
-        mintStorageID = config.getBlock("Block IDs", "Mint Storage", mintStorageID).getInt();
-        coloredGlassID = config.getBlock("Block IDs", "Colored Glass", coloredGlassID).getInt();
-        lanternID = config.getBlock("Block IDs", "Lanterns", lanternID).getInt();
-        ladderID = config.getBlock("Block IDs", "Ladders", ladderID).getInt();
-        enchanterID = config.getBlock("Block IDs", "Enchanter", enchanterID).getInt();
-        laserID = config.getBlock("Block IDs", "Miners Laser", laserID).getInt();
-        xpTankID = config.getBlock("Block IDs", "Xp Tank", xpTankID).getInt();
-        pylonID = config.getBlock("Block IDs", "Pylon", pylonID).getInt();
+        crusherID = config.getBlock("crusher", crusherID).getInt();
+        furnaceID = config.getBlock("metal_furnace", furnaceID).getInt();
+        forgeID = config.getBlock("smelter", forgeID).getInt();
+        abstractorID = config.getBlock("abstractor", abstractorID).getInt();
+        chestID = config.getBlock("precious_chest", chestID).getInt();
+        mintID = config.getBlock("mint", mintID).getInt();
+        mintStorageID = config.getBlock("mint_storage", mintStorageID).getInt();
+        coloredGlassID = config.getBlock("colored_glass", coloredGlassID).getInt();
+        lanternID = config.getBlock("lanterns", lanternID).getInt();
+        ladderID = config.getBlock("ladders", ladderID).getInt();
+        enchanterID = config.getBlock("enchanter", enchanterID).getInt();
+        laserID = config.getBlock("miners_laser", laserID).getInt();
+        xpTankID = config.getBlock("xp_tank", xpTankID).getInt();
+        pylonID = config.getBlock("pylon", pylonID).getInt();
 
-        coinID = config.getItem("Item IDs", "Coin", coinID).getInt();
-        stackID = config.getItem("Item IDs", "Stack", stackID).getInt();
-        coinBagID = config.getItem("Item IDs", "Coin Bag", coinBagID).getInt();
-        bullionID = config.getItem("Item IDs", "Bullion", bullionID).getInt();
-        goldCogID = config.getItem("Item IDs", "Gold Cog", goldCogID).getInt();
-        glassDustID = config.getItem("Item IDs", "Glass Dusts", glassDustID).getInt();
-        orbID = config.getItem("Item IDs", "Fantasy Orbs", orbID).getInt();
-        sawDustID = config.getItem("Item IDs", "Saw Dust", sawDustID).getInt();
+        coinID = config.getItem("coin", coinID).getInt();
+        stackID = config.getItem("stack", stackID).getInt();
+        coinBagID = config.getItem("coin_Bag", coinBagID).getInt();
+        bullionID = config.getItem("Bullion", bullionID).getInt();
+        goldCogID = config.getItem("gold_cog", goldCogID).getInt();
+        glassDustID = config.getItem("glass_dust", glassDustID).getInt();
+        orbID = config.getItem("fantasy_Orbs", orbID).getInt();
+        sawDustID = config.getItem("saw_dust", sawDustID).getInt();
 
-        tradesEnabled = config.get("Mint", "Enable Trades", true).getBoolean(true);
+        tradesEnabled = config.get("Mint", "enable_trades", true).getBoolean(true);
 
-        stoneCrusherSpeed = config.get("Crusher Speeds", "Stone", (int) (stoneCrusherSpeed * 1000)).getInt() / 1000F;
-        copperCrusherSpeed = config.get("Crusher Speeds", "Copper", (int) (copperCrusherSpeed * 1000)).getInt() / 1000F;
-        bronzeCrusherSpeed = config.get("Crusher Speeds", "Bronze", (int) (bronzeCrusherSpeed * 1000)).getInt() / 1000F;
-        ironCrusherSpeed = config.get("Crusher Speeds", "Iron", (int) (ironCrusherSpeed * 1000)).getInt() / 1000F;
-        steelCrusherSpeed = config.get("Crusher Speeds", "Steel", (int) (steelCrusherSpeed * 1000)).getInt() / 1000F;
+        stoneCrusherSpeed = config.get("crusher_speeds", "stone", (int) (stoneCrusherSpeed * 1000)).getInt() / 1000F;
+        copperCrusherSpeed = config.get("crusher_speeds", "copper", (int) (copperCrusherSpeed * 1000)).getInt() / 1000F;
+        bronzeCrusherSpeed = config.get("crusher_speeds", "bronze", (int) (bronzeCrusherSpeed * 1000)).getInt() / 1000F;
+        ironCrusherSpeed = config.get("crusher_speeds", "iron", (int) (ironCrusherSpeed * 1000)).getInt() / 1000F;
+        steelCrusherSpeed = config.get("crusher_speeds", "steel", (int) (steelCrusherSpeed * 1000)).getInt() / 1000F;
 
-        copperFurnaceSpeed = config.get("Furnace Speeds", "Copper", (int) (copperFurnaceSpeed * 1000)).getInt() / 1000F;
-        bronzeFurnaceSpeed = config.get("Furnace Speeds", "Bronze", (int) (bronzeFurnaceSpeed * 1000)).getInt() / 1000F;
-        ironFurnaceSpeed = config.get("Furnace Speeds", "Iron", (int) (ironFurnaceSpeed * 1000)).getInt() / 1000F;
-        steelFurnaceSpeed = config.get("Furnace Speeds", "Steel", (int) (steelFurnaceSpeed * 1000)).getInt() / 1000F;
+        copperFurnaceSpeed = config.get("furnace_speeds", "copper", (int) (copperFurnaceSpeed * 1000)).getInt() / 1000F;
+        bronzeFurnaceSpeed = config.get("furnace_speeds", "bronze", (int) (bronzeFurnaceSpeed * 1000)).getInt() / 1000F;
+        ironFurnaceSpeed = config.get("furnace_speeds", "iron", (int) (ironFurnaceSpeed * 1000)).getInt() / 1000F;
+        steelFurnaceSpeed = config.get("furnace_speeds", "steel", (int) (steelFurnaceSpeed * 1000)).getInt() / 1000F;
 
-        extractorSpeeds[0] = config.get("Abstractor", "Speed Prometheum", 8).getInt();
-        extractorSpeeds[1] = config.get("Abstractor", "Speed Deep Iron", 8).getInt();
-        extractorSpeeds[2] = config.get("Abstractor", "Speed Block Steel", 7).getInt();
-        extractorSpeeds[3] = config.get("Abstractor", "Speed Oureclase", 7).getInt();
-        extractorSpeeds[4] = config.get("Abstractor", "Speed Aredrite", 6).getInt();
-        extractorSpeeds[5] = config.get("Abstractor", "Speed Mithril", 6).getInt();
-        extractorSpeeds[6] = config.get("Abstractor", "Speed Haderoth", 6).getInt();
-        extractorSpeeds[7] = config.get("Abstractor", "Speed Orichalcum", 5).getInt();
-        extractorSpeeds[8] = config.get("Abstractor", "Speed Adamantine", 5).getInt();
-        extractorSpeeds[9] = config.get("Abstractor", "Speed Atlarus", 4).getInt();
-        extractorSpeeds[10] = config.get("Abstractor", "Speed Tartarite", 4).getInt();
+        extractorSpeeds[0] = config.get("abstractor", "speed_prometheum", 8).getInt();
+        extractorSpeeds[1] = config.get("abstractor", "speed_deep_iron", 8).getInt();
+        extractorSpeeds[2] = config.get("abstractor", "speed_block_steel", 7).getInt();
+        extractorSpeeds[3] = config.get("abstractor", "speed_oureclase", 7).getInt();
+        extractorSpeeds[4] = config.get("abstractor", "speed_aredrite", 6).getInt();
+        extractorSpeeds[5] = config.get("abstractor", "speed_mithril", 6).getInt();
+        extractorSpeeds[6] = config.get("abstractor", "speed_haderoth", 6).getInt();
+        extractorSpeeds[7] = config.get("abstractor", "speed_orichalcum", 5).getInt();
+        extractorSpeeds[8] = config.get("abstractor", "speed_adamantine", 5).getInt();
+        extractorSpeeds[9] = config.get("abstractor", "speed_atlarus", 4).getInt();
+        extractorSpeeds[10] = config.get("abstractor", "speed_tartarite", 4).getInt();
 
-        xpBonus[0] = config.get("Abstractor", "Bonus Prometheum", 1.0).getDouble(1.0);
-        xpBonus[1] = config.get("Abstractor", "Bonus Deep Iron", 1.1).getDouble(1.1);
-        xpBonus[2] = config.get("Abstractor", "Bonus Black Steel", 1.2).getDouble(1.2);
-        xpBonus[3] = config.get("Abstractor", "Bonus Oureclase", 1.3).getDouble(1.3);
-        xpBonus[4] = config.get("Abstractor", "Bonus Aredrite", 1.4).getDouble(1.4);
-        xpBonus[5] = config.get("Abstractor", "Bonus Mithril", 1.4).getDouble(1.4);
-        xpBonus[6] = config.get("Abstractor", "Bonus Haderoth", 1.5).getDouble(1.5);
-        xpBonus[7] = config.get("Abstractor", "Bonus Oreichalcum", 1.6).getDouble(1.6);
-        xpBonus[8] = config.get("Abstractor", "Bonus Admantine", 1.7).getDouble(1.7);
-        xpBonus[9] = config.get("Abstractor", "Bonus Atlarus", 1.8).getDouble(1.8);
-        xpBonus[10] = config.get("Abstractor", "Bonus Tartarite", 2.0).getDouble(2.0);
+        xpBonus[0] = config.get("abstractor", "bonus_prometheum", 1.0).getDouble(1.0);
+        xpBonus[1] = config.get("abstractor", "bonus_deep_iron", 1.1).getDouble(1.1);
+        xpBonus[2] = config.get("abstractor", "bonus_black_steel", 1.2).getDouble(1.2);
+        xpBonus[3] = config.get("abstractor", "bonus_oureclase", 1.3).getDouble(1.3);
+        xpBonus[4] = config.get("abstractor", "bonus_aredrite", 1.4).getDouble(1.4);
+        xpBonus[5] = config.get("abstractor", "bonus_mithril", 1.4).getDouble(1.4);
+        xpBonus[6] = config.get("abstractor", "bonus_haderoth", 1.5).getDouble(1.5);
+        xpBonus[7] = config.get("abstractor", "bonus_oreichalcum", 1.6).getDouble(1.6);
+        xpBonus[8] = config.get("abstractor", "bonus_admantine", 1.7).getDouble(1.7);
+        xpBonus[9] = config.get("abstractor", "bonus_atlarus", 1.8).getDouble(1.8);
+        xpBonus[10] = config.get("abstractor", "bonus_tartarite", 2.0).getDouble(2.0);
 
         final String[] forgeNames =
         { "Ignatius", "Shadow Iron", "Shadow Steel", "Vyroxeres", "Inolashite", "Kalendrite", "Vulcanite", "Sanguinite" };
         for (int i = 0; i < 8; i++)
         {
-            forgeSpeeds[i] = config.get("Forge.Speeds", forgeNames[i], forgeSpeeds[i]).getInt();
-            forgeBuckets[i] = config.get("Forge.Buckets", forgeNames[i], forgeBuckets[i]).getInt();
+            String forgeName = forgeNames[i].toLowerCase().trim().replace(" ", "_");
+            forgeSpeeds[i] = config.get("forge.speeds", forgeName, forgeSpeeds[i]).getInt();
+            forgeBuckets[i] = config.get("forge.buckets", forgeName, forgeBuckets[i]).getInt();
         }
-        smelterDropsLava = config.get("Forge", "Drops Lava", smelterDropsLava).getBoolean(smelterDropsLava);
+        smelterDropsLava = config.get("forge", "drops_lava", smelterDropsLava).getBoolean(smelterDropsLava);
 
         if (config.hasChanged())
         {

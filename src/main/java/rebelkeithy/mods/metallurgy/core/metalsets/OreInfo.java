@@ -46,6 +46,9 @@ public class OreInfo implements IOreInfo, IWorldGenerator
     protected String registeryName;
     protected String unlocalizedName;
     protected boolean enabled;
+    protected boolean enabledWorldGen;
+    protected boolean enabledToolRecipes;
+    protected boolean enabledArmorRecipes;
     protected CreativeTabs tab;
     protected OreType type;
     public int oreID;
@@ -267,7 +270,7 @@ public class OreInfo implements IOreInfo, IWorldGenerator
 
         if (type != CATALYST)
         {
-            if (MetallurgyCore.getConfigSettingBoolean("Tool Recipes", name, true))
+            if (this.enabledToolRecipes)
             {
                 recipe = new ShapedOreRecipe(new ItemStack(pickaxe), "XXX", " S ", " S ", 'X', "ingot" + name, 'S', Item.stick);
                 GameRegistry.addRecipe(recipe);
@@ -281,7 +284,7 @@ public class OreInfo implements IOreInfo, IWorldGenerator
                 GameRegistry.addRecipe(recipe);
             }
 
-            if (MetallurgyCore.getConfigSettingBoolean("Armour Recipes", name, true))
+            if (this.enabledArmorRecipes)
             {
                 recipe = new ShapedOreRecipe(new ItemStack(helmet), "XXX", "X X", 'X', "ingot" + name);
                 GameRegistry.addRecipe(recipe);
@@ -292,14 +295,19 @@ public class OreInfo implements IOreInfo, IWorldGenerator
                 recipe = new ShapedOreRecipe(new ItemStack(boots), "X X", "X X", 'X', "ingot" + name);
                 GameRegistry.addRecipe(recipe);
             }
-            if (MetallurgyCore.getConfigSettingBoolean("Features", "Bucket Recipes", true))
+
+            if (MetallurgyCore.getConfigSettingBoolean("features", "bucket_recipes", true))
             {
                 recipe = new ShapedOreRecipe(new ItemStack(Item.bucketEmpty), "X X", " X ", 'X', "ingot" + name);
                 GameRegistry.addRecipe(recipe);
             }
 
-            recipe = new ShapedOreRecipe(new ItemStack(Item.shears), "X ", " X", 'X', "ingot" + name);
-            GameRegistry.addRecipe(recipe);
+            if (MetallurgyCore.getConfigSettingBoolean("features", "shears_recipes", true))
+            {
+                recipe = new ShapedOreRecipe(new ItemStack(Item.shears), "X ", " X", 'X', "ingot" + name);
+                GameRegistry.addRecipe(recipe);
+            }
+
         }
 
         if (type == ALLOY)
@@ -562,7 +570,7 @@ public class OreInfo implements IOreInfo, IWorldGenerator
             }
         }
 
-        if (type.generates())
+        if (type.generates() && enabledWorldGen)
         {
             WorldGenMetals worldGen = new WorldGenMetals(oreID, oreMeta, new int[] { veinCount, oreCount, minHeight, maxHeight, veinChance, veinDensity }, dimensions);
             GameRegistry.registerWorldGenerator(worldGen);
@@ -571,9 +579,10 @@ public class OreInfo implements IOreInfo, IWorldGenerator
 
     public void initConfig(Configuration config)
     {
-        enabled = config.get("!Enable.Enable Metals", "Enable " + name, true).getBoolean(true);
+        String confingName = registeryName.replace(".", "_");
+        enabled = config.get("1_enable.enable_metals", confingName, true).getBoolean(true);
 
-        final boolean setEnabled = config.get("!Enable", "Enable " + setName + " Set", true).getBoolean(true);
+        final boolean setEnabled = config.get("1_enable", "enable_" + setName.toLowerCase().trim().replace(" ", "_") + "_set", true).getBoolean(true);
 
         enabled = enabled && setEnabled;
 
@@ -581,68 +590,71 @@ public class OreInfo implements IOreInfo, IWorldGenerator
         {
             if ((type == ORE || type == CATALYST || type == DROP) && oreID != 0)
             {
-                oreID = config.getBlock("Ore", oreID).getInt();
+                oreID = config.getBlock("ore", oreID).getInt();
             }
             if (type != DROP && blockID != 0)
             {
-                blockID = config.getBlock("Block", blockID).getInt();
+                blockID = config.getBlock("block", blockID).getInt();
             }
             if (type != DROP && brickID != 0)
             {
-                brickID = config.getBlock("Brick", brickID).getInt();
+                brickID = config.getBlock("brick", brickID).getInt();
             }
 
             if (type != DROP)
             {
-                dustID = config.getItem(name + " Dust", dustID).getInt();
-                ingotID = config.getItem(name + " Ingot", ingotID).getInt();
+                dustID = config.getItem(confingName + "_dust", dustID).getInt();
+                ingotID = config.getItem(confingName + "_ingot", ingotID).getInt();
 
-                abstractorXP = config.get(name + ".misc", "abstractor xp", abstractorXP).getInt();
+                abstractorXP = config.get(confingName + ".misc", "abstractor_xp", abstractorXP).getInt();
             }
 
-            blockLvl = config.get(name + ".misc", "Block Hardness Level", blockLvl).getInt();
+            blockLvl = config.get(confingName + ".misc", "block_hardness_level", blockLvl).getInt();
 
             if (type != CATALYST && type != DROP)
             {
-                shovelID = config.getItem(name + " Shovel", shovelID).getInt();
-                pickaxeID = config.getItem(name + " Pickaxe", pickaxeID).getInt();
-                axeID = config.getItem(name + " Axe", axeID).getInt();
-                hoeID = config.getItem(name + " Hoe", hoeID).getInt();
+                shovelID = config.getItem(confingName + "_shovel", shovelID).getInt();
+                pickaxeID = config.getItem(confingName + "_pickaxe", pickaxeID).getInt();
+                axeID = config.getItem(confingName + "_axe", axeID).getInt();
+                hoeID = config.getItem(confingName + "_hoe", hoeID).getInt();
 
-                swordID = config.getItem(name + " Sword", swordID).getInt();
+                swordID = config.getItem(confingName + "_sword", swordID).getInt();
 
-                helmetID = config.getItem(name + " Helmet", helmetID).getInt();
-                chestID = config.getItem(name + " Chest", chestID).getInt();
-                legID = config.getItem(name + " Legs", legID).getInt();
-                bootID = config.getItem(name + " Boots", bootID).getInt();
+                helmetID = config.getItem(confingName + "_helmet", helmetID).getInt();
+                chestID = config.getItem(confingName + "_chest", chestID).getInt();
+                legID = config.getItem(confingName + "_legs", legID).getInt();
+                bootID = config.getItem(confingName + "_boots", bootID).getInt();
 
-                pickLvl = config.get(name + ".Tool Info", "Pick Level", pickLvl).getInt();
-                toolDura = config.get(name + ".Tool Info", "Durability", toolDura).getInt();
-                toolDamage = config.get(name + ".Tool Info", "Damage", toolDamage).getInt();
-                toolSpeed = config.get(name + ".Tool Info", "Speed", toolSpeed).getInt();
-                toolEnchant = config.get(name + ".Tool Info", "Enchantability", toolEnchant).getInt();
+                pickLvl = config.get(confingName + ".tool_info", "pick_level", pickLvl).getInt();
+                toolDura = config.get(confingName + ".Tool_info", "durability", toolDura).getInt();
+                toolDamage = config.get(confingName + ".tool_info", "damage", toolDamage).getInt();
+                toolSpeed = config.get(confingName + ".tool_info", "speed", toolSpeed).getInt();
+                toolEnchant = config.get(confingName + ".tool_info", "enchantability", toolEnchant).getInt();
 
-                helmetArmor = config.get(name + ".Armor Info", "Helmet Armor", helmetArmor).getInt();
-                chestArmor = config.get(name + ".Armor Info", "Chestplate Armor", chestArmor).getInt();
-                legsArmor = config.get(name + ".Armor Info", "Leggings Armor", legsArmor).getInt();
-                bootsArmor = config.get(name + ".Armor Info", "Boots Armor", bootsArmor).getInt();
-                armorDura = config.get(name + ".Armor Info", "Durability Multiplier", armorDura).getInt();
+                helmetArmor = config.get(confingName + ".armor_info", "helmet_armor", helmetArmor).getInt();
+                chestArmor = config.get(confingName + ".armor_info", "chestplate_armor", chestArmor).getInt();
+                legsArmor = config.get(confingName + ".armor_info", "leggings_armor", legsArmor).getInt();
+                bootsArmor = config.get(confingName + ".armor_info", "boots_armor", bootsArmor).getInt();
+                armorDura = config.get(confingName + ".armor_info", "durability_multiplier", armorDura).getInt();
+
+                enabledToolRecipes = config.get("1_enable.tool_recipes", confingName, true).getBoolean(true);
+                enabledArmorRecipes = config.get("1_enable.armor_recipes", confingName, true).getBoolean(true);
             }
 
             if (type != DROP)
             {
-                dungeonLootChance = config.get(name + ".World Gen", "Dungeon Loot Chance", dungeonLootChance).getInt();
-                dungeonLootAmount = config.get(name + ".World Gen", "Dungeon Loot Amount", dungeonLootAmount).getInt();
+                dungeonLootChance = config.get(confingName + ".world_gen", "dungeon_loot_chance", dungeonLootChance).getInt();
+                dungeonLootAmount = config.get(confingName + ".world_gen", "dungeon_loot_amount", dungeonLootAmount).getInt();
             }
         }
         if (type.generates())
         {
-            veinCount = config.get(name + ".World Gen", "Veins Per Chunk", veinCount).getInt();
-            oreCount = config.get(name + ".World Gen", "Vein Size", oreCount).getInt();
-            minHeight = config.get(name + ".World Gen", "Min Height", minHeight).getInt();
-            maxHeight = config.get(name + ".World Gen", "Max Height", maxHeight).getInt();
-            veinChance = config.get(name + ".World Gen", "Vein Chance", veinChance).getInt();
-            veinDensity = config.get(name + ".World Gen", "Vein Density", veinDensity).getInt();
+            veinCount = config.get(confingName + ".world_gen", "veins_per_chunk", veinCount).getInt();
+            oreCount = config.get(confingName + ".world_gen", "vein_size", oreCount).getInt();
+            minHeight = config.get(confingName + ".world_gen", "min_height", minHeight).getInt();
+            maxHeight = config.get(confingName + ".world_gen", "max_height", maxHeight).getInt();
+            veinChance = config.get(confingName + ".world_gen", "vein_chance", veinChance).getInt();
+            veinDensity = config.get(confingName + ".world_gen", "vein_density", veinDensity).getInt();
 
             String dimCombined = "";
             if (dimensions.length > 0)
@@ -653,7 +665,9 @@ public class OreInfo implements IOreInfo, IWorldGenerator
                     dimCombined += " " + dimensions[n];
                 }
             }
-            dimensions = config.get(name + ".World Gen", "Diminsions", dimCombined).getString().split(" ");
+            dimensions = config.get(confingName + ".world_gen", "diminsions", dimCombined).getString().split(" ");
+
+            enabledWorldGen = config.get("1_enable.enable_world_gen", confingName, true).getBoolean(true);
         }
 
         if (config.hasChanged())

@@ -93,13 +93,13 @@ public class MetallurgyCore
         config = new Configuration(cfgFile);
         config.load();
 
-        spawnInAir = config.get("Cheats", "Spawn Ore In Air", false).getBoolean(false);
+        spawnInAir = config.get("cheats", "spawn_ore_in_air", false).getBoolean(false);
 
-        csvFiles = Arrays.asList(config.get("Metal Sets", "File List", "").getString().split("\\s*,\\s*"));
-        setsToRead = Arrays.asList(config.get("Metal Sets", "Metal Set List", "").getString().split("\\s*,\\s*"));
+        csvFiles = Arrays.asList(config.get("metal_sets", "file_list", "").getString().split("\\s*,\\s*"));
+        setsToRead = Arrays.asList(config.get("metal_sets", "metal_set_list", "").getString().split("\\s*,\\s*"));
         log.info("reading sets " + setsToRead.size());
 
-        dumpOreGen = config.get("Debugs", "DumpOreGen", false).getBoolean(false);
+        dumpOreGen = config.get("debug", "dump_ore_gen", false).getBoolean(false);
         
         if (config.hasChanged())
         {

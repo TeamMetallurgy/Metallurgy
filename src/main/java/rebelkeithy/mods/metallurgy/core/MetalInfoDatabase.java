@@ -89,7 +89,7 @@ public class MetalInfoDatabase
 
                 int id = Integer.parseInt(itemMap.get("Item ID"));
 
-                id = config.get("Item IDs", itemMap.get("Item Name"), id).getInt();
+                id = config.getItem(itemMap.get("Item Name"), id).getInt();
 
                 String itemName = itemMap.get("Item Name");
                 String setName = itemMap.get("Set Name");

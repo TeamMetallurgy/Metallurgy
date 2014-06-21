@@ -70,7 +70,7 @@ public class MetallurgyVanilla
 
         final Configuration config = new Configuration(cfgFile);
 
-        if (config.get("!enable", "Enable Texture Overrides", true).getBoolean(true))
+        if (config.get("1_enable", "enable_texture_overrides", true).getBoolean(true))
         {
             Reflector.setItemTexture(Item.swordWood, "Metallurgy:Vanilla/SwordWood");
             Reflector.setItemTexture(Item.shovelWood, "Metallurgy:Vanilla/ShovelWood");

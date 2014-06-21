@@ -67,7 +67,7 @@ public class MetallurgyMetals
     public static CreativeTabs enderTab;
     public static CreativeTabs utilityTab;
 
-    public static Configuration baseConfig;
+    public static Configuration coreConfig;
     public static Configuration utilityConfig;
     public static Configuration fantasyConfig;
 
@@ -323,49 +323,49 @@ public class MetallurgyMetals
             MetallurgyCore.log.warning("Iron Dust wasn't found in the ore dictionary, skipping adding Iron dust coverting recipes");
         }
 
-        int id = utilityConfig.get("Item IDs", "HE TNT", 920).getInt();
+        int id = utilityConfig.getBlock("he_tnt", 920).getInt();
         if (id != 0)
         {
             largeTNT = new BlockLargeTNT(id).setUnlocalizedName("metallurgy.largeTNT").setCreativeTab(utilityTab);
             GameRegistry.registerBlock(largeTNT, "HETNT");
             EntityRegistry.registerModEntity(EntityLargeTNTPrimed.class, "LargeTNTEntity", 113, this, 64, 10, true);
-            if (utilityConfig.get("Recipes", "Enable HE TNT", true).getBoolean(true))
+            if (utilityConfig.get("recipes", "enable_he_tnt", true).getBoolean(true))
             {
                 GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(largeTNT, 4), "MPM", "PTP", "MPM", 'M', "dustSaltpeter", 'P', "dustSulfur", 'T', Block.tnt));
                 GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(largeTNT, 4), "MPM", "PTP", "MPM", 'P', "dustSaltpeter", 'M', "dustSulfur", 'T', Block.tnt));    
             }
         }
 
-        id = utilityConfig.get("Item IDs", "LE TNT", 921).getInt();
+        id = utilityConfig.getBlock("le_tnt", 921).getInt();
         if (id != 0)
         {
             minersTNT = new BlockMinersTNT(id).setUnlocalizedName("metallurgy.minersTNT").setCreativeTab(utilityTab);
             GameRegistry.registerBlock(minersTNT, "LETNT");
             EntityRegistry.registerModEntity(EntityMinersTNTPrimed.class, "MinersTNTEntity", 113, this, 64, 10, true);
-            if (utilityConfig.get("Recipes", "Enable LE TNT", true).getBoolean(true))
+            if (utilityConfig.get("recipes", "enable_le_tnt", true).getBoolean(true))
             {
                 GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(minersTNT, 4), "MPM", "PTP", "MPM", 'M', "dustMagnesium", 'P', "dustPhosphorus", 'T', Block.tnt));
                 GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(minersTNT, 4), "PMP", "MTM", "PMP", 'M', "dustMagnesium", 'P', "dustPhosphorus", 'T', Block.tnt));
             }
         }
 
-        id = utilityConfig.get("Item IDs", "Magnesium Igniter", 29007).getInt();
+        id = utilityConfig.getItem("magnesium_igniter", 29007).getInt();
         magnesiumIgniter = new ItemIgniter(id).setMaxDamage(128).setMaxStackSize(1).setTextureName("Metallurgy:Utility/Igniter").setUnlocalizedName("metallurgy.igniter").setCreativeTab(utilityTab);
         GameRegistry.registerItem(magnesiumIgniter, "magnesium.igniter");
-        if (utilityConfig.get("Recipes", "Enable Magnesium Igniter", true).getBoolean(true))
+        if (utilityConfig.get("recipes", "enable_magnesium_igniter", true).getBoolean(true))
         {
             GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(magnesiumIgniter), "X ", " F", 'X', "dustMagnesium", 'F', Item.flint));
         }
 
-        id = utilityConfig.get("Item IDs", "Match", 29008).getInt();
+        id = utilityConfig.getItem("match", 29008).getInt();
         match = new ItemIgniter(id).setMatch(true).setMaxDamage(1).setMaxStackSize(64).setTextureName("Metallurgy:Utility/Match").setUnlocalizedName("metallurgy.match").setCreativeTab(utilityTab);
         GameRegistry.registerItem(match, "match");
-        if (utilityConfig.get("Recipes", "Enable Match", true).getBoolean(true))
+        if (utilityConfig.get("recipes", "enable_match", true).getBoolean(true))
         {
             GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(match, 4), "X", "|", 'X', "dustPhosphorus", '|', Item.stick));
         }
 
-        id = utilityConfig.get("Item IDs", "Fertilizer", 29009).getInt();
+        id = utilityConfig.getItem("fertilizer", 29009).getInt();
         fertilizer = new ItemFertilizer(id).setTextureName("Metallurgy:Utility/Fertilizer").setUnlocalizedName("metallurgy.fertilizer").setCreativeTab(utilityTab);
         GameRegistry.registerItem(fertilizer, "fertilizer");
         if (utilityConfig.get("Recipes", "Enable Fertilizer", true).getBoolean(true))
@@ -377,7 +377,7 @@ public class MetallurgyMetals
         }
         OreDictionary.registerOre("itemFertilizer", fertilizer);
 
-        id = utilityConfig.get("Item IDs", "Tar", 29010).getInt();
+        id = utilityConfig.getItem("tar", 29010).getInt();
         tar = new ItemMetallurgy(id).setTextureName("Metallurgy:Utility/Tar").setUnlocalizedName("metallurgy.tar").setCreativeTab(utilityTab);
         GameRegistry.registerItem(tar, "tar");
         OreDictionary.registerOre("itemTar", tar);
@@ -498,7 +498,7 @@ public class MetallurgyMetals
         final Configuration config = new Configuration(cfgFile);
         config.load();
 
-        final boolean enabled = config.get("!Enable", "Enable " + setName + " Set", true).getBoolean(true);
+        final boolean enabled = config.get("1_enable", "enable_" + setName.toLowerCase().trim().replace(" ", "_") + "_set", true).getBoolean(true);
 
         if (config.hasChanged())
         {
@@ -549,15 +549,15 @@ public class MetallurgyMetals
     public void preInit(FMLPreInitializationEvent event)
     {
 
-        baseConfig = initConfig("Base");
-        baseConfig.load();
+        coreConfig = initConfig("Core");
+        coreConfig.load();
         
-        oreFinderID = baseConfig.get("Debug", "OreFinderID", oreFinderID).getInt(oreFinderID);
-        oreFinderEnabled = baseConfig.get("Debug", "OreFinderEnabled", oreFinderEnabled).getBoolean(oreFinderEnabled);
+        oreFinderID = coreConfig.getItem("debug", "ore_finder_id", oreFinderID).getInt(oreFinderID);
+        oreFinderEnabled = coreConfig.get("debug", "ore_finder_enabled", oreFinderEnabled).getBoolean(oreFinderEnabled);
         
-        if(baseConfig.hasChanged())
+        if(coreConfig.hasChanged())
         {
-        	baseConfig.save();
+            coreConfig.save();
         }
 
         utilityConfig = initConfig("Utility");
