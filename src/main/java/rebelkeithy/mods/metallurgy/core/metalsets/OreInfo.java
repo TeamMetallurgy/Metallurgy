@@ -43,6 +43,7 @@ public class OreInfo implements IOreInfo, IWorldGenerator
 {
     protected String setName;
     protected String name;
+    protected String registeryName;
     protected String unlocalizedName;
     protected boolean enabled;
     protected CreativeTabs tab;
@@ -124,8 +125,8 @@ public class OreInfo implements IOreInfo, IWorldGenerator
     {
         setName = info.get("Metal Set");
         name = info.get("Name");
-        unlocalizedName = name.replaceAll("\\s", ".").toLowerCase();
-        unlocalizedName = "metallurgy." + unlocalizedName;
+        registeryName = name.replaceAll("\\s", ".").toLowerCase();
+        unlocalizedName = "metallurgy." + registeryName;
         this.tab = tab;
         if (info.get("Type").equals("Ore"))
         {
@@ -511,9 +512,14 @@ public class OreInfo implements IOreInfo, IWorldGenerator
             }
             if (type != DROP)
             {
+
                 dust = new ItemMetallurgy(dustID).setTextureName("Metallurgy:" + setName + "/" + name + "Dust").setUnlocalizedName(unlocalizedName + ".dust").setCreativeTab(tab);
                 ingot = new ItemMetallurgy(ingotID).setTextureName("Metallurgy:" + setName + "/" + name + "Ingot").setSmeltinExperience(abstractorXP / 3f).setUnlocalizedName(unlocalizedName + ".ingot")
                         .setCreativeTab(tab);
+
+                GameRegistry.registerItem(dust, registeryName + ".dust");
+                GameRegistry.registerItem(ingot, registeryName + ".ingot");
+
                 AbstractorRecipes.addEssence(ingot.itemID, 0, abstractorXP);
             }
 
@@ -529,6 +535,12 @@ public class OreInfo implements IOreInfo, IWorldGenerator
                 sword = (ItemMetallurgySword) new ItemMetallurgySword(swordID, toolEnum).setTextureName("Metallurgy:" + setName + "/" + name + "Sword").setUnlocalizedName(unlocalizedName + ".sword")
                         .setCreativeTab(tab);
 
+                GameRegistry.registerItem(pickaxe, registeryName + ".pickaxe");
+                GameRegistry.registerItem(shovel, registeryName + ".shovel");
+                GameRegistry.registerItem(axe, registeryName + ".axe");
+                GameRegistry.registerItem(hoe, registeryName + ".hoe");
+                GameRegistry.registerItem(sword, registeryName + ".sword");
+
                 final EnumArmorMaterial armorEnum = EnumHelper.addArmorMaterial(name, armorDura, new int[] { helmetArmor, chestArmor, legsArmor, bootsArmor }, toolEnchant);
                 armorEnum.customCraftingMaterial = ingot;
                 String armorTexture = name;
@@ -541,6 +553,12 @@ public class OreInfo implements IOreInfo, IWorldGenerator
                         .setUnlocalizedName(unlocalizedName + ".leggings").setCreativeTab(tab);
                 boots = new ItemMetallurgyArmor(bootID, armorEnum, 3, 3).setTextureFile(armorTexture + "_1").setTextureName("Metallurgy:" + setName + "/" + name + "Boots")
                         .setUnlocalizedName(unlocalizedName + ".boots").setCreativeTab(tab);
+
+                GameRegistry.registerItem(helmet, registeryName + ".helmet");
+                GameRegistry.registerItem(chest, registeryName + ".chest");
+                GameRegistry.registerItem(legs, registeryName + ".legs");
+                GameRegistry.registerItem(boots, registeryName + ".boots");
+
             }
         }
 

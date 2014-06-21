@@ -26,6 +26,8 @@ import com.google.common.io.Files;
 import com.google.common.io.InputSupplier;
 import com.google.common.io.Resources;
 
+import cpw.mods.fml.common.registry.GameRegistry;
+
 public class MetalInfoDatabase
 {
     private static List<Map<String, String>> spreadsheet;
@@ -92,11 +94,11 @@ public class MetalInfoDatabase
                 String itemName = itemMap.get("Item Name");
                 String setName = itemMap.get("Set Name");
 
-                String unlocalizedName = itemName.replaceAll("\\s", "");
-                unlocalizedName = unlocalizedName.substring(0, 1).toLowerCase() + unlocalizedName.substring(1);
-                unlocalizedName = "metallurgy." + unlocalizedName;
+                String registeryName = itemName.replaceAll("\\s", ".").toLowerCase();
+                String unlocalizedName = "metallurgy." + registeryName;
 
                 final Item item = new ItemMetallurgy(id).setTextureName("Metallurgy:" + setName + "/" + itemName).setUnlocalizedName(unlocalizedName).setCreativeTab(tab);
+                GameRegistry.registerItem(item, registeryName);
 
                 items.put(itemMap.get("Item Name"), item);
                 if (!itemMap.get("Ore Dictionary Name").equals("0"))

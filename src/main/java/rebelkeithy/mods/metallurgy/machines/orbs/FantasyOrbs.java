@@ -14,6 +14,7 @@ public class FantasyOrbs
     public static void init()
     {
         orb = new ItemOrb(ConfigMachines.orbID).setUnlocalizedName("metallurgy.orb").setCreativeTab(MetallurgyMachines.machineTab);
+        GameRegistry.registerItem(orb, "orb");
 
         for (int i = 0; i < ItemOrb.names.length; i++)
         {

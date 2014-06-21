@@ -295,8 +295,10 @@ public class MetallurgyMachines
         GameRegistry.registerBlock(coloredGlass, ItemBlockColoredGlass.class, "coloredGlass");
 
         glassDust = new ItemGlassDust(ConfigMachines.glassDustID).setUnlocalizedName("metallurgy.glassDust").setCreativeTab(machineTab);
+        GameRegistry.registerItem(glassDust, "glass.dust");
 
         sawDust = new ItemMetallurgy(ConfigMachines.sawDustID).setTextureName("Metallurgy:machines/SawDust").setUnlocalizedName("metallurgy.sawDust").setCreativeTab(machineTab);
+        GameRegistry.registerItem(sawDust, "saw.dust");
         GameRegistry.addSmelting(sawDust.itemID, new ItemStack(Item.coal, 1, 1), 0.15F);
     }
 
@@ -315,6 +317,12 @@ public class MetallurgyMachines
         bag = new ItemMetallurgy(ConfigMachines.coinBagID).setTextureName("Metallurgy:Precious/bag").setUnlocalizedName("metallurgy.coinBag").setCreativeTab(machineTab);
         bullion = new ItemMetallurgy(ConfigMachines.bullionID).setTextureName("Metallurgy:Precious/bullion").setUnlocalizedName("metallurgy.bullion").setCreativeTab(machineTab);
         goldCog = new ItemMetallurgy(ConfigMachines.goldCogID).setTextureName("Metallurgy:Precious/goldCog").setUnlocalizedName("metallurgy.goldCog").setCreativeTab(machineTab);
+
+        GameRegistry.registerItem(coin, "coin");
+        GameRegistry.registerItem(stack, "coin.stack");
+        GameRegistry.registerItem(bag, "coin.bag");
+        GameRegistry.registerItem(bullion, "bullion");
+        GameRegistry.registerItem(goldCog, "gold.cog");
 
         if (MetallurgyMetals.preciousSet != null)
         {

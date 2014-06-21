@@ -351,6 +351,7 @@ public class MetallurgyMetals
 
         id = utilityConfig.get("Item IDs", "Magnesium Igniter", 29007).getInt();
         magnesiumIgniter = new ItemIgniter(id).setMaxDamage(128).setMaxStackSize(1).setTextureName("Metallurgy:Utility/Igniter").setUnlocalizedName("metallurgy.igniter").setCreativeTab(utilityTab);
+        GameRegistry.registerItem(magnesiumIgniter, "magnesium.igniter");
         if (utilityConfig.get("Recipes", "Enable Magnesium Igniter", true).getBoolean(true))
         {
             GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(magnesiumIgniter), "X ", " F", 'X', "dustMagnesium", 'F', Item.flint));
@@ -358,6 +359,7 @@ public class MetallurgyMetals
 
         id = utilityConfig.get("Item IDs", "Match", 29008).getInt();
         match = new ItemIgniter(id).setMatch(true).setMaxDamage(1).setMaxStackSize(64).setTextureName("Metallurgy:Utility/Match").setUnlocalizedName("metallurgy.match").setCreativeTab(utilityTab);
+        GameRegistry.registerItem(match, "match");
         if (utilityConfig.get("Recipes", "Enable Match", true).getBoolean(true))
         {
             GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(match, 4), "X", "|", 'X', "dustPhosphorus", '|', Item.stick));
@@ -365,6 +367,7 @@ public class MetallurgyMetals
 
         id = utilityConfig.get("Item IDs", "Fertilizer", 29009).getInt();
         fertilizer = new ItemFertilizer(id).setTextureName("Metallurgy:Utility/Fertilizer").setUnlocalizedName("metallurgy.fertilizer").setCreativeTab(utilityTab);
+        GameRegistry.registerItem(fertilizer, "fertilizer");
         if (utilityConfig.get("Recipes", "Enable Fertilizer", true).getBoolean(true))
         {
             GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(fertilizer, 8), "dustPhosphorus", "dustMagnesium", "dustPotash"));
@@ -376,6 +379,7 @@ public class MetallurgyMetals
 
         id = utilityConfig.get("Item IDs", "Tar", 29010).getInt();
         tar = new ItemMetallurgy(id).setTextureName("Metallurgy:Utility/Tar").setUnlocalizedName("metallurgy.tar").setCreativeTab(utilityTab);
+        GameRegistry.registerItem(tar, "tar");
         OreDictionary.registerOre("itemTar", tar);
         GameRegistry.addSmelting(MetalInfoDatabase.getItem("Bitumen").itemID, new ItemStack(tar), 0.1F);
 

@@ -47,6 +47,9 @@ public class VanillaAddons
         dustIron = new ItemMetallurgy(ironDustID).setTextureName("Metallurgy:Vanilla/IronDust").setUnlocalizedName("metallurgy.iron.dust").setCreativeTab(CreativeTabs.tabMaterials);
         dustGold = new ItemMetallurgy(goldDustID).setTextureName("Metallurgy:Vanilla/GoldDust").setUnlocalizedName("metallurgy.gold.dust").setCreativeTab(CreativeTabs.tabMaterials);
 
+        GameRegistry.registerItem(dustIron, "iron.dust");
+        GameRegistry.registerItem(dustGold, "gold.dust");
+
         OreDictionary.registerOre("dustIron", dustIron);
         OreDictionary.registerOre("dustGold", dustGold);
 
