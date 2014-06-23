@@ -323,7 +323,7 @@ public class MetallurgyMetals
             MetallurgyCore.log.warning("Iron Dust wasn't found in the ore dictionary, skipping adding Iron dust coverting recipes");
         }
 
-        int id = utilityConfig.getBlock("he_tnt", 920).getInt();
+        int id = utilityConfig.getBlock("he_tnt", 930).getInt();
         if (id != 0)
         {
             largeTNT = new BlockLargeTNT(id).setUnlocalizedName("metallurgy.largeTNT").setCreativeTab(utilityTab);
@@ -336,7 +336,7 @@ public class MetallurgyMetals
             }
         }
 
-        id = utilityConfig.getBlock("le_tnt", 921).getInt();
+        id = utilityConfig.getBlock("le_tnt", 931).getInt();
         if (id != 0)
         {
             minersTNT = new BlockMinersTNT(id).setUnlocalizedName("metallurgy.minersTNT").setCreativeTab(utilityTab);

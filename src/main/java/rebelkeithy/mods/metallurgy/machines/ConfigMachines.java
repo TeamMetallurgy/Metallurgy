@@ -9,7 +9,7 @@ import rebelkeithy.mods.metallurgy.core.MetallurgyCore;
 public class ConfigMachines
 {
     public static boolean crusherEnabled = true;
-    public static int crusherID = 910;
+    public static int crusherID = 920;
     public static float stoneCrusherSpeed = 60;
     public static float copperCrusherSpeed = 30;
     public static float bronzeCrusherSpeed = 20;
@@ -17,14 +17,14 @@ public class ConfigMachines
     public static float steelCrusherSpeed = 10;
 
     public static boolean furnaceEnabled = true;
-    public static int furnaceID = 911;
+    public static int furnaceID = 921;
     public static float copperFurnaceSpeed = 9.5F;
     public static float bronzeFurnaceSpeed = 9;
     public static float ironFurnaceSpeed = 8;
     public static float steelFurnaceSpeed = 7;
 
     public static boolean forgeEnabled = true;
-    public static int forgeID = 912;
+    public static int forgeID = 922;
     public static float[] forgeSpeeds = new float[]
     { 6, 5.5F, 5, 4.5F, 4, 3.5F, 3, 2 };
     public static int[] forgeBuckets = new int[]
@@ -32,18 +32,18 @@ public class ConfigMachines
     public static boolean smelterDropsLava = false;
 
     public static boolean abstractorEnabled = true;
-    public static int abstractorID = 913;
+    public static int abstractorID = 923;
 
     public static boolean chestEnabled = true;
-    public static int chestID = 914;
+    public static int chestID = 924;
 
     public static boolean mintEnabled = true;
-    public static int mintID = 915;
+    public static int mintID = 925;
     public static boolean mintStorageEnabled = true;
-    public static int mintStorageID = 916;
+    public static int mintStorageID = 926;
 
     public static boolean enchanterEnabled = true;
-    public static int enchanterID = 930;
+    public static int enchanterID = 940;
 
     public static int coinID = 29002;
     public static int stackID = 29003;
@@ -53,19 +53,19 @@ public class ConfigMachines
 
     public static boolean tradesEnabled = true;
 
-    public static int lanternID = 918;
+    public static int lanternID = 928;
     public static int glassDustID = 29006;
-    public static int coloredGlassID = 917;
+    public static int coloredGlassID = 927;
 
     public static boolean ladderEnabled = true;
-    public static int ladderID = 919;
+    public static int ladderID = 929;
 
-    public static int laserID = 922;
+    public static int laserID = 932;
 
     public static int[] extractorSpeeds = new int[11];
     public static double[] xpBonus = new double[11];
-    public static int xpTankID = 923;
-    public static int pylonID = 924;
+    public static int xpTankID = 933;
+    public static int pylonID = 934;
 
     public static int orbID = 29018;
 	public static int sawDustID = 29019;

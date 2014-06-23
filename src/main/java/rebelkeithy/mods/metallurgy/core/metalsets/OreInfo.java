@@ -160,17 +160,17 @@ public class OreInfo implements IOreInfo, IWorldGenerator
 
         if (type.generates())
         {
-            oreID = Integer.parseInt(info.get("Ore ID").split(":")[0]);
+            oreID = Integer.parseInt(info.get("New Ore ID"));
             oreMeta = Integer.parseInt(info.get("Ore Meta"));
         }
-        if (!info.get("Block ID").equals("0"))
+        if (!info.get("New Block ID").equals("0"))
         {
-            blockID = Integer.parseInt(info.get("Block ID").split(":")[0]);
+            blockID = Integer.parseInt(info.get("New Block ID"));
             blockMeta = Integer.parseInt(info.get("Block Meta"));
         }
-        if (!info.get("Brick ID").equals("0"))
+        if (!info.get("New Brick ID").equals("0"))
         {
-            brickID = Integer.parseInt(info.get("Brick ID").split(":")[0]);
+            brickID = Integer.parseInt(info.get("New Brick ID"));
             brickMeta = Integer.parseInt(info.get("Brick Meta"));
         }
 
