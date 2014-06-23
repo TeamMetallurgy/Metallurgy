@@ -61,6 +61,7 @@ public class BlockPreciousChest extends BlockContainer
     public BlockPreciousChest(int par1)
     {
         super(par1, Material.rock);
+        this.setBlockBounds(0.0625F, 0.0F, 0.0625F, 0.9375F, 0.875F, 0.9375F);
     }
 
     /**
