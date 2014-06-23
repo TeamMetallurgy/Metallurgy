@@ -70,6 +70,8 @@ public class MetallurgyMetals
     public static Configuration coreConfig;
     public static Configuration utilityConfig;
     public static Configuration fantasyConfig;
+    public static Configuration vanillaConfig;
+    public static Configuration netherConfig;
 
     // Utility Items
     public static Item magnesiumIgniter;
@@ -80,6 +82,10 @@ public class MetallurgyMetals
 
     public static Block largeTNT;
     public static Block minersTNT;
+
+    // Recipes
+    private static boolean midasiumRecipesEnabled;
+    private static boolean ironDustRecipesEnabled;
 
     @SidedProxy(clientSide = "rebelkeithy.mods.metallurgy.metals.ClientProxy", serverSide = "rebelkeithy.mods.metallurgy.metals.CommonProxy")
     public static CommonProxy proxy;
@@ -295,33 +301,33 @@ public class MetallurgyMetals
         }
     }
 
+    public void createIronDustRecipes ()
+    {
+        ArrayList<ItemStack> ironDusts = OreDictionary.getOres("dustIron");
+
+        if (ironDusts.size() < 1)
+        {
+            MetallurgyCore.log.warning("Iron Dust wasn't found in the ore dictionary, skipping adding Iron dust coverting recipes");
+            return;
+        }
+        ItemStack dustIron = ironDusts.get(0);
+
+        if (dustIron == null)
+        {
+            MetallurgyCore.log.warning("Iron Dust wasn't found in the ore dictionary, skipping adding Iron dust coverting recipes");
+            return;
+        }
+
+        dustIron = dustIron.copy();
+        dustIron.stackSize = 2;
+
+        GameRegistry.addRecipe(new ShapelessOreRecipe(dustIron.copy(), "dustShadow Iron", "dustIgnatius"));
+        GameRegistry.addRecipe(new ShapelessOreRecipe(dustIron.copy(), "dustDeep Iron", "dustPrometheum"));
+
+    }
     public void createUtilityItems()
     {
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Item.blazeRod), "I", "I", 'I', "ingotVulcanite"));
-
-        ArrayList<ItemStack> ironDusts = OreDictionary.getOres("dustIron");
-        if (ironDusts.size() < 1)
-        {
-            ItemStack dustIron = ironDusts.get(0);
-
-            if(dustIron != null)
-            {
-
-               dustIron = dustIron.copy();
-               dustIron.stackSize = 2;
-
-               GameRegistry.addRecipe(new ShapelessOreRecipe(dustIron.copy(), "dustShadow Iron", "dustIgnatius"));
-               GameRegistry.addRecipe(new ShapelessOreRecipe(dustIron.copy(), "dustDeep Iron", "dustPrometheum"));
-            }
-            else
-            {
-                MetallurgyCore.log.warning("Iron Dust wasn't found in the ore dictionary, skipping adding Iron dust coverting recipes");
-            }
-        }
-        else
-        {
-            MetallurgyCore.log.warning("Iron Dust wasn't found in the ore dictionary, skipping adding Iron dust coverting recipes");
-        }
 
         int id = utilityConfig.getBlock("he_tnt", 930).getInt();
         if (id != 0)
@@ -531,7 +537,16 @@ public class MetallurgyMetals
             ((MetallurgyTabs) enderTab).setIconItem(enderSet.getOreInfo("Desichalkos").helmet.itemID);
         }
 
-        createMidasiumRecipes();
+        if (midasiumRecipesEnabled)
+        {
+            createMidasiumRecipes();
+        }
+
+        if (ironDustRecipesEnabled)
+        {
+            createIronDustRecipes();
+        }
+
         ThaumcraftIntegration.init();
         IndustrialCraftIntegration.init();
         RailcraftIntegration.init();
@@ -540,8 +555,10 @@ public class MetallurgyMetals
         {
             Class.forName("dan200.turtle.api.TurtleAPI");
             ComputerCraftIntegration.init();
-        } catch (final Exception e)
+        }
+        catch (final Exception e)
         {
+            MetallurgyCore.log.info("ComputerCraft have been not found, Skipping integration");
         }
     }
 
@@ -565,7 +582,33 @@ public class MetallurgyMetals
 
         fantasyConfig = initConfig("Fantasy");
         
+        netherConfig = initConfig("Nether");
+        netherConfig.load();
 
+        String midasiumComment = "Enables recipes to convert any dust in Ore Dictionary into gold.";
+
+        midasiumRecipesEnabled = netherConfig.get("1_enable.item_recipes", "midasium_to_gold"
+                , true, midasiumComment).getBoolean(true);
+
+        if (netherConfig.hasChanged())
+        {
+            netherConfig.save();
+        }
+
+        vanillaConfig = initConfig("Vanilla");
+        vanillaConfig.load();
+
+        String ironDustComment = "Adds additional Iron dust crafting recipes:"
+                + "\n-Ignatius dust + Shadow Iron dust = 2 iron dusts."
+                + "\n-Prometheum dust + Deep Iron dust = 2 iron dusts.";
+
+        ironDustRecipesEnabled = vanillaConfig.get("1_enable.item_recipes", "more_iron_dust_crafting"
+                , true, ironDustComment).getBoolean(true);
+
+        if (vanillaConfig.hasChanged())
+        {
+            vanillaConfig.save();
+        }
 
         GameRegistry.registerFuelHandler(new IFuelHandler()
         {
