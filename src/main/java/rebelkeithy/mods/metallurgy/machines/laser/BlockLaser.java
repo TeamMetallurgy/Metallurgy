@@ -24,6 +24,7 @@ public class BlockLaser extends BlockContainer
         super(par1, Material.rock);
         setBlockBounds(5 / 16F, 5 / 16F, 5 / 16F, 11 / 16F, 11 / 16F, 11 / 16F);
         // this.maxY += 2;
+        this.setTextureName("metallurgy:machines/laser/laser_block");
 
         MinecraftForge.EVENT_BUS.register(this);
     }

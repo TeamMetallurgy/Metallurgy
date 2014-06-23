@@ -32,6 +32,7 @@ public class BlockLantern extends BlockContainer
     {
         super(par1, Material.rock);
         setBlockBounds(3 / 16F, 0 / 16F, 3 / 16F, 13 / 16F, 13 / 16F, 13 / 16F);
+        setTextureName("metallurgy:machines/lantern/lantern_block");
     }
 
     /**
@@ -100,7 +101,7 @@ public class BlockLantern extends BlockContainer
      */
     public Icon getIcon(int par1, int par2)
     {
-        return Block.stone.getIcon(par1, par2);
+        return this.blockIcon;
     }
 
     @SideOnly(Side.CLIENT)

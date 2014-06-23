@@ -4,9 +4,11 @@ import java.util.List;
 
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.Icon;
 import net.minecraft.world.World;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 
@@ -16,6 +18,7 @@ public class BlockPylon extends BlockContainer
     { "Prometheum", "Deep Iron", "Black Steel", "Oureclase", "Mithril", "Haderoth", "Orichalcum", "Adamantine", "Atlarus", "Tartarite" };
     public static float[] enchantability =
     { 0.5f, 1f, 2f, 3f, 4f, 5f, 7.5f, 10f, 12.5f, 15f };
+    private Icon icons[];
 
     public int renderId = RenderingRegistry.getNextAvailableRenderId();
 
@@ -69,5 +72,29 @@ public class BlockPylon extends BlockContainer
     public boolean renderAsNormalBlock()
     {
         return false;
+    }
+
+    @Override
+    public void registerIcons(IconRegister iconRegister)
+    {
+        icons = new Icon[names.length];
+
+        for (int i = 0; i < names.length; i++)
+        {
+            String texture = names[i].replace(" ", "") + "PylonBlock";
+            texture = "metallurgy:machines/pylon/" + texture;
+            icons[i] = iconRegister.registerIcon(texture);
+        }
+    }
+
+    @Override
+    public Icon getIcon(int side, int metaId)
+    {
+        if (metaId >= icons.length || metaId < 0)
+        {
+            return icons[0];
+        }
+
+        return icons[metaId];
     }
 }

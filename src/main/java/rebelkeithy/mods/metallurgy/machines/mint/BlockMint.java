@@ -2,7 +2,6 @@ package rebelkeithy.mods.metallurgy.machines.mint;
 
 import java.util.Random;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.EntityLivingBase;
@@ -36,6 +35,7 @@ public class BlockMint extends BlockContainer
     public BlockMint(int par1)
     {
         super(par1, Material.rock);
+        setTextureName("metallurgy:machines/mint/mint_block");
     }
 
     /**
@@ -89,7 +89,7 @@ public class BlockMint extends BlockContainer
     @Override
     public Icon getIcon(int par1, int par2)
     {
-        return Block.stone.getIcon(par1, par2);
+        return this.blockIcon;
     }
 
     /**
