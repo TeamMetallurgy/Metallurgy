@@ -42,8 +42,8 @@ public class ContainerMetallurgyEnchantment extends Container
     /** used as seed for EnchantmentNameParts (see GuiEnchantment) */
     public long nameSeed;
 
-    /** 3-member array storing the enchantment levels of each slot */
-    public int enchantLevels;
+    /** 6-member array storing the enchantment levels of each slot */
+    public int[] enchantLevels = new int [6];
 
     public EntityPlayer player;
 
@@ -81,7 +81,12 @@ public class ContainerMetallurgyEnchantment extends Container
     public void addCraftingToCrafters(ICrafting par1ICrafting)
     {
         super.addCraftingToCrafters(par1ICrafting);
-        par1ICrafting.sendProgressBarUpdate(this, 0, enchantLevels);
+        par1ICrafting.sendProgressBarUpdate(this, 0, enchantLevels[0]);
+        par1ICrafting.sendProgressBarUpdate(this, 1, enchantLevels[1]);
+        par1ICrafting.sendProgressBarUpdate(this, 2, enchantLevels[2]);
+        par1ICrafting.sendProgressBarUpdate(this, 3, enchantLevels[3]);
+        par1ICrafting.sendProgressBarUpdate(this, 4, enchantLevels[4]);
+        par1ICrafting.sendProgressBarUpdate(this, 5, enchantLevels[5]);
     }
 
     @Override
@@ -106,7 +111,12 @@ public class ContainerMetallurgyEnchantment extends Container
         for (int i = 0; i < crafters.size(); ++i)
         {
             final ICrafting icrafting = (ICrafting) crafters.get(i);
-            icrafting.sendProgressBarUpdate(this, 0, enchantLevels);
+            icrafting.sendProgressBarUpdate(this, 0, enchantLevels[0]);
+            icrafting.sendProgressBarUpdate(this, 1, enchantLevels[1]);
+            icrafting.sendProgressBarUpdate(this, 2, enchantLevels[2]);
+            icrafting.sendProgressBarUpdate(this, 3, enchantLevels[3]);
+            icrafting.sendProgressBarUpdate(this, 4, enchantLevels[4]);
+            icrafting.sendProgressBarUpdate(this, 5, enchantLevels[5]);
         }
     }
 
@@ -115,16 +125,16 @@ public class ContainerMetallurgyEnchantment extends Container
      * from player
      */
     @Override
-    public boolean enchantItem(EntityPlayer par1EntityPlayer, int slot)
+    public boolean enchantItem(EntityPlayer par1EntityPlayer, int enchantId)
     {
         final ItemStack itemstack = tableInventory.getStackInSlot(0);
 
-        if (enchantLevels > 0 && itemstack != null && (par1EntityPlayer.experienceLevel >= enchantLevels || par1EntityPlayer.capabilities.isCreativeMode))
+        if (enchantLevels[enchantId] > 0 && itemstack != null && (par1EntityPlayer.experienceLevel >= enchantLevels[enchantId] || par1EntityPlayer.capabilities.isCreativeMode))
         {
             if (!worldPointer.isRemote)
             {
                 int catalyst = 0;
-                for (int i = 1; i < 6; i++)
+                for (int i = 1; i < 7; i++)
                 {
                     final ItemStack item = tableInventory.getStackInSlot(i);
                     if (item != null && MetallurgyMetals.fantasySet != null)
@@ -142,12 +152,12 @@ public class ContainerMetallurgyEnchantment extends Container
                     }
                 }
 
-                final List<EnchantmentData> list = MaxEnchanterHelper.buildEnchantmentList(rand, itemstack, enchantLevels, catalyst);
+                final List<EnchantmentData> list = MaxEnchanterHelper.buildEnchantmentList(rand, itemstack, enchantLevels[enchantId], catalyst);
                 final boolean flag = itemstack.itemID == Item.book.itemID;
 
                 if (list != null)
                 {
-                    par1EntityPlayer.addExperienceLevel(-enchantLevels);
+                    par1EntityPlayer.addExperienceLevel(-enchantLevels[enchantId]);
 
                     if (flag)
                     {
@@ -195,7 +205,7 @@ public class ContainerMetallurgyEnchantment extends Container
 
         if (!worldPointer.isRemote)
         {
-            for (int i = 0; i < 6; i++)
+            for (int i = 0; i < 7; i++)
             {
                 final ItemStack itemstack = tableInventory.getStackInSlotOnClosing(i);
 
@@ -244,17 +254,25 @@ public class ContainerMetallurgyEnchantment extends Container
                             }
                         }
                     }
-                    enchantLevels = MaxEnchanterHelper.calcItemStackEnchantability(rand, (int) power, itemstack);
-                    if (player != null && player.experienceLevel < enchantLevels)
+
+                    for (int i = 0; i < enchantLevels.length; i++)
                     {
-                        enchantLevels = player.experienceLevel;
+                        enchantLevels[i] = MaxEnchanterHelper.calcItemStackEnchantability(rand, (int) power, itemstack);
+                        if (player != null && player.experienceLevel < enchantLevels[i])
+                        {
+                            enchantLevels[i] = player.experienceLevel;
+                        }
                     }
+
                     detectAndSendChanges();
                 }
             }
             else
             {
-                enchantLevels = 0;
+                for (int i = 0; i <enchantLevels.length; i++)
+                {
+                    enchantLevels[i] = 0;
+                }
             }
         }
     }
@@ -324,9 +342,9 @@ public class ContainerMetallurgyEnchantment extends Container
     @SideOnly(Side.CLIENT)
     public void updateProgressBar(int par1, int par2)
     {
-        if (par1 == 0)
+        if (par1 >= 0 && par1 < 6)
         {
-            enchantLevels = par2;
+            enchantLevels[par1] = par2;
         }
         else
         {

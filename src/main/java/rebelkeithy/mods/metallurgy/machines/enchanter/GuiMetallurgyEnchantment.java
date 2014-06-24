@@ -139,9 +139,9 @@ public class GuiMetallurgyEnchantment extends GuiContainer
             zLevel = 0.0F;
             // this.mc.renderEngine.bindTexture("/mods/Metallurgy/textures/guis/enchant.png");
             mc.getTextureManager().bindTexture(background);
-            int j1 = (int) ((containerEnchantment.enchantLevels - 1) * i1 / 5.0f + 1);
+            int j1 = (int) ((containerEnchantment.enchantLevels[i1] - 1) * i1 / 5.0f + 1);
 
-            if (containerEnchantment.enchantLevels == 0)
+            if (containerEnchantment.enchantLevels[i1] == 0)
             {
                 j1 = 0;
             }
@@ -164,7 +164,8 @@ public class GuiMetallurgyEnchantment extends GuiContainer
                     }
                     else if (containerEnchantment.tableInventory.getStackInSlot(i).itemID == MetallurgyMetals.fantasySet.getOreInfo("Carmot").dust.itemID)
                     {
-                        drawTexturedModalRect(k + 69 + 18 * (i - 1), l + 46, 126, 166, 18, 18);
+                        drawTexturedModalRect(k + offsetArrayX[i - 1], l + offsetArrayY[i - 1], 163, 167, 16, 16);
+                        //drawTexturedModalRect(k + 69 + 18 * (i - 1), l + 46, 126, 166, 18, 18);
                     }
                 }
             }
@@ -246,9 +247,12 @@ public class GuiMetallurgyEnchantment extends GuiContainer
         field_74208_u = field_74209_t;
         boolean flag = false;
 
-        if (containerEnchantment.enchantLevels != 0)
+        for (int i = 0; i < 6; i++)
         {
-            flag = true;
+            if (containerEnchantment.enchantLevels[i] != 0)
+            {
+                flag = true;
+            }
         }
 
         if (flag)
@@ -297,12 +301,17 @@ public class GuiMetallurgyEnchantment extends GuiContainer
         final int l = (width - xSize) / 2;
         final int i1 = (height - ySize) / 2;
 
-        final int k1 = par1 - (l + 60);
-        final int l1 = par2 - (i1 + 14);
-
-        if (k1 >= 0 && l1 >= 0 && k1 < 108 && l1 < 19 && containerEnchantment.enchantItem(mc.thePlayer, 0))
+        for (int j = 0; j < 6; j++)
         {
-            mc.playerController.sendEnchantPacket(containerEnchantment.windowId, 0);
+            final int xOffset = j < 3 ? 5 : 123;
+
+            final int l1 = par1 - (l + xOffset);
+            final int i2 = par2 - (i1 + 14 + 19 * (j < 3 ? j : j - 3));
+
+            if (l1 >= 0 && i2 >= 0 && l1 < 48 && i2 < 19 && containerEnchantment.enchantItem(mc.thePlayer, j))
+            {
+                mc.playerController.sendEnchantPacket(containerEnchantment.windowId, j);
+            }
         }
     }
 

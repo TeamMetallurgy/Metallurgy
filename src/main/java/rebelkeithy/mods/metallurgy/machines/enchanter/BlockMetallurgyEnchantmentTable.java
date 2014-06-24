@@ -124,7 +124,15 @@ public class BlockMetallurgyEnchantmentTable extends BlockContainer
                 {
                     for (int j1 = par3; j1 <= par3 + 1; ++j1)
                     {
-                        if (par1World.getBlockId(l, j1, i1) == Block.bookShelf.blockID)
+                        int enchantingBlockId =  par1World.getBlockId(l, j1, i1);
+
+                        if (enchantingBlockId < 1 || enchantingBlockId > Block.blocksList.length - 1)
+                        {
+                            break;
+                        }
+                        Block enchantingBlock = Block.blocksList[enchantingBlockId];
+
+                        if (enchantingBlock.getEnchantPowerBonus(par1World, l, j1, i1) > 0)
                         {
                             if (!par1World.isAirBlock((l - par2) / 2 + par2, j1, (i1 - par4) / 2 + par4))
                             {
