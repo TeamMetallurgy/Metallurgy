@@ -347,7 +347,7 @@ public class MetallurgyMetals
         {
             minersTNT = new BlockMinersTNT(id).setUnlocalizedName("metallurgy.minersTNT").setCreativeTab(utilityTab);
             GameRegistry.registerBlock(minersTNT, "LETNT");
-            EntityRegistry.registerModEntity(EntityMinersTNTPrimed.class, "MinersTNTEntity", 113, this, 64, 10, true);
+            EntityRegistry.registerModEntity(EntityMinersTNTPrimed.class, "MinersTNTEntity", 114, this, 64, 10, true);
             if (utilityConfig.get("recipes", "enable_le_tnt", true).getBoolean(true))
             {
                 GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(minersTNT, 4), "MPM", "PTP", "MPM", 'M', "dustMagnesium", 'P', "dustPhosphorus", 'T', Block.tnt));
@@ -464,6 +464,7 @@ public class MetallurgyMetals
         addSwordEffects();
 
         proxy.registerParticles();
+        proxy.registerRenders();
 
         TreeCapitatorIntegration.init();
     }
