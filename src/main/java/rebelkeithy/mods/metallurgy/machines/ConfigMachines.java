@@ -65,6 +65,8 @@ public class ConfigMachines
     public static int[] extractorSpeeds = new int[11];
     public static double[] xpBonus = new double[11];
     public static int xpTankID = 933;
+
+    public static boolean pylonEnabled = true;
     public static int pylonID = 934;
 
     public static int orbID = 29018;
@@ -94,6 +96,7 @@ public class ConfigMachines
         mintEnabled = config.get("1_enable.machines", "mint", mintEnabled).getBoolean(mintEnabled);
         enchanterEnabled = config.get("1_enable.machines", "enchanter", enchanterEnabled).getBoolean(enchanterEnabled);
         ladderEnabled = config.get("1_enable.machines", "ladder", ladderEnabled).getBoolean(ladderEnabled);
+        pylonEnabled = config.get("1_enable.machines", "pylons", pylonEnabled).getBoolean(pylonEnabled);
         
         crusherID = config.getBlock("crusher", crusherID).getInt();
         furnaceID = config.getBlock("metal_furnace", furnaceID).getInt();
