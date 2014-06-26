@@ -22,9 +22,9 @@ repositories {
 
 apply plugin: 'forge'
 
-version = "3.3.3"
+version = "3.4.0"
 mc_version = "1.6.4"
-ku_version = "1.2.29"
+ku_version = "1.3.30"
 group= "rebelkeithy.mods.metallurgy" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "Metallurgy"
 
