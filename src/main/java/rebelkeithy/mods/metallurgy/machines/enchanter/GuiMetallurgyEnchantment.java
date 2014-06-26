@@ -12,7 +12,6 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnchantmentNameParts;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.StatCollector;
 
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
@@ -222,10 +221,10 @@ public class GuiMetallurgyEnchantment extends GuiContainer
     @Override
     protected void drawGuiContainerForegroundLayer(int par1, int par2)
     {
-         this.fontRenderer.drawString(StatCollector.translateToLocal("container.metallurgy.enchanter")
+         /*this.fontRenderer.drawString(StatCollector.translateToLocal("container.metallurgy.enchanter")
                  , 12, 5, 4210752);
          this.fontRenderer.drawString(StatCollector.translateToLocal("container.inventory"),
-         8, this.ySize - 96 + 2, 4210752);
+         8, this.ySize - 96 + 2, 4210752);*/
     }
 
     public void func_74205_h()
