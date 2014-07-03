@@ -20,7 +20,7 @@ import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 
-@Mod(modid = "Metallurgy3Vanilla", name = "Metallurgy 3 Vanilla", version = "3.4.0", dependencies = "required-after:Metallurgy3Core")
+@Mod(modid = "Metallurgy3Vanilla", name = "Metallurgy 3 Vanilla", version = "3.4.0", dependencies = "required-after:Metallurgy3Core;after:Metallurgy3Base")
 @NetworkMod(channels = { "MetallurgyVanilla" }, clientSideRequired = true, serverSideRequired = false)
 public class MetallurgyVanilla
 {
