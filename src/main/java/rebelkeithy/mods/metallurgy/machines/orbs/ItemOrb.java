@@ -189,7 +189,9 @@ public class ItemOrb extends Item
                 par3EntityPlayer.worldObj.spawnEntityInWorld(new EntityXPOrb(par3EntityPlayer.worldObj, par3EntityPlayer.posX, par3EntityPlayer.posY + 0.5D, par3EntityPlayer.posZ + 0.5D, xp));
             }
 
+            int type = this.getTypeFromDamage(par1ItemStack.getItemDamage());
             setXP(par1ItemStack, 0);
+            par1ItemStack.setItemDamage(type);
         }
     }
 
